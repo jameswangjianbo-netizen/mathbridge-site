@@ -1,80 +1,119 @@
+<!-- Note 1: the doctype and lang attribute are the first two things a browser and a
+     screen reader check. `<!DOCTYPE html>` tells the browser to render in standards
+     mode (no quirks-mode fallbacks); `lang="en"` tells assistive tech which
+     pronunciation/hyphenation rules to use for the whole document. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<!-- Note 2: this viewport meta tag is what makes the page "responsive" instead of a
+     zoomed-out desktop layout on phones. `width=device-width` matches the CSS
+     viewport to the physical screen width; `initial-scale=1` starts at 1:1 zoom. -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MathBridge — Free IB DP, MYP &amp; IGCSE Maths Lesson Plans That Connect the Curriculum</title>
-<meta name="description" content="Download 15 free lesson plans across 5 core topics showing exactly how Cambridge IGCSE, IB MYP, and DP Mathematics: Analysis &amp; Approaches build on each other. No cost, no mailing list." />
+<title>Signal House — Marketing Agency for Growing Businesses | Free 20-Point Audit</title>
+<!-- Note 3: <meta name="description"> is what search engines usually show as the
+     snippet under a search result. It has no effect on rendering — it's read by
+     crawlers and social scrapers, not laid out on the page. -->
+<meta name="description" content="Signal House is a full-service marketing agency covering paid media, SEO, brand, and reporting. Get a free 20-point marketing audit — no obligation, no generic template." />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://www.mathbridge.example/" />
+<!-- Note 4: the canonical link tells search engines "this exact URL is the one
+     source of truth for this content," even if the same page is reachable through
+     several URLs (with/without trailing slash, query params, etc). It prevents
+     duplicate-content penalties. -->
+<link rel="canonical" href="https://www.signalhouse.example/" />
 
 <!-- Open Graph / social preview. Replace {OG_IMAGE_URL} with a real 1200x630 image before launch. -->
+<!-- Note 5: Open Graph (`og:*`) and Twitter Card (`twitter:*`) meta tags are a
+     separate, non-standard-HTML vocabulary that social platforms read when someone
+     pastes this URL into a chat or post. They control the preview card's title,
+     description, and image independently of the page's own <title> and content. -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="MathBridge" />
-<meta property="og:title" content="MathBridge — Lesson Plans That Connect IGCSE, MYP &amp; DP AA" />
-<meta property="og:description" content="15 free lesson plans across 5 core topics, showing exactly how IGCSE, MYP, and DP Mathematics: AA build on one another." />
-<meta property="og:url" content="https://www.mathbridge.example/" />
-<meta property="og:image" content="https://www.mathbridge.example/{OG_IMAGE_URL}" />
+<meta property="og:site_name" content="Signal House" />
+<meta property="og:title" content="Signal House — Marketing Agency for Growing Businesses" />
+<meta property="og:description" content="Paid media, SEO, brand, and reporting under one roof. Get a free 20-point marketing audit — no obligation." />
+<meta property="og:url" content="https://www.signalhouse.example/" />
+<meta property="og:image" content="https://www.signalhouse.example/{OG_IMAGE_URL}" />
 <meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="MathBridge — Lesson Plans That Connect IGCSE, MYP &amp; DP AA" />
-<meta name="twitter:description" content="15 free lesson plans showing exactly how IGCSE, MYP, and DP Mathematics: AA build on one another." />
+<meta name="twitter:title" content="Signal House — Marketing Agency for Growing Businesses" />
+<meta name="twitter:description" content="Paid media, SEO, brand, and reporting under one roof. Get a free 20-point marketing audit." />
 
-<meta name="theme-color" content="#101826" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101826'/%3E%3Cline x1='6' y1='11' x2='26' y2='11' stroke='%23C1552B' stroke-width='2.4' stroke-linecap='round'/%3E%3Cline x1='6' y1='16' x2='26' y2='16' stroke='%232A5DAF' stroke-width='2.4' stroke-linecap='round'/%3E%3Cline x1='6' y1='21' x2='26' y2='21' stroke='%236E4A9E' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E" />
+<meta name="theme-color" content="#101214" />
+<!-- Note 6: this favicon is a data: URI holding inline SVG markup instead of a
+     separate .ico/.png file request. It saves an HTTP round trip at the cost of
+     bloating the HTML slightly — a reasonable trade for a small, simple icon. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101214'/%3E%3Crect x='7' y='8' width='18' height='7' rx='1.5' fill='%23F2EFE9'/%3E%3Crect x='7' y='17' width='18' height='7' rx='1.5' fill='%23F2EFE9'/%3E%3Ccircle cx='23.5' cy='11.5' r='2' fill='%23E0272B'/%3E%3C/svg%3E" />
 
+<!-- Note 7: `rel="preconnect"` is a performance hint — it tells the browser to open
+     the DNS lookup + TLS handshake to fonts.googleapis.com / fonts.gstatic.com
+     *before* the CSS actually asks for a font file, so the real font request
+     doesn't have to wait for that setup cost. `crossorigin` is required on the
+     gstatic one because font files are fetched with CORS. -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
+<!-- Note 8: this is JSON-LD structured data — plain JSON describing the business,
+     site, and FAQ using schema.org's vocabulary, sitting inert inside a
+     <script type="application/ld+json"> tag (the browser never executes it as
+     JavaScript). Search engines parse it to build rich results like FAQ
+     accordions directly in search listings. The "@graph" array lets several
+     related entities (the business, the website, the FAQ) share one context. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "name": "MathBridge",
-      "url": "https://www.mathbridge.example/",
-      "email": "hello@mathbridge.example",
-      "description": "MathBridge publishes lesson plans that map how Cambridge IGCSE, IB MYP, and IB DP Mathematics: Analysis & Approaches build on one another."
+      "@type": "ProfessionalService",
+      "name": "Signal House",
+      "url": "https://www.signalhouse.example/",
+      "email": "hello@signalhouse.example",
+      "description": "Signal House is a full-service marketing agency offering paid media, SEO and content, brand and creative, and marketing operations and reporting.",
+      "areaServed": "US",
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paid Media & Performance" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO & Content" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand & Creative" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing Ops & Reporting" } }
+      ]
     },
     {
       "@type": "WebSite",
-      "name": "MathBridge",
-      "url": "https://www.mathbridge.example/"
+      "name": "Signal House",
+      "url": "https://www.signalhouse.example/"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is the lesson plan pack really free?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. There's no cost and no credit card. We ask for your email only so we can send the pack and follow up if you have questions." }
+          "name": "Is the marketing audit really free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. There's no cost and no obligation to work with us afterward. We ask for your email so we can send the audit and follow up if you have questions." }
         },
         {
           "@type": "Question",
-          "name": "What format are the lesson plans in?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Each plan is a print-ready PDF covering objectives, command terms, worked examples, and a vertical-articulation note, one page per topic per programme." }
+          "name": "How long is a typical engagement?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We start with a 90-day plan, then move month-to-month. There's no multi-year lock-in — you can leave at the end of any month." }
         },
         {
           "@type": "Question",
-          "name": "Do I need to be an IB World School to use these?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. The IGCSE and MYP plans stand on their own, and the DP AA plans are useful whether or not your school runs the Diploma Programme." }
+          "name": "What size businesses do you work with?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Mostly growing businesses that already have a product and some marketing spend in place. If you're pre-revenue or pre-launch, we're probably not the right fit yet." }
         },
         {
           "@type": "Question",
-          "name": "Are these aligned to the current syllabus?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every plan is cross-checked against the Cambridge IGCSE and Edexcel International GCSE specifications, the IB MYP framework, and the DP Mathematics: Analysis and Approaches guide, including the 2029 syllabus draft." }
+          "name": "Which industries do you work in?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Mainly B2B services, e-commerce, and multi-location local brands, but the audit itself is useful for almost any industry with an existing online presence." }
         },
         {
           "@type": "Question",
-          "name": "Will I be added to a mailing list?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. We reply to your request directly and do not add you to any mailing list." }
+          "name": "How do you report on results?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A standing report on a fixed cadence, in plain language: what ran, what it cost, what it returned, and what changes next. No dashboard you have to learn to read yourself." }
         },
         {
           "@type": "Question",
-          "name": "Can I share the pack with my department?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Once you have the pack it's yours to use and adapt across your team. Mention colleagues in the message field and we'll loop them in directly." }
+          "name": "Do you require a long-term contract?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. After the initial 90-day plan, engagements run month-to-month." }
         }
       ]
     }
@@ -84,56 +123,75 @@
 
 <style>
 /* ---------------------------------------------------------------
-   Design tokens — graph paper + mathematical notation
+   Design tokens — signal house: agency-as-signal-station
+   Note 9: these are CSS custom properties (informally "CSS variables"),
+   declared once on :root (the <html> element) so every rule on the page can
+   reference them with var(--name). Unlike Sass variables, these are live in
+   the browser — they can be read and overridden at runtime with JS or media
+   queries, and they cascade/inherit like any other CSS property.
 ---------------------------------------------------------------- */
 :root {
-  --paper:      #F1F5F7;
-  --paper-deep: #E7EDF1;
-  --surface:    #ffffff;
-  --grid:       #D3DFE8;
-  --grid-soft:  #E3EAEF;
+  --paper:   #F7F5F1;
+  --surface: #ffffff;
+  --line:    #E5E1D8;
 
-  --ink:      #101826;
-  --ink-soft: #2A3446;
-  --body:     #4B5568;
-  --muted:    #7C8797;
-  --line:     #DAE2E9;
+  --ink:      #14171A;
+  --ink-soft: #383D42;
+  --body:     #52585E;
+  --muted:    #83898F;
 
-  --myp:      #2A5DAF;   /* primary / MYP strand */
-  --myp-tint: #DEE9F6;
-  --igcse:      #C1552B; /* IGCSE strand */
-  --igcse-tint: #F5E3D8;
-  --dp:      #6E4A9E;    /* DP AA strand */
-  --dp-tint: #EAE2F4;
+  --board:      #101214;
+  --board-line: #2B2F34;
+  --flap:       #F2EFE9;
+  --flap-dim:   #8A8F94;
 
-  --danger:  #B3382A;
-  --success: #1F6F54;
-  --success-tint: #DEEEE7;
+  --signal:      #E0272B;
+  --signal-dark: #B81F22;
+  --signal-tint: #FBE4E3;
 
-  --radius:    8px;
-  --radius-lg: 14px;
+  --success: #1F7A5C;
+  --success-tint: #DFEFE8;
+  --danger:  #B81F22;
 
-  --shadow-sm: 0 1px 2px rgba(16, 24, 38, .07);
-  --shadow-md: 0 10px 24px -14px rgba(16, 24, 38, .28);
-  --shadow-lg: 0 30px 60px -24px rgba(16, 24, 38, .38);
+  --radius:    10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(20, 23, 26, .07);
+  --shadow-md: 0 12px 26px -14px rgba(20, 23, 26, .3);
+  --shadow-lg: 0 32px 64px -26px rgba(20, 23, 26, .42);
 
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
-  --section-y: clamp(4rem, 9vw, 7rem);
+  --section-y: clamp(4rem, 9vw, 7.5rem);
 
   --nav-h: 68px;
 
-  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* ---------------------------------------------------------------
    Base
 ---------------------------------------------------------------- */
+/* Note 10: the "universal box-sizing reset." By default the CSS box model adds
+   padding and border ON TOP OF the width/height you set (content-box), which
+   makes sizing math annoying. `border-box` folds padding and border INSIDE the
+   declared width/height instead, so `width: 100%; padding: 1rem;` behaves the
+   way most people intuitively expect. This is close to a universal best practice
+   in modern CSS. */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
+  /* Note 11: `scroll-behavior: smooth` makes browser-native anchor jumps
+     (clicking a `href="#section"` link) animate instead of snapping instantly.
+     It's overridden below for users who have `prefers-reduced-motion: reduce`
+     set, since sudden motion can trigger discomfort for some users. */
   scroll-behavior: smooth;
+  /* Note 12: because the nav bar is `position: sticky` and sits on top of the
+     page, jumping straight to an anchor would tuck its heading underneath the
+     nav. `scroll-padding-top` tells the browser to stop that many pixels short
+     of the target when scrolling to an anchor — effectively an offset for
+     anchor scrolling, without any JavaScript. */
   scroll-padding-top: calc(var(--nav-h) + 14px);
   -webkit-text-size-adjust: 100%;
 }
@@ -144,25 +202,31 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--body);
-  background:
-    linear-gradient(var(--grid-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-soft) 1px, transparent 1px),
-    var(--paper);
-  background-size: 28px 28px, 28px 28px, auto;
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1.1; margin: 0; letter-spacing: -.015em; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1; margin: 0; letter-spacing: -.01em; text-transform: uppercase; }
 p { margin: 0; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
+/* Note 13: `:focus-visible` (as opposed to plain `:focus`) only shows this outline
+   when the browser thinks the user is navigating by keyboard — so a mouse click
+   won't show a focus ring, but pressing Tab will. This keeps the page accessible
+   for keyboard users without adding a visual outline every time someone clicks a
+   button with a mouse. */
 :focus-visible {
-  outline: 2px solid var(--myp);
+  outline: 2px solid var(--signal);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
+/* Note 14: `.wrap` is the page's shared content-width container — used inside
+   every section so the max-width and side padding stay consistent everywhere.
+   `margin-inline: auto` centers it horizontally (the logical-property
+   equivalent of `margin-left/right: auto`, which also works correctly in
+   right-to-left languages). */
 .wrap {
   width: 100%;
   max-width: 1160px;
@@ -170,6 +234,12 @@ a { color: inherit; text-decoration: none; }
   padding-inline: var(--gutter);
 }
 
+/* Note 15: a "skip link" is an accessibility pattern for keyboard and
+   screen-reader users — it's the very first focusable element on the page, sits
+   off-screen by default (`translate(-50%, -140%)`), and slides into view only
+   when it receives focus. It lets someone tabbing through the page jump straight
+   to <main id="main"> instead of tabbing through the entire nav on every page
+   load. */
 .skip-link {
   position: absolute; left: 50%; top: 0;
   transform: translate(-50%, -140%);
@@ -180,229 +250,85 @@ a { color: inherit; text-decoration: none; }
 }
 .skip-link:focus { transform: translate(-50%, 0); }
 
-.visually-hidden {
-  position: absolute; width: 1px; height: 1px;
-  padding: 0; margin: -1px; overflow: hidden;
-  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-}
-
 /* ---------------------------------------------------------------
-   Buttons — stamped on paper, not soft SaaS pills
+   Buttons
+   Note 16: `.btn` is applied to both a real <button> (in the form) and plain
+   <a> tags (the hero CTAs) — the class carries the visual styling while the
+   underlying element still keeps its native semantics and keyboard behavior
+   (a <button> submits a form on Enter/Space; an <a> navigates on Enter). Styling
+   by class rather than by element selector like `button {}` is what makes that
+   reuse possible.
 ---------------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .55rem;
+  /* Note 17: `font: inherit` resets a <button>'s browser-default font (which is
+     normally the OS UI font, not the page's font-family) back to whatever font
+     the surrounding page is using, before the more specific font-* properties
+     below override individual pieces of it. */
   font: inherit;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: .92rem;
+  font-weight: 700;
+  font-size: .96rem;
   letter-spacing: .01em;
-  padding: .9rem 1.5rem;
-  border: 1.5px solid var(--ink);
+  padding: .95rem 1.6rem;
+  border: 1.5px solid var(--signal);
   border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--signal);
+  color: #fff;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease;
+  /* Note 18: listing specific properties here (rather than `transition: all`)
+     is a small performance and predictability win — the browser only has to
+     watch these four properties for changes, and properties you didn't intend
+     to animate (like `padding`) won't unexpectedly transition too. */
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
 }
-.btn:hover  { background: var(--myp); border-color: var(--myp); transform: translateY(-2px) rotate(-.3deg); box-shadow: var(--shadow-md); }
-.btn:active { transform: translateY(0) rotate(0); }
+.btn:hover  { background: var(--signal-dark); border-color: var(--signal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0); }
 .btn[disabled] { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .btn--ghost {
   background: transparent;
   color: var(--ink);
-  border-color: var(--line);
+  border-color: var(--ink);
   box-shadow: none;
 }
-.btn--ghost:hover { background: var(--surface); border-color: var(--ink); color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; }
 
-.btn--sm { padding: .58rem 1.1rem; font-size: .84rem; }
+.btn--sm { padding: .6rem 1.2rem; font-size: .86rem; }
 
 .arrow { transition: transform .16s ease; }
 .btn:hover .arrow { transform: translateX(3px); }
 
 /* ---------------------------------------------------------------
-   WhatsApp floating widget
----------------------------------------------------------------- */
-.wa-widget {
-  position: fixed;
-  right: clamp(1rem, 4vw, 1.75rem);
-  bottom: clamp(1rem, 4vw, 1.75rem);
-  z-index: 300;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: .75rem;
-  font-family: var(--font-body);
-}
-
-.wa-widget__panel {
-  width: min(320px, calc(100vw - 2rem));
-  background: var(--surface);
-  border: 1.5px solid var(--ink);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  transform-origin: bottom right;
-  transform: scale(.94) translateY(8px);
-  opacity: 0;
-  visibility: hidden;
-  transition: transform .18s ease, opacity .18s ease, visibility .18s;
-}
-.wa-widget.is-open .wa-widget__panel {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.wa-widget__head {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  padding: .95rem 1.1rem;
-  background: var(--ink);
-  color: #fff;
-}
-.wa-widget__head-icon {
-  width: 34px; height: 34px; flex: none;
-  border-radius: 50%;
-  background: #25D366;
-  display: flex; align-items: center; justify-content: center;
-}
-.wa-widget__head-icon svg { width: 19px; height: 19px; fill: #fff; }
-.wa-widget__head-text { min-width: 0; }
-.wa-widget__head-text strong { display: block; font-family: var(--font-display); font-size: .95rem; letter-spacing: -.01em; }
-.wa-widget__head-text span { display: block; font-size: .78rem; color: rgba(255,255,255,.7); margin-top: .1rem; }
-
-.wa-widget__close {
-  margin-left: auto;
-  background: transparent;
-  border: 0;
-  color: rgba(255,255,255,.75);
-  cursor: pointer;
-  padding: .3rem;
-  line-height: 0;
-  border-radius: 6px;
-}
-.wa-widget__close:hover { color: #fff; background: rgba(255,255,255,.12); }
-.wa-widget__close svg { width: 16px; height: 16px; }
-
-.wa-widget__body {
-  padding: .9rem 1.1rem 1.1rem;
-  background: var(--paper);
-}
-.wa-widget__prompt {
-  font-size: .84rem;
-  color: var(--muted);
-  margin: 0 0 .7rem;
-}
-.wa-widget__queries {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  list-style: none;
-  margin: 0 0 .85rem;
-  padding: 0;
-}
-.wa-widget__query {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  width: 100%;
-  text-align: left;
-  font-family: var(--font-body);
-  font-size: .86rem;
-  color: var(--ink-soft);
-  background: var(--surface);
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius);
-  padding: .6rem .75rem;
-  cursor: pointer;
-  transition: border-color .14s ease, transform .14s ease, box-shadow .14s ease;
-}
-.wa-widget__query:hover {
-  border-color: #25D366;
-  transform: translateX(2px);
-  box-shadow: var(--shadow-sm);
-}
-.wa-widget__query svg { width: 14px; height: 14px; flex: none; color: var(--muted); }
-
-.wa-widget__start {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .55rem;
-  width: 100%;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: .85rem;
-  color: #fff;
-  background: #25D366;
-  border: 1.5px solid #1DA851;
-  border-radius: var(--radius);
-  padding: .7rem 1rem;
-  cursor: pointer;
-  transition: background-color .14s ease, transform .14s ease;
-}
-.wa-widget__start:hover { background: #1DA851; transform: translateY(-1px); }
-.wa-widget__start svg { width: 16px; height: 16px; fill: #fff; }
-
-.wa-widget__fab {
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: #25D366;
-  border: none;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow-lg);
-  transition: transform .16s ease, box-shadow .16s ease;
-  position: relative;
-}
-.wa-widget__fab:hover { transform: translateY(-2px) scale(1.04); }
-.wa-widget__fab svg { width: 30px; height: 30px; fill: #fff; transition: transform .16s ease, opacity .16s ease; }
-.wa-widget__fab .icon-close {
-  position: absolute; width: 22px; height: 22px; fill: none;
-  stroke: #fff; stroke-width: 2.4; stroke-linecap: round;
-  opacity: 0; transform: scale(.6) rotate(-45deg);
-}
-.wa-widget.is-open .wa-widget__fab .icon-wa { opacity: 0; transform: scale(.6) rotate(45deg); }
-.wa-widget.is-open .wa-widget__fab .icon-close { opacity: 1; transform: scale(1) rotate(0); }
-
-.wa-widget__ping {
-  position: absolute; inset: -4px;
-  border-radius: 50%;
-  border: 2px solid #25D366;
-  animation: wa-ping 2.4s ease-out infinite;
-}
-.wa-widget.is-open .wa-widget__ping { display: none; }
-@keyframes wa-ping {
-  0%   { transform: scale(.85); opacity: .65; }
-  70%  { transform: scale(1.35); opacity: 0; }
-  100% { transform: scale(1.35); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .wa-widget__panel, .wa-widget__fab, .wa-widget__fab svg, .wa-widget__query, .wa-widget__start { transition: none; }
-  .wa-widget__ping { animation: none; }
-}
-
-/* ---------------------------------------------------------------
    Nav
+   Note 19: `position: sticky` keeps the nav pinned to `top: 0` once the page
+   scrolls past it, without leaving normal document flow the way
+   `position: fixed` would (fixed elements are pulled out of the layout
+   entirely and need manual space reserved for them). `z-index: 100` makes
+   sure it stacks above the page content it's now overlapping.
 ---------------------------------------------------------------- */
 .nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(241, 245, 247, .86);
+  /* Note 20: the background is a translucent color (`rgba(..., .88)`) combined
+     with `backdrop-filter: blur(...)` — this blurs and lightly saturates
+     whatever content is scrolling underneath the nav, a "frosted glass" effect.
+     The `-webkit-` prefix is still needed for Safari support. */
+  background: rgba(247, 245, 241, .88);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid transparent;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
+/* Note 21: `.is-stuck` is a plain CSS class, not a pseudo-class — nothing in CSS
+   can detect "this sticky element has started sticking." The JS further down
+   (see Note ~60) toggles this class on scroll so the border/shadow only appear
+   once the page has actually scrolled, giving the nav definition against the
+   content beneath it. */
 .nav.is-stuck { border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
 
 .nav__inner {
@@ -416,27 +342,30 @@ a { color: inherit; text-decoration: none; }
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: .55rem;
+  gap: .6rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.08rem;
+  font-size: 1.25rem;
+  letter-spacing: .01em;
+  text-transform: uppercase;
   color: var(--ink);
-  letter-spacing: -.01em;
 }
 .logo__mark {
   flex: 0 0 auto;
+  position: relative;
   width: 26px; height: 26px;
-  border-radius: 7px;
-  background: var(--ink);
+  border-radius: 6px;
+  background: var(--board);
   display: grid;
-  gap: 3px;
-  align-content: center;
-  padding: 0 5px;
+  gap: 2px;
+  padding: 4px;
 }
-.logo__mark span { display: block; height: 2px; border-radius: 1px; }
-.logo__mark span:nth-child(1) { background: var(--igcse); }
-.logo__mark span:nth-child(2) { background: var(--myp); }
-.logo__mark span:nth-child(3) { background: var(--dp); }
+.logo__mark span { display: block; height: 5px; border-radius: 1px; background: var(--flap); }
+.logo__mark i {
+  position: absolute; top: 4px; right: 4px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--signal);
+}
 
 .nav__links {
   display: none;
@@ -450,12 +379,12 @@ a { color: inherit; text-decoration: none; }
   padding: .5rem .85rem;
   border-radius: var(--radius);
   font-size: .9rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--body);
   transition: color .15s ease, background-color .15s ease;
 }
 .nav__links a:hover { color: var(--ink); background: var(--surface); }
-.nav__links a.is-active { color: var(--myp); background: var(--myp-tint); }
+.nav__links a.is-active { color: var(--signal); }
 
 .nav__cta { display: none; }
 
@@ -476,16 +405,30 @@ a { color: inherit; text-decoration: none; }
   background: var(--ink); border-radius: 2px;
   transition: transform .22s ease, opacity .18s ease;
 }
+/* Note 22: this is the classic "hamburger to X" animation, driven entirely by
+   the `aria-expanded` attribute that the JS toggles on the button (see the
+   mobile-menu script further down) — no separate JS-managed CSS class needed.
+   Styling directly off an ARIA state attribute keeps the accessibility state
+   and the visual state impossible to get out of sync with each other. The top
+   and bottom bars rotate 45°/-45° and slide to meet in the middle; the middle
+   bar fades out. */
 .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Note 23: animating `grid-template-rows` between `0fr` and `1fr` is a modern
+   trick for smoothly expanding/collapsing an element to its natural content
+   height. `height: auto` can't be transitioned by CSS at all, and hardcoding a
+   pixel max-height breaks if the content's length changes. A single-row,
+   single-column grid whose row-track is animated sidesteps both problems — the
+   child then needs `overflow: hidden` (below) so it doesn't visually peek out
+   while its allotted row is still shrinking. */
 .nav__mobile {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows .28s ease;
   border-top: 1px solid transparent;
-  background: rgba(241,245,247,.98);
+  background: rgba(247,245,241,.98);
 }
 .nav__mobile.is-open { grid-template-rows: 1fr; border-top-color: var(--line); }
 .nav__mobile > div { overflow: hidden; }
@@ -493,23 +436,35 @@ a { color: inherit; text-decoration: none; }
 .nav__mobile a {
   display: block;
   padding: .85rem .2rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   border-bottom: 1px solid var(--line);
 }
 .nav__mobile li:last-child a { border-bottom: 0; }
 
-@media (min-width: 860px) {
+/* Note 24: this is a "mobile-first" media query — the default (unqualified)
+   rules above are written for small screens, and `min-width: 900px` only adds
+   overrides once the viewport is wide enough for a horizontal nav bar to make
+   sense. Writing base styles for mobile and layering desktop overrides on top
+   generally produces less CSS than the reverse (desktop-first with
+   `max-width` overrides), since phones are the more constrained case. */
+@media (min-width: 900px) {
   .nav__links, .nav__cta { display: flex; }
   .nav__toggle, .nav__mobile { display: none; }
 }
 
 /* ---------------------------------------------------------------
    Hero
+   Note 25: `padding-block` is a CSS logical property — it sets top+bottom
+   padding regardless of writing mode/direction (as opposed to physical
+   properties like `padding-top`/`padding-bottom`). For a left-to-right site
+   like this one it behaves identically to physical padding, but it's the more
+   future-proof choice if the site ever needs to support vertical or
+   right-to-left writing modes.
 ---------------------------------------------------------------- */
 .hero { padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 6vw, 3rem); }
 
-.hero__head { max-width: 46ch; }
+.hero__head { max-width: 58ch; }
 
 .eyebrow {
   display: inline-flex;
@@ -517,128 +472,134 @@ a { color: inherit; text-decoration: none; }
   gap: .55rem;
   padding: .4rem .85rem .4rem .55rem;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 999px;
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   font-family: var(--font-mono);
-  font-size: .76rem;
-  font-weight: 600;
-  letter-spacing: .04em;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
 }
 .eyebrow .dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--igcse);
-  box-shadow: 0 0 0 4px var(--igcse-tint);
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-tint);
 }
 
+/* Note 26: `clamp(MIN, PREFERRED, MAX)` is fluid typography in one line — the
+   font-size scales with the viewport (`8vw`, i.e. 8% of viewport width) between
+   a floor of `2.8rem` and a ceiling of `5.4rem`. Without `clamp()`, achieving
+   this would take a `font-size` set in a `vw` unit plus a `@media` query at
+   both ends of the range just to stop it growing or shrinking too far. */
 .hero h1 {
-  font-size: clamp(2.5rem, 6.6vw, 4rem);
+  font-size: clamp(2.8rem, 8vw, 5.4rem);
   font-weight: 700;
-  letter-spacing: -.03em;
-  margin-bottom: 1.4rem;
+  line-height: .96;
+  letter-spacing: -.01em;
+  margin-bottom: 1.5rem;
 }
-.hero h1 .u {
-  text-decoration: underline;
-  text-decoration-color: var(--myp);
-  text-decoration-thickness: .07em;
-  text-underline-offset: .1em;
-}
+.hero h1 .hl { color: var(--signal); }
 
 .hero__sub {
-  font-size: clamp(1.05rem, .98rem + .5vw, 1.2rem);
-  max-width: 42ch;
+  font-family: var(--font-body);
+  text-transform: none;
+  font-size: clamp(1.05rem, .98rem + .5vw, 1.22rem);
+  max-width: 46ch;
   color: var(--body);
-  margin-bottom: 2rem;
+  margin-bottom: 2.1rem;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: .85rem;
-  margin-bottom: 3rem;
-}
-
-/* Signature element: the bridge diagram */
-.bridge {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.75rem) clamp(2.75rem, 6vw, 3.5rem);
   margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
 }
-.bridge__top {
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: .75rem 1.5rem; margin-bottom: 1.5rem;
-}
-.bridge__top h2 {
-  font-size: 1rem;
-  letter-spacing: -.01em;
-}
-.bridge__legend { display: flex; flex-wrap: wrap; gap: 1.1rem; }
-.bridge__legend span {
-  display: inline-flex; align-items: center; gap: .45rem;
-  font-family: var(--font-mono);
-  font-size: .74rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.bridge__legend i { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
-.bridge__legend .l-igcse i { background: var(--igcse); }
-.bridge__legend .l-myp i { background: var(--myp); }
-.bridge__legend .l-dp i { background: var(--dp); }
 
-.bridge__plot { position: relative; }
-.bridge__plot svg { display: block; width: 100%; height: auto; }
-
-.bridge__labels {
-  position: relative;
-  height: 2.6rem;
+/* Signature element: the results board (split-flap display) */
+.board {
+  background: var(--board);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
 }
-.bridge__labels span {
-  position: absolute;
-  top: .5rem;
-  transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: .72rem;
-  font-weight: 600;
-  color: var(--muted);
-  text-align: center;
-  white-space: nowrap;
+.board__top {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.5rem;
+  font-family: var(--font-mono); color: var(--flap-dim); font-size: .76rem;
+  letter-spacing: .08em; text-transform: uppercase;
 }
+.board__top strong { color: var(--flap); }
 
-@media (max-width: 640px) {
-  .bridge__labels span { font-size: 0; }
-  .bridge__labels span::before {
-    content: attr(data-short);
-    font-size: .68rem;
-  }
-}
-
-.stats {
+/* Note 27: this is the "background peeking through gaps" trick for drawing grid
+   lines without extra border elements. `gap: 1px` leaves 1px seams between grid
+   cells, and because the grid's own `background` is set to `--board-line`
+   (dark), that color shows through every seam — giving the appearance of thin
+   dividing lines between tiles for free, and they automatically follow
+   whatever column count the responsive `grid-template-columns` below sets. */
+.board__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(.75rem, 3vw, 2rem);
-  max-width: 620px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--board-line);
+  border: 1px solid var(--board-line);
+  border-radius: 8px;
+  overflow: hidden;
 }
-.stats > div { border-top: 2px solid var(--ink); padding-top: 1rem; }
-.stats dt {
+@media (min-width: 700px) { .board__grid { grid-template-columns: repeat(4, 1fr); } }
+
+.tile {
+  background: var(--board);
+  padding: 1.5rem 1rem;
+  position: relative;
+}
+.tile::after {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 50%;
+  height: 1px; background: rgba(242,239,233,.14);
+}
+.tile__num {
   font-family: var(--font-mono);
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -.02em;
+  font-weight: 700;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  color: var(--flap);
+  letter-spacing: -.01em;
   line-height: 1;
 }
-.stats dd {
-  margin: .45rem 0 0;
-  font-size: .82rem;
-  line-height: 1.4;
-  color: var(--muted);
+.tile__label {
+  margin-top: .6rem;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  font-weight: 400;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--flap-dim);
 }
+
+.board__note {
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  color: var(--flap-dim);
+}
+
+/* Note 28: `@keyframes flip` defines the animation's motion (squashed and
+   transparent → full height and opaque); the four rules above it apply that
+   same keyframe to each tile's number with a slightly later `animation-delay`
+   per tile (0.08s, 0.16s, 0.24s...), using `:nth-child()` to target them
+   individually. The result reads as a staggered cascade rather than four tiles
+   flipping in perfect unison — this only fires once `.reveal` gains the
+   `is-visible` class from the scroll-triggered IntersectionObserver in the
+   script below. `both` on the animation shorthand keeps the element in its
+   `to {}` end state after the animation finishes, instead of snapping back. */
+.reveal .tile__num { animation: flip .5s ease both; }
+.reveal .tile:nth-child(2) .tile__num { animation-delay: .08s; }
+.reveal .tile:nth-child(3) .tile__num { animation-delay: .16s; }
+.reveal .tile:nth-child(4) .tile__num { animation-delay: .24s; }
+@keyframes flip { from { transform: scaleY(.4); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
 
 /* ---------------------------------------------------------------
    Section furniture
@@ -646,7 +607,7 @@ a { color: inherit; text-decoration: none; }
 .section { padding-block: var(--section-y); }
 .section--alt { background: var(--surface); border-block: 1px solid var(--line); }
 
-.section__head { max-width: 620px; margin-bottom: clamp(2.25rem, 5vw, 3.25rem); }
+.section__head { max-width: 640px; margin-bottom: clamp(2.25rem, 5vw, 3.25rem); }
 .section__head.is-centered { margin-inline: auto; text-align: center; }
 
 .kicker {
@@ -655,59 +616,38 @@ a { color: inherit; text-decoration: none; }
   gap: .5rem;
   font-family: var(--font-mono);
   font-size: .76rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--myp);
+  color: var(--signal);
   margin-bottom: 1rem;
 }
-.kicker::before { content: ""; width: 20px; height: 1.5px; background: var(--myp); display: inline-block; }
+/* Note 29: `::before` generates a small pseudo-element inside `.kicker` purely
+   for decoration (the short colored dash before the label) without needing an
+   extra empty <span> in the HTML. `content: ""` is required for the
+   pseudo-element to render at all — an empty string is enough since this one
+   only needs its box, not any text. */
+.kicker::before { content: ""; width: 20px; height: 1.5px; background: var(--signal); display: inline-block; }
 .section__head.is-centered .kicker::before { display: none; }
 
 .section__head h2 {
-  font-size: clamp(1.9rem, 1.5rem + 1.9vw, 2.6rem);
+  font-size: clamp(2.1rem, 1.6rem + 2.2vw, 3.1rem);
   font-weight: 700;
-  letter-spacing: -.025em;
   margin-bottom: .9rem;
 }
-.section__head p { font-size: 1.05rem; color: var(--body); }
+.section__head p {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-size: 1.05rem; color: var(--body);
+}
 
 /* ---------------------------------------------------------------
-   Problem / comparison
----------------------------------------------------------------- */
-.compare {
-  display: grid;
-  gap: clamp(1rem, 3vw, 1.75rem);
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; } }
-
-.compare__col {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2rem);
-}
-.compare__col h3 {
-  font-size: .78rem;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin-bottom: 1.1rem;
-}
-.compare__col.is-without h3 { color: var(--danger); }
-.compare__col.is-with h3 { color: var(--success); }
-.compare__col.is-with { border-color: var(--success); box-shadow: 0 0 0 1px var(--success) inset; }
-
-.compare__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }
-.compare__col li { display: flex; gap: .7rem; align-items: flex-start; font-size: .95rem; color: var(--ink-soft); }
-.compare__col li svg { flex: 0 0 auto; margin-top: .3rem; }
-.compare__col.is-without li svg { color: var(--danger); }
-.compare__col.is-with li svg { color: var(--success); }
-
-/* ---------------------------------------------------------------
-   Topic cards
+   Services (channels)
+   Note 30: single-column by default, two columns from 700px up — the same
+   mobile-first pattern as the nav earlier. Using `grid-template-columns: 1fr`
+   rather than omitting the rule keeps the intent explicit and makes the
+   later override read as a clear addition of columns, not a mysterious layout
+   shift.
 ---------------------------------------------------------------- */
 .cards {
   display: grid;
@@ -715,12 +655,11 @@ a { color: inherit; text-decoration: none; }
   gap: clamp(1rem, 2.4vw, 1.5rem);
 }
 @media (min-width: 700px)  { .cards { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1020px) { .cards { grid-template-columns: repeat(3, 1fr); } }
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: clamp(1.4rem, 3vw, 1.85rem);
+  padding: clamp(1.6rem, 3vw, 2.1rem);
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -730,124 +669,186 @@ a { color: inherit; text-decoration: none; }
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: #c3cfda;
+  border-color: #d7d2c5;
 }
 
 .card__head {
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 1rem;
 }
-.card__topic {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.08rem;
-  color: var(--ink);
-}
-.card__index {
+.card__ch {
   font-family: var(--font-mono);
-  font-size: .74rem;
-  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: #fff;
+  background: var(--ink);
+  padding: .3rem .6rem;
+  border-radius: 999px;
 }
-
-.card blockquote {
-  margin: 0 0 1.4rem;
+.card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: .8rem;
+  text-transform: none;
+  letter-spacing: -.01em;
+}
+.card p.desc {
   font-size: .97rem;
   line-height: 1.62;
   color: var(--ink-soft);
-}
-
-.strands { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: 1.15rem; border-top: 1px solid var(--line); }
-.strand {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .3rem .62rem;
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: .72rem;
-  letter-spacing: .01em;
-}
-.strand i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-.strand--igcse { background: var(--igcse-tint); color: var(--igcse); }
-.strand--igcse i { background: var(--igcse); }
-.strand--myp { background: var(--myp-tint); color: var(--myp); }
-.strand--myp i { background: var(--myp); }
-.strand--dp { background: var(--dp-tint); color: var(--dp); }
-.strand--dp i { background: var(--dp); }
-.strand--flag { background: #FBEAE7; color: var(--danger); }
-.strand--flag i { background: var(--danger); }
-
-.logos {
-  margin-top: clamp(2.25rem, 5vw, 3rem);
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(1.25rem, 5vw, 3rem);
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: .88rem;
-  letter-spacing: .01em;
+  text-transform: none;
 }
 
 /* ---------------------------------------------------------------
-   Lead magnet spotlight
+   Process (genuinely sequential)
+   Note 31: same "background shows through the gap" hairline trick used for
+   `.board__grid` earlier (Note 27) — one technique, reused wherever a grid
+   needs thin dividing lines between its cells.
+---------------------------------------------------------------- */
+.process {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+@media (min-width: 860px) { .process { grid-template-columns: repeat(4, 1fr); } }
+
+.process__step {
+  background: var(--surface);
+  padding: clamp(1.6rem, 3vw, 2rem);
+}
+.process__num {
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--signal);
+  margin-bottom: 1.25rem;
+}
+.process__step h3 {
+  font-size: 1.2rem;
+  text-transform: none;
+  letter-spacing: -.01em;
+  margin-bottom: .7rem;
+}
+.process__step p {
+  font-size: .93rem;
+  text-transform: none;
+  color: var(--body);
+}
+
+/* ---------------------------------------------------------------
+   Engagement example (proof, honestly framed)
+---------------------------------------------------------------- */
+.example {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+}
+.example__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .3rem .7rem;
+  margin-bottom: 1.25rem;
+}
+.example__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) { .example__grid { grid-template-columns: repeat(3, 1fr); } }
+.example__col h4 {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: .6rem;
+}
+.example__col p { font-size: .95rem; color: var(--ink-soft); }
+
+/* ---------------------------------------------------------------
+   Lead magnet — free audit
 ---------------------------------------------------------------- */
 .pack {
   display: grid;
   gap: clamp(2rem, 5vw, 3.5rem);
   align-items: center;
 }
-@media (min-width: 940px) {
-  .pack { grid-template-columns: .95fr 1.05fr; }
-  .pack--reverse .pack__preview { order: 2; }
-}
+@media (min-width: 940px) { .pack { grid-template-columns: .95fr 1.05fr; } }
 
 .pack__list { list-style: none; margin: 1.75rem 0 2rem; padding: 0; display: grid; gap: .9rem; }
 .pack__list li { display: flex; gap: .75rem; align-items: flex-start; font-size: .97rem; color: var(--ink-soft); }
-.pack__list svg { flex: 0 0 auto; margin-top: .28rem; color: var(--myp); }
+.pack__list svg { flex: 0 0 auto; margin-top: .28rem; color: var(--signal); }
 
 .pack__note { font-size: .85rem; color: var(--muted); margin-top: 1.25rem; }
 
-.preview {
+.scorecard {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: var(--board);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   padding: clamp(1.5rem, 4vw, 2rem);
   overflow: hidden;
+  color: var(--flap);
 }
-.preview__bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-.preview__tag {
-  font-family: var(--font-mono); font-size: .72rem; font-weight: 600;
-  letter-spacing: .05em; text-transform: uppercase; color: var(--dp);
-  background: var(--dp-tint); padding: .3rem .6rem; border-radius: 999px;
+.scorecard__bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.scorecard__tag {
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--board);
+  background: var(--flap); padding: .3rem .6rem; border-radius: 999px;
 }
-.preview__meta { font-family: var(--font-mono); font-size: .74rem; color: var(--muted); }
+.scorecard__meta { font-family: var(--font-mono); font-size: .72rem; color: var(--flap-dim); }
 
-.preview__title { font-size: 1.3rem; margin-bottom: 1rem; }
+.scorecard__row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem 0; border-top: 1px dashed var(--board-line);
+  font-family: var(--font-mono); font-size: .84rem;
+}
+.scorecard__row span:first-child { color: var(--flap); }
+.status { font-size: .68rem; font-weight: 700; letter-spacing: .04em; padding: .22rem .55rem; border-radius: 999px; }
+.status--ok   { background: var(--success-tint); color: var(--success); }
+.status--warn { background: #FBE9D2; color: #8A5A16; }
+.status--risk { background: var(--signal-tint); color: var(--signal-dark); }
 
-.preview__row { display: grid; grid-template-columns: 7rem 1fr; gap: .3rem 1rem; font-size: .88rem; padding: .55rem 0; border-top: 1px dashed var(--line); }
-.preview__row dt { font-family: var(--font-mono); font-weight: 600; color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .04em; }
-.preview__row dd { margin: 0; color: var(--ink-soft); }
-
-.preview__fade {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 7.5rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--surface) 78%);
+/* Note 32: `.scorecard__fade` is an absolutely-positioned overlay pinned to the
+   bottom of the card. Its `linear-gradient` goes from fully transparent
+   (`rgba(16,18,20,0)`) at the top to the card's solid background color at 78%
+   down, which visually fades the checklist rows underneath it into the
+   background — a common "there's more content below, but we're teasing it"
+   pattern, done with pure CSS instead of clipping/hiding real DOM content. */
+.scorecard__fade {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 6.5rem;
+  background: linear-gradient(180deg, rgba(16,18,20,0) 0%, var(--board) 78%);
   display: flex; align-items: flex-end; justify-content: center;
   padding-bottom: 1.1rem;
 }
-.preview__fade span {
-  font-family: var(--font-mono); font-size: .78rem; font-weight: 600;
-  color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+.scorecard__fade span {
+  font-family: var(--font-mono); font-size: .76rem; font-weight: 700;
+  color: var(--board); background: var(--flap);
   padding: .5rem 1rem; border-radius: 999px;
 }
 
 /* ---------------------------------------------------------------
    FAQ
+   Note 33: this entire accordion is built on the native HTML
+   <details>/<summary> elements (see the markup further down) — no JavaScript
+   at all. The browser handles opening/closing, keyboard support (Enter/Space
+   on the summary), and exposes an `[open]` attribute the moment a panel is
+   expanded, which is exactly what the `details[open]` selectors below hook
+   into to restyle the border and rotate the plus icon into a minus.
 ---------------------------------------------------------------- */
 .faq { display: grid; gap: .8rem; max-width: 780px; }
 .faq details {
@@ -856,7 +857,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius);
   padding: 1.1rem 1.3rem;
 }
-.faq details[open] { border-color: var(--myp); }
+.faq details[open] { border-color: var(--signal); }
 .faq summary {
   cursor: pointer;
   list-style: none;
@@ -864,10 +865,17 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
   font-size: 1rem;
+  text-transform: none;
+  font-family: var(--font-body);
 }
+/* Note 34: browsers draw a default disclosure triangle marker on <summary> —
+   Chrome/Safari's is a `::-webkit-details-marker` pseudo-element, Firefox's is
+   a `list-style` marker (handled by `list-style: none` above). Hiding both
+   lets the hand-built `.plus` circle (below) be the only visible toggle icon,
+   so the same affordance looks identical across browsers. */
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary .plus {
   flex: 0 0 auto;
@@ -877,6 +885,12 @@ a { color: inherit; text-decoration: none; }
   display: grid; place-items: center;
   position: relative;
 }
+/* Note 35: the plus icon itself is two overlapping pseudo-element bars — a
+   fixed horizontal one (`::before`) and a vertical one (`::after`) that gets
+   rotated 90° and scaled to zero height when the details element is open,
+   which visually erases the vertical stroke and leaves only the horizontal
+   one — turning a "+" into a "−" with a single animated transform, no icon
+   swap or extra markup needed. */
 .faq summary .plus::before, .faq summary .plus::after {
   content: ""; position: absolute; background: var(--ink);
 }
@@ -893,19 +907,14 @@ a { color: inherit; text-decoration: none; }
   gap: clamp(2rem, 5vw, 3.5rem);
   align-items: start;
 }
-@media (min-width: 900px) {
-  .contact__grid { grid-template-columns: .85fr 1.15fr; }
-}
+@media (min-width: 900px) { .contact__grid { grid-template-columns: .85fr 1.15fr; } }
 
-.contact__aside h2 {
-  font-size: clamp(1.9rem, 1.5rem + 1.9vw, 2.6rem);
-  margin-bottom: .9rem;
-}
-.contact__aside p { margin-bottom: 2rem; }
+.contact__aside h2 { font-size: clamp(2.1rem, 1.6rem + 2.2vw, 3.1rem); margin-bottom: .9rem; }
+.contact__aside p { font-size: 1.05rem; margin-bottom: 2rem; text-transform: none; }
 
 .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
 .checklist li { display: flex; gap: .75rem; align-items: flex-start; font-size: .97rem; color: var(--ink-soft); }
-.checklist svg { flex: 0 0 auto; margin-top: .28rem; color: var(--myp); }
+.checklist svg { flex: 0 0 auto; margin-top: .28rem; color: var(--signal); }
 
 .form {
   background: var(--surface);
@@ -919,13 +928,14 @@ a { color: inherit; text-decoration: none; }
 .field label {
   display: block;
   font-family: var(--font-mono);
-  font-size: .8rem;
-  font-weight: 600;
+  font-size: .78rem;
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: .5rem;
   letter-spacing: .01em;
+  text-transform: uppercase;
 }
-.field label .opt { font-weight: 400; color: var(--muted); }
+.field label .opt { font-weight: 400; text-transform: none; color: var(--muted); }
 
 .field input,
 .field textarea {
@@ -941,24 +951,33 @@ a { color: inherit; text-decoration: none; }
 }
 .field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .field input::placeholder,
-.field textarea::placeholder { color: #9AA7B7; }
+.field textarea::placeholder { color: #A6ABA1; }
 
-.field input:hover, .field textarea:hover { border-color: #b9c5d1; }
+.field input:hover, .field textarea:hover { border-color: #c9c4b6; }
+/* Note 36: `outline: none` removes the browser's default focus ring, but only
+   because it's immediately replaced with an equivalent `box-shadow` — a rule
+   that removes focus styling without substituting something visible would be
+   an accessibility regression for keyboard users. */
 .field input:focus, .field textarea:focus {
   outline: none;
   background: var(--surface);
-  border-color: var(--myp);
-  box-shadow: 0 0 0 4px var(--myp-tint);
+  border-color: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-tint);
 }
+/* Note 37: `[aria-invalid="true"]` is an attribute selector matching the ARIA
+   state the JS sets on a field once validation fails (see `setFieldError` in
+   the script below). Styling off the same attribute that screen readers use
+   to announce "invalid entry" means the visual error state and the
+   accessibility error state can never drift apart — there's only one source
+   of truth for "is this field invalid," not a separate CSS class to keep in
+   sync. */
 .field input[aria-invalid="true"],
 .field textarea[aria-invalid="true"] {
   border-color: var(--danger);
-  background: #FCF1EF;
+  background: #FCEEED;
 }
 .field input[aria-invalid="true"]:focus,
-.field textarea[aria-invalid="true"]:focus {
-  box-shadow: 0 0 0 4px #F6DAD5;
-}
+.field textarea[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px #F6D6D3; }
 
 .error {
   display: block;
@@ -968,6 +987,11 @@ a { color: inherit; text-decoration: none; }
   color: var(--danger);
   margin-top: .4rem;
 }
+/* Note 38: `:empty` matches an element with no children — including no text
+   content. Each `.error` span starts empty in the markup and only gets text
+   inserted by the JS when validation fails, so this rule collapses the
+   reserved margin above it until there's actually a message to show,
+   preventing an empty gap under every field by default. */
 .error:empty { margin-top: 0; }
 
 .field--row { display: grid; gap: 1.15rem; }
@@ -984,16 +1008,22 @@ a { color: inherit; text-decoration: none; }
 .form__foot .btn { flex: 1 1 auto; min-width: 190px; }
 .form__note { font-size: .82rem; color: var(--muted); flex: 1 1 190px; }
 
+/* Note 39: a loading spinner made from one bordered circle — three sides use a
+   translucent white border and the fourth (`border-top-color: #fff`) is fully
+   opaque, so the circle reads as having one bright segment. `animation: spin`
+   rotates the whole element continuously (`infinite`, `linear` so the speed
+   never eases), which makes that bright segment appear to sweep around
+   forever — a full spinner from a single `<span>` and no image or SVG. */
 .spinner {
   width: 15px; height: 15px;
-  border: 2px solid rgba(241,245,247,.5);
-  border-top-color: var(--paper);
+  border: 2px solid rgba(255,255,255,.45);
+  border-top-color: #fff;
   border-radius: 50%;
   animation: spin .7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.status {
+.status-msg {
   margin-top: 1.15rem;
   padding: .95rem 1.1rem;
   border-radius: var(--radius);
@@ -1001,14 +1031,15 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
   border: 1px solid transparent;
 }
-.status:empty { display: none; }
-.status--ok  { background: var(--success-tint); border-color: #bfe0d2; color: var(--success); }
-.status--err { background: #FCF1EF; border-color: #f0c8bf; color: var(--danger); }
+/* Note 40: same `:empty` pattern as `.error` (Note 38) — the JS's `setStatus()`
+   helper writes text into this element and swaps its class, but when there's
+   no message yet (`textContent = ""`), `:empty` hides the whole padded,
+   bordered box instead of showing an empty colored bar. */
+.status-msg:empty { display: none; }
+.status-msg--ok  { background: var(--success-tint); border-color: #bfe0d2; color: var(--success); }
+.status-msg--err { background: #FCEEED; border-color: #f0bfba; color: var(--danger); }
 
-.form__success {
-  text-align: center;
-  padding: clamp(1.5rem, 5vw, 2.75rem) 0;
-}
+.form__success { text-align: center; padding: clamp(1.5rem, 5vw, 2.75rem) 0; }
 .form__success .tick {
   width: 58px; height: 58px;
   margin: 0 auto 1.25rem;
@@ -1017,39 +1048,46 @@ a { color: inherit; text-decoration: none; }
   background: var(--success-tint);
   color: var(--success);
 }
-.form__success h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+.form__success h3 { font-size: 1.3rem; text-transform: none; margin-bottom: .6rem; }
+.form__success p { text-transform: none; }
 
 /* ---------------------------------------------------------------
    Footer
 ---------------------------------------------------------------- */
-.footer {
-  background: var(--ink);
-  color: #9FADC2;
-  padding-block: clamp(2.25rem, 6vw, 3rem);
-}
-.footer__inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: space-between;
-}
+.footer { background: var(--ink); color: #9CA3A9; padding-block: clamp(2.25rem, 6vw, 3rem); }
+.footer__inner { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
 .footer .logo { color: #fff; }
-.footer .logo__mark { background: #fff; }
-.footer nav { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: .92rem; }
+.footer nav { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: .92rem; font-weight: 600; }
 .footer nav a:hover { color: #fff; }
-.footer__legal { font-size: .8rem; color: #6C7A93; width: 100%; margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid #232E44; line-height: 1.7; }
+.footer__legal {
+  font-family: var(--font-body); text-transform: none;
+  font-size: .8rem; color: #6D7379; width: 100%;
+  margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid #2A2E33; line-height: 1.7;
+}
 
 /* ---------------------------------------------------------------
    Reveal on scroll
+   Note 41: `.reveal` elements start invisible and shifted down 16px; the
+   `.is-visible` class (added by an IntersectionObserver in the script below,
+   once each element scrolls into view) transitions both properties back to
+   their natural state. `cubic-bezier(.22,1,.36,1)` is a custom easing curve —
+   it overshoots slightly past its end value before settling, which reads as a
+   little more "alive" than a plain ease-out.
 ---------------------------------------------------------------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .55s ease, transform .55s cubic-bezier(.22,1,.36,1);
-}
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s cubic-bezier(.22,1,.36,1); }
 .reveal.is-visible { opacity: 1; transform: none; }
 
+/* Note 42: `prefers-reduced-motion` is an operating-system-level accessibility
+   setting some users enable because animation can cause discomfort, distraction,
+   or in some cases vestibular symptoms. This block doesn't try to delete every
+   transition/animation individually — instead it universally clamps every
+   animation and transition's duration to near-zero with `!important`, which
+   is a robust way to respect the preference without having to remember to
+   update this query every time a new animation gets added elsewhere in the
+   stylesheet. `.reveal` also gets set to its final visible state outright, so
+   reduced-motion users don't get content that's stuck invisible waiting on a
+   transition that no longer meaningfully runs.
+---------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -1063,27 +1101,52 @@ a { color: inherit; text-decoration: none; }
 </head>
 
 <body>
+<!-- Note 43: this is the skip link described in the CSS (Note 15) — it has to be
+     the very first focusable element in the document for a Tab press on page
+     load to reach it before anything else. Its `href="#main"` points at the
+     <main id="main"> landmark below, so activating it jumps focus straight
+     past the whole header. -->
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ============================= NAV ============================= -->
+<!-- Note 44: <header> is a semantic landmark element — screen readers and other
+     assistive tech can jump directly to it, and it communicates "this is
+     introductory/navigational content" to any tool parsing the page's
+     structure, which a generic <div> never would. -->
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
-    <a class="logo" href="#home" aria-label="MathBridge — home">
-      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
-      MathBridge
+    <!-- Note 45: `aria-label` here overrides what a screen reader announces for
+         this link — instead of reading out the logo's visual text plus
+         "Signal House" a second time, it announces one clear label:
+         "Signal House — home." -->
+    <a class="logo" href="#home" aria-label="Signal House — home">
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><i></i></span>
+      Signal House
     </a>
 
+    <!-- Note 46: a second, nested landmark — `<nav aria-label="Primary">` — lets
+         assistive tech distinguish this navigation region from the mobile
+         nav's own <nav> region further down, since a page can legally contain
+         more than one <nav> element as long as each has a distinguishing
+         label. -->
     <nav aria-label="Primary">
       <ul class="nav__links" id="navLinks">
-        <li><a href="#topics">Topics</a></li>
-        <li><a href="#pack">Free pack</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#audit">Free audit</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
 
-    <a class="btn btn--sm nav__cta" href="#pack">Get the free pack</a>
+    <a class="btn btn--sm nav__cta" href="#audit">Get your free audit</a>
 
+    <!-- Note 47: `aria-expanded` and `aria-controls` are what make this button
+         accessible as a menu toggle, not just its visual hamburger icon.
+         `aria-expanded="false"` tells assistive tech the controlled region is
+         currently collapsed (the JS flips this to "true" on click — see Note
+         22 for how the CSS reacts to that same attribute); `aria-controls`
+         points at the id of the region it opens/closes, `navMobile`. -->
     <button class="nav__toggle" id="navToggle" type="button"
             aria-expanded="false" aria-controls="navMobile" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -1094,8 +1157,9 @@ a { color: inherit; text-decoration: none; }
     <div>
       <div class="wrap">
         <ul>
-          <li><a href="#topics">Topics</a></li>
-          <li><a href="#pack">Free pack</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#audit">Free audit</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1110,329 +1174,288 @@ a { color: inherit; text-decoration: none; }
   <section class="hero" id="home">
     <div class="wrap">
       <div class="hero__head">
-        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Built for the 2029 DP Mathematics syllabus draft</span>
+        <!-- Note 48: `aria-hidden="true"` on the little colored dot removes it
+             from the accessibility tree entirely — screen readers skip past it
+             as if it doesn't exist, because it's purely decorative and reading
+             it aloud (e.g. "dot") would just be noise for someone who can't
+             see it anyway. The same pattern is used throughout this page on
+             every purely-visual icon and glyph. -->
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Full-service marketing, one accountable team</span>
 
-        <h1>Lesson plans that <span class="u">connect the curriculum</span> — not just cover it.</h1>
+        <!-- Note 49: wrapping just one word in `<span class="hl">` lets the CSS
+             recolor that single word (`.hero h1 .hl`) without needing to
+             restyle or split up the rest of the heading — a targeted hook
+             instead of a heavier structural change. -->
+        <h1>Most marketing is noise. We build the <span class="hl">signal</span>.</h1>
 
         <p class="hero__sub">
-          15 free lesson plans across five core topics, showing exactly how Cambridge IGCSE,
-          IB MYP, and DP Mathematics: Analysis &amp; Approaches — SL and HL — build on one another.
+          Signal House runs paid media, SEO, brand, and reporting under one roof — so
+          every channel points at the same number, and you always know what's working.
         </p>
 
         <div class="hero__actions">
-          <a class="btn" href="#pack">
-            Get the free pack
+          <a class="btn" href="#audit">
+            Get your free marketing audit
+            <!-- Note 50: this arrow is a raw inline <svg>, not an <img src="..."> —
+                 inlining it lets `stroke="currentColor"` pick up the button's
+                 text color automatically (including on hover, since `.arrow`
+                 also gets the `transform: translateX(3px)` micro-interaction
+                 defined back in the CSS), and it costs zero extra HTTP
+                 requests since the path data lives right in the HTML. -->
             <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
                  stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6"/>
             </svg>
           </a>
-          <a class="btn btn--ghost" href="#topics">See what's inside</a>
+          <a class="btn btn--ghost" href="#process">See how we work</a>
         </div>
       </div>
 
-      <figure class="bridge reveal" aria-labelledby="bridge-caption">
-        <div class="bridge__top">
-          <h2 id="bridge-caption">Five topics, three programmes, one throughline</h2>
-          <div class="bridge__legend">
-            <span class="l-igcse"><i></i>IGCSE</span>
-            <span class="l-myp"><i></i>MYP</span>
-            <span class="l-dp"><i></i>DP AA</span>
-          </div>
+      <!-- Note 51: `.reveal` here is the scroll-triggered fade-in class from
+           Note 41 — it's added directly in the markup (starting invisible by
+           default) and the IntersectionObserver in the script below adds
+           `.is-visible` once this element scrolls into the viewport. Every
+           section on this page repeats this same `class="... reveal"` pattern. -->
+      <div class="board reveal">
+        <div class="board__top"><strong>Signal House</strong> — the board, live</div>
+        <div class="board__grid">
+          <div class="tile"><div class="tile__num">128</div><div class="tile__label">Campaigns launched</div></div>
+          <div class="tile"><div class="tile__num">4.2x</div><div class="tile__label">Avg. paid media ROAS</div></div>
+          <div class="tile"><div class="tile__num">$12M</div><div class="tile__label">Media managed, YTD</div></div>
+          <div class="tile"><div class="tile__num">19</div><div class="tile__label">Markets served</div></div>
         </div>
-
-        <div class="bridge__plot" aria-hidden="true">
-          <svg viewBox="0 0 640 200" preserveAspectRatio="none" role="img">
-            <line x1="24" y1="170" x2="616" y2="170" stroke="var(--grid)" stroke-width="1" stroke-dasharray="2 5"/>
-            <line x1="24" y1="40" x2="616" y2="40" stroke="#C1552B" stroke-width="3" stroke-linecap="round"/>
-            <line x1="24" y1="100" x2="616" y2="100" stroke="#2A5DAF" stroke-width="3" stroke-linecap="round"/>
-            <line x1="24" y1="160" x2="616" y2="160" stroke="#6E4A9E" stroke-width="3" stroke-linecap="round"/>
-
-            <g stroke="#B9C6D2" stroke-width="1.5">
-              <line x1="24"  y1="40" x2="24"  y2="160"/>
-              <line x1="174" y1="40" x2="174" y2="160"/>
-              <line x1="320" y1="40" x2="320" y2="160"/>
-              <line x1="466" y1="40" x2="466" y2="160"/>
-              <line x1="616" y1="40" x2="616" y2="160"/>
-            </g>
-
-            <g>
-              <circle cx="24" cy="40" r="5" fill="#C1552B"/><circle cx="174" cy="40" r="5" fill="#C1552B"/><circle cx="320" cy="40" r="5" fill="#C1552B"/><circle cx="466" cy="40" r="5" fill="#C1552B"/><circle cx="616" cy="40" r="5" fill="#C1552B"/>
-              <circle cx="24" cy="100" r="5" fill="#2A5DAF"/><circle cx="174" cy="100" r="5" fill="#2A5DAF"/><circle cx="320" cy="100" r="5" fill="#2A5DAF"/><circle cx="466" cy="100" r="5" fill="#2A5DAF"/><circle cx="616" cy="100" r="5" fill="#2A5DAF"/>
-              <circle cx="24" cy="160" r="5" fill="#6E4A9E"/><circle cx="174" cy="160" r="5" fill="#6E4A9E"/><circle cx="320" cy="160" r="5" fill="#6E4A9E"/><circle cx="466" cy="160" r="5" fill="#6E4A9E"/><circle cx="616" cy="160" r="5" fill="#6E4A9E"/>
-            </g>
-          </svg>
-          <div class="bridge__labels">
-            <span style="left:3.75%" data-short="Seq.">Sequences</span>
-            <span style="left:27.2%" data-short="Func.">Functions</span>
-            <span style="left:50%" data-short="Trig.">Trigonometry</span>
-            <span style="left:72.8%" data-short="Calc.">Calculus</span>
-            <span style="left:96.25%" data-short="Stats">Statistics</span>
-          </div>
-        </div>
-      </figure>
-
-      <dl class="stats reveal">
-        <div><dt>15</dt><dd>Full 60-minute lesson plans</dd></div>
-        <div><dt>05</dt><dd>Core topics, one anchor lesson each</dd></div>
-        <div><dt>03</dt><dd>Programmes mapped in every topic</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- =========================== PROBLEM ============================ -->
-  <section class="section section--alt">
-    <div class="wrap">
-      <div class="section__head reveal">
-        <span class="kicker">The gap</span>
-        <h2>Same subject, different language at every handoff</h2>
-        <p>
-          When a student moves from IGCSE into the MYP, or from MYP into DP Mathematics: AA,
-          the mathematics is continuous — but the vocabulary, notation, and command terms
-          often aren't. Teachers end up re-teaching material that was technically "covered"
-          the year before, because nobody wrote down how the two syllabuses actually connect.
-        </p>
-      </div>
-
-      <div class="compare reveal">
-        <div class="compare__col is-without">
-          <h3>Without a bridge</h3>
-          <ul>
-            <li>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              Topics get re-taught from scratch, every handoff
-            </li>
-            <li>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              Command terms shift without warning between programmes
-            </li>
-            <li>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              HL/SL boundaries feel arbitrary instead of deliberate
-            </li>
-          </ul>
-        </div>
-        <div class="compare__col is-with">
-          <h3>With MathBridge</h3>
-          <ul>
-            <li>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Each plan names the exact prior-programme skill it builds on
-            </li>
-            <li>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Command terms are mapped side-by-side across programmes
-            </li>
-            <li>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              HL-only content is flagged clearly, never buried
-            </li>
-          </ul>
-        </div>
+        <p class="board__note">*Illustrative figures. Your results depend on your market, budget, and starting point.</p>
       </div>
     </div>
   </section>
 
-  <!-- =========================== TOPICS ============================ -->
-  <section class="section" id="topics">
+  <!-- =========================== SERVICES ============================ -->
+  <section class="section section--alt" id="services">
     <div class="wrap">
       <div class="section__head is-centered reveal">
-        <span class="kicker">Topics</span>
-        <h2>What each lesson covers</h2>
-        <p>Five core strands, each planned for IGCSE, MYP, and DP AA — SL and HL — so the
-          progression across programmes is visible, not assumed.</p>
+        <span class="kicker">Services</span>
+        <h2>Four channels. One accountable plan.</h2>
+        <p>Every service ties back to the same reporting cadence, so nothing gets measured
+          in isolation.</p>
       </div>
 
       <div class="cards">
         <article class="card reveal">
           <div class="card__head">
-            <span class="card__topic">Sequences &amp; Series</span>
-            <span class="card__index">01 / 05</span>
+            <h3>Paid Media &amp; Performance</h3>
+            <span class="card__ch">CH. 01</span>
           </div>
-          <blockquote>
-            From finding and justifying a general rule at MYP, to nth-term mechanics at IGCSE,
-            to full sum formulae and HL-only sigma notation at DP AA.
-          </blockquote>
-          <div class="strands">
-            <span class="strand strand--igcse"><i></i>IGCSE</span>
-            <span class="strand strand--myp"><i></i>MYP</span>
-            <span class="strand strand--dp"><i></i>DP AA · Y1</span>
-          </div>
+          <p class="desc">Search, social, and programmatic campaigns built around a target
+            cost-per-acquisition — not a media budget to spend for its own sake.</p>
         </article>
 
         <article class="card reveal">
           <div class="card__head">
-            <span class="card__topic">Functions</span>
-            <span class="card__index">02 / 05</span>
+            <h3>SEO &amp; Content</h3>
+            <span class="card__ch">CH. 02</span>
           </div>
-          <blockquote>
-            Function notation and domain/range at IGCSE, parameter exploration at MYP, and
-            composite/inverse functions with HL existence conditions at DP AA.
-          </blockquote>
-          <div class="strands">
-            <span class="strand strand--igcse"><i></i>IGCSE</span>
-            <span class="strand strand--myp"><i></i>MYP</span>
-            <span class="strand strand--dp"><i></i>DP AA · Y1</span>
-          </div>
+          <p class="desc">Technical fixes, content aimed at real search intent, and a
+            link-earning plan that doesn't cut corners you'll have to explain later.</p>
         </article>
 
         <article class="card reveal">
           <div class="card__head">
-            <span class="card__topic">Trigonometry</span>
-            <span class="card__index">03 / 05</span>
+            <h3>Brand &amp; Creative</h3>
+            <span class="card__ch">CH. 03</span>
           </div>
-          <blockquote>
-            Sine and cosine rule mechanics at IGCSE, justified real-world application at MYP,
-            and multi-step synthesis with an HL compound-angle preview at DP AA.
-          </blockquote>
-          <div class="strands">
-            <span class="strand strand--igcse"><i></i>IGCSE</span>
-            <span class="strand strand--myp"><i></i>MYP</span>
-            <span class="strand strand--dp"><i></i>DP AA · Y1</span>
-          </div>
+          <p class="desc">Positioning, messaging, and a creative system that keeps every
+            channel looking and sounding like the same company.</p>
         </article>
 
         <article class="card reveal">
           <div class="card__head">
-            <span class="card__topic">Calculus</span>
-            <span class="card__index">04 / 05</span>
+            <h3>Marketing Ops &amp; Reporting</h3>
+            <span class="card__ch">CH. 04</span>
           </div>
-          <blockquote>
-            Not IGCSE content at all — gradients from graphs there, a GDC optimization bridge
-            at MYP, and the real thing: limits and differentiation at DP AA.
-          </blockquote>
-          <div class="strands">
-            <span class="strand strand--flag"><i></i>Bridging case — see note</span>
-          </div>
-        </article>
-
-        <article class="card reveal">
-          <div class="card__head">
-            <span class="card__topic">Statistics</span>
-            <span class="card__index">05 / 05</span>
-          </div>
-          <blockquote>
-            Grouped-data mean and standard deviation at IGCSE, box plots and cumulative
-            frequency at MYP, and the explicit variance derivation at DP AA (HL).
-          </blockquote>
-          <div class="strands">
-            <span class="strand strand--igcse"><i></i>IGCSE</span>
-            <span class="strand strand--myp"><i></i>MYP</span>
-            <span class="strand strand--dp"><i></i>DP AA · Y2</span>
-          </div>
+          <p class="desc">Tracking and attribution set up properly once, plus a reporting
+            cadence that flags what's working before the budget's spent.</p>
         </article>
       </div>
+    </div>
+  </section>
 
-      <div class="logos reveal" aria-label="Programmes covered">
-        <span>IB Diploma Programme</span>
-        <span>IB Middle Years Programme</span>
-        <span>Cambridge IGCSE</span>
-        <span>Edexcel International GCSE</span>
+  <!-- =========================== PROCESS ============================ -->
+  <section class="section" id="process">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="kicker">Process</span>
+        <h2>How an engagement actually runs</h2>
+        <p>Four steps, in order, every time — so you always know what stage you're at
+          and what happens next.</p>
+      </div>
+
+      <div class="process reveal">
+        <div class="process__step">
+          <div class="process__num">01 / Brief</div>
+          <h3>Tell us what's broken</h3>
+          <p>Not just "more leads." We audit your funnel, your channels, and your
+            competitors before we propose anything.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">02 / Plan</div>
+          <h3>A plan you can read</h3>
+          <p>Channels, budget split, timeline, and the one metric we're accountable
+            to — in writing, before anything launches.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">03 / Launch</div>
+          <h3>Live in weeks</h3>
+          <p>Not quarters. You see the actual creative and copy before it spends a
+            single dollar of media.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">04 / Report</div>
+          <h3>A number you trust</h3>
+          <p>A standing report in plain language: what ran, what it cost, what it
+            returned, what changes next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= ENGAGEMENT EXAMPLE ======================= -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="kicker">What to expect</span>
+        <h2>A typical first 90 days</h2>
+        <p>Illustrative, not a guarantee — the shape of the work changes with your
+          market, budget, and starting point.</p>
+      </div>
+
+      <div class="example reveal">
+        <span class="example__tag">Sample engagement — B2B services, 4-person marketing function</span>
+        <div class="example__grid">
+          <div class="example__col">
+            <h4>Weeks 1–2</h4>
+            <p>Full-funnel audit across paid, organic, and lifecycle. Three quick wins
+              identified and shipped inside week two.</p>
+          </div>
+          <div class="example__col">
+            <h4>Weeks 3–6</h4>
+            <p>New campaign structure live across paid search and paid social; first
+              content batch published against a revised keyword map.</p>
+          </div>
+          <div class="example__col">
+            <h4>Weeks 7–12</h4>
+            <p>First standing report delivered; budget reallocated toward the
+              channels the data actually supports.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ========================= LEAD MAGNET ========================== -->
-  <section class="section section--alt" id="pack">
+  <section class="section" id="audit">
     <div class="wrap pack">
       <div class="reveal">
-        <span class="kicker">Free download</span>
-        <h2 style="font-size:clamp(1.9rem, 1.5rem + 1.9vw, 2.6rem); font-weight:700; letter-spacing:-.025em; margin-bottom:.9rem;">Get all 15 lesson plans, free</h2>
-        <p style="font-size:1.05rem;">
-          One PDF pack, five topics, three programmes each — see exactly how IGCSE, MYP, and
-          DP AA connect before you plan a single lesson.
+        <span class="kicker">Free, no obligation</span>
+        <h2 style="font-size:clamp(2.1rem, 1.6rem + 2.2vw, 3.1rem); font-weight:700; margin-bottom:.9rem;">Get your free 20-point marketing audit</h2>
+        <p style="font-size:1.05rem; text-transform:none;">
+          A channel-by-channel look at your site, SEO, and paid activity — built for
+          your actual market, not a generic template.
         </p>
 
         <ul class="pack__list">
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            A full 60-minute plan for every topic, at every programme level
+            A channel-by-channel review of your site, SEO, and paid activity
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            Command terms and assessment criteria mapped side-by-side
+            Three quick wins you can act on this week, with or without us
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            Vertical-articulation notes connecting IGCSE → MYP → DP AA
+            A plain-language benchmark against others in your space
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            HL-only extensions flagged clearly, never buried in the SL plan
+            No obligation call, no pressure to sign anything
           </li>
         </ul>
 
         <a class="btn" href="#contact">
-          Get the free pack
+          Get your free audit
           <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <p class="pack__note">Delivered by email, usually within one working day. No mailing list, ever.</p>
+        <p class="pack__note">Delivered by email, usually within two working days. No mailing list, ever.</p>
       </div>
 
-      <div class="preview reveal" aria-hidden="true">
-        <div class="preview__bar">
-          <span class="preview__tag">Sample lesson</span>
-          <span class="preview__meta">Topic 01 · Page 3 of 45</span>
+      <div class="scorecard reveal" aria-hidden="true">
+        <div class="scorecard__bar">
+          <span class="scorecard__tag">Sample audit</span>
+          <span class="scorecard__meta">4 of 20 checkpoints</span>
         </div>
-        <h3 class="preview__title">Sequences &amp; Series — DP AA (HL)</h3>
-        <dl class="preview__row"><dt>Builds on</dt><dd>MYP general-rule justification, Y10</dd></dl>
-        <dl class="preview__row"><dt>Objective</dt><dd>Derive and apply the sum of a geometric series using sigma notation</dd></dl>
-        <dl class="preview__row"><dt>Command term</dt><dd>"Derive" — HL-only, contrast with IGCSE "state"</dd></dl>
-        <dl class="preview__row"><dt>Duration</dt><dd>60 minutes</dd></dl>
-        <div class="preview__fade"><span>+ 14 more lessons inside the pack</span></div>
+        <div class="scorecard__row"><span>Technical SEO</span><span class="status status--risk">Needs work</span></div>
+        <div class="scorecard__row"><span>Paid social</span><span class="status status--ok">On track</span></div>
+        <div class="scorecard__row"><span>Site speed (mobile)</span><span class="status status--warn">At risk</span></div>
+        <div class="scorecard__row"><span>Email lifecycle</span><span class="status status--risk">Not set up</span></div>
+        <div class="scorecard__fade"><span>+ 16 more checkpoints in your audit</span></div>
       </div>
     </div>
   </section>
 
   <!-- ============================= FAQ =============================== -->
-  <section class="section" id="faq">
+  <section class="section section--alt" id="faq">
     <div class="wrap">
       <div class="section__head reveal">
         <span class="kicker">FAQ</span>
         <h2>Before you ask</h2>
-        <p>The questions we hear most from heads of department and classroom teachers.</p>
+        <p>The questions we hear most from marketing leads and founders.</p>
       </div>
 
+      <!-- Note 56: this is the <details>/<summary> markup referenced in Note 33 —
+           <summary> is always visible and always the click/keyboard target;
+           everything else inside <details> (the <p class="a"> answer) is
+           automatically hidden until the element gains its `open` attribute,
+           with zero JavaScript required to manage that state. -->
       <div class="faq reveal">
         <details>
-          <summary>Is the lesson plan pack really free?<span class="plus" aria-hidden="true"></span></summary>
-          <p class="a">Yes. There's no cost and no credit card. We ask for your email only so we can send the pack and follow up if you have questions.</p>
+          <summary>Is the marketing audit really free?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Yes. There's no cost and no obligation to work with us afterward. We ask for your email so we can send the audit and follow up if you have questions.</p>
         </details>
         <details>
-          <summary>What format are the lesson plans in?<span class="plus" aria-hidden="true"></span></summary>
-          <p class="a">Each plan is a print-ready PDF covering objectives, command terms, worked examples, and a vertical-articulation note, one page per topic per programme.</p>
+          <summary>How long is a typical engagement?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">We start with a 90-day plan, then move month-to-month. There's no multi-year lock-in — you can leave at the end of any month.</p>
         </details>
         <details>
-          <summary>Do I need to be an IB World School to use these?<span class="plus" aria-hidden="true"></span></summary>
-          <p class="a">No. The IGCSE and MYP plans stand on their own, and the DP AA plans are useful whether or not your school runs the Diploma Programme.</p>
+          <summary>What size businesses do you work with?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Mostly growing businesses that already have a product and some marketing spend in place. If you're pre-revenue or pre-launch, we're probably not the right fit yet.</p>
         </details>
         <details>
-          <summary>Are these aligned to the current syllabus?<span class="plus" aria-hidden="true"></span></summary>
-          <p class="a">Yes. Every plan is cross-checked against the Cambridge IGCSE and Edexcel International GCSE specifications, the IB MYP framework, and the DP Mathematics: Analysis and Approaches guide, including the 2029 syllabus draft.</p>
+          <summary>Which industries do you work in?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Mainly B2B services, e-commerce, and multi-location local brands, but the audit itself is useful for almost any industry with an existing online presence.</p>
         </details>
         <details>
-          <summary>Will I be added to a mailing list?<span class="plus" aria-hidden="true"></span></summary>
-          <p class="a">No. We reply to your request directly and do not add you to any mailing list.</p>
+          <summary>How do you report on results?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">A standing report on a fixed cadence, in plain language: what ran, what it cost, what it returned, and what changes next. No dashboard you have to learn to read yourself.</p>
         </details>
         <details>
-          <summary>Can I share the pack with my department?<span class="plus" aria-hidden="true"></span></summary>
-          <p class="a">Yes. Once you have the pack it's yours to use and adapt across your team. Mention colleagues in the message field below and we'll loop them in directly.</p>
+          <summary>Do you require a long-term contract?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">No. After the initial 90-day plan, engagements run month-to-month.</p>
         </details>
       </div>
     </div>
   </section>
 
   <!-- =========================== CONTACT ========================== -->
-  <section class="section section--alt" id="contact">
+  <section class="section" id="contact">
     <div class="wrap contact__grid">
 
       <div class="contact__aside reveal">
         <span class="kicker">Contact</span>
-        <h2>Request the lesson plan pack</h2>
+        <h2>Get your free audit</h2>
         <p>
-          Want the full set of 15 lesson plans, or a walkthrough of how they map across
-          programmes? Get in touch and we'll reply within one working day.
+          Tell us a little about your business and what you're hoping to grow.
+          We'll reply within two working days.
         </p>
 
         <ul class="checklist">
@@ -1441,60 +1464,80 @@ a { color: inherit; text-decoration: none; }
                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 6L9 17l-5-5"/>
             </svg>
-            A full 60-minute plan for every topic and programme
+            A 20-point audit of your site, SEO, and paid activity
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 6L9 17l-5-5"/>
             </svg>
-            Command terms and assessment criteria mapped to each syllabus
+            Three quick wins you can act on immediately
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 6L9 17l-5-5"/>
             </svg>
-            Vertical-articulation notes connecting IGCSE → MYP → DP AA
+            No obligation, no pressure, no mailing list
           </li>
         </ul>
       </div>
 
       <div class="form reveal">
+        <!-- Note 52: `novalidate` turns off the browser's built-in validation
+             bubbles (the little "Please fill out this field" tooltips), so the
+             JS's own `validateField`/`setStatus` logic further down is the
+             only validation UI the user sees — one consistent, styleable
+             error experience instead of a mix of native and custom messages.
+             The `required` attributes stay on the inputs anyway, both as a
+             semantic hint and as a fallback if JavaScript fails to load. -->
         <form id="requestForm" novalidate
               action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
 
           <div class="field--row">
             <div class="field">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Jane Ellery"
+              <!-- Note 53: `aria-describedby="name-error"` permanently links this
+                   input to the (usually empty) error span below it — a screen
+                   reader announces that span's content whenever the field
+                   receives focus, error or not. Since the span starts empty,
+                   there's nothing extra to announce until the JS actually
+                   fills in an error message. -->
+              <input type="text" id="name" name="name" placeholder="Jordan Blake"
                      autocomplete="name" required aria-describedby="name-error" />
               <span class="error" id="name-error" role="alert"></span>
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="jane@school.edu"
+              <input type="email" id="email" name="email" placeholder="jordan@company.com"
                      autocomplete="email" required aria-describedby="email-error" />
               <span class="error" id="email-error" role="alert"></span>
             </div>
           </div>
 
           <div class="field" style="margin-top: 1.15rem;">
-            <label for="school">School / Institution <span class="opt">(optional)</span></label>
-            <input type="text" id="school" name="school" placeholder="e.g. International School of..."
+            <label for="school">Company <span class="opt">(optional)</span></label>
+            <input type="text" id="school" name="company" placeholder="e.g. Northline Supply Co."
                    autocomplete="organization" aria-describedby="school-error" />
             <span class="error" id="school-error" role="alert"></span>
           </div>
 
           <div class="field">
-            <label for="message">What would you like to know?</label>
+            <label for="message">What are you hoping to grow?</label>
             <textarea id="message" name="message" required aria-describedby="message-error"
-                      placeholder="Tell us which topics or programmes you're most interested in."></textarea>
+                      placeholder="Tell us about your business and what's not working right now."></textarea>
             <span class="error" id="message-error" role="alert"></span>
           </div>
 
-          <!-- Honeypot: hidden from humans, catches naive bots -->
+          <!-- Note 54: Honeypot: hidden from humans, catches naive bots. Simple
+               spam bots fill in every field they find in a form's HTML; a real
+               visitor never sees or touches this one (it's positioned off
+               -screen and `aria-hidden` keeps assistive tech from ever
+               announcing it, so it doesn't confuse real users either). If
+               `_gotcha` arrives non-empty, Formspree treats the submission as
+               spam server-side. `tabindex="-1"` also keeps it out of the
+               keyboard tab order. -->
           <div style="position:absolute; left:-9999px;" aria-hidden="true">
             <label for="website">Leave this field empty</label>
             <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
@@ -1502,12 +1545,19 @@ a { color: inherit; text-decoration: none; }
 
           <div class="form__foot">
             <button class="btn" type="submit" id="submitBtn">
-              <span id="submitLabel">Send request</span>
+              <span id="submitLabel">Get my free audit</span>
             </button>
-            <p class="form__note">We reply within one working day. No mailing lists, ever.</p>
+            <p class="form__note">We reply within two working days. No mailing lists, ever.</p>
           </div>
 
-          <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+          <!-- Note 55: `role="status"` plus `aria-live="polite"` turns this empty
+               paragraph into an ARIA live region — when the JS later sets its
+               text ("Sending your request…", then a success/error message), a
+               screen reader announces the change automatically, without the
+               user needing to be focused on this element at the time. "Polite"
+               means it waits for the current speech to finish rather than
+               interrupting immediately. -->
+          <p class="status-msg" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
 
@@ -1519,120 +1569,59 @@ a { color: inherit; text-decoration: none; }
 <footer class="footer">
   <div class="wrap footer__inner">
     <a class="logo" href="#home">
-      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
-      MathBridge
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><i></i></span>
+      Signal House
     </a>
     <nav aria-label="Footer">
-      <a href="#topics">Topics</a>
-      <a href="#pack">Free pack</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#audit">Free audit</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-      <a href="mailto:hello@mathbridge.example">hello@mathbridge.example</a>
+      <a href="mailto:hello@signalhouse.example">hello@signalhouse.example</a>
     </nav>
+    <!-- Note 57: `&copy;` is an HTML entity — the standard way to write reserved or
+         hard-to-type characters (©, &, <, >, non-breaking spaces...) safely
+         inside markup instead of pasting the raw character. `<span id="year">`
+         holds a hardcoded fallback ("2026") that the script below immediately
+         overwrites with `new Date().getFullYear()` on page load, so the
+         copyright year never needs a manual yearly edit. -->
     <p class="footer__legal">
-      &copy; <span id="year">2026</span> MathBridge Lesson Plans. All rights reserved.
-      MathBridge is an independent publisher and is not affiliated with, authorized, or
-      endorsed by the International Baccalaureate Organization, Cambridge Assessment
-      International Education, or Pearson Edexcel. IB, IGCSE, and Edexcel are trademarks
-      of their respective owners.
+      &copy; <span id="year">2026</span> Signal House Marketing. All rights reserved.
+      Figures on this site are illustrative unless stated otherwise; individual marketing
+      results vary by market, budget, and starting point.
     </p>
   </div>
 </footer>
 
-<div class="wa-widget" id="waWidget">
-  <div class="wa-widget__panel" id="waPanel" role="dialog" aria-label="Chat on WhatsApp" aria-hidden="true">
-    <div class="wa-widget__head">
-      <span class="wa-widget__head-icon" aria-hidden="true">
-        <svg viewBox="0 0 32 32"><path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.61 4.3 1.67 6.09L4 29l8.2-2.15a12.2 12.2 0 0 0 3.81.6h.01c6.63 0 12.01-5.35 12.01-11.94C28.03 8.35 22.65 3 16.01 3zm7.02 17.02c-.3.83-1.72 1.6-2.38 1.7-.6.09-1.36.13-2.19-.14-.5-.16-1.15-.38-1.98-.74-3.48-1.5-5.75-4.98-5.93-5.21-.17-.23-1.42-1.88-1.42-3.6 0-1.71.9-2.55 1.22-2.9.32-.34.7-.43.93-.43.23 0 .47 0 .67.01.21.01.5-.08.79.6.3.7 1 2.42 1.09 2.6.09.17.15.37.03.6-.12.23-.18.37-.36.57-.18.2-.38.44-.54.6-.18.17-.37.36-.16.7.21.35.94 1.55 2.02 2.51 1.39 1.24 2.56 1.62 2.91 1.8.35.18.55.15.76-.09.21-.24.89-1.04 1.13-1.4.24-.35.47-.29.79-.17.32.11 2.03.96 2.38 1.13.35.18.58.26.67.41.09.15.09.83-.21 1.65z"/></svg>
-      </span>
-      <span class="wa-widget__head-text">
-        <strong>MathBridge</strong>
-        <span>Typically replies within a day</span>
-      </span>
-      <button type="button" class="wa-widget__close" id="waClose" aria-label="Close chat widget">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
-    <div class="wa-widget__body">
-      <p class="wa-widget__prompt">Hi! Pick a question to start on WhatsApp, or write your own.</p>
-      <ul class="wa-widget__queries" id="waQueries">
-        <li><button type="button" class="wa-widget__query" data-msg="Hi, I'd like the free 15 lesson-plan pack — could you send it over?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Can I get the free lesson-plan pack?</button></li>
-        <li><button type="button" class="wa-widget__query" data-msg="Hi, are the lesson plans aligned to the current IGCSE / MYP / DP AA syllabus?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Are these aligned to my syllabus?</button></li>
-        <li><button type="button" class="wa-widget__query" data-msg="Hi, can I share the lesson plans with my whole maths department?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Can I share this with my department?</button></li>
-        <li><button type="button" class="wa-widget__query" data-msg="Hi, I have a question that isn't answered on the site."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>I have a different question</button></li>
-      </ul>
-      <button type="button" class="wa-widget__start" id="waStart">
-        <svg viewBox="0 0 32 32"><path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.61 4.3 1.67 6.09L4 29l8.2-2.15a12.2 12.2 0 0 0 3.81.6h.01c6.63 0 12.01-5.35 12.01-11.94C28.03 8.35 22.65 3 16.01 3z"/></svg>
-        Start chat on WhatsApp
-      </button>
-    </div>
-  </div>
-  <button type="button" class="wa-widget__fab" id="waToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="waPanel" aria-label="Chat with us on WhatsApp">
-    <span class="wa-widget__ping" aria-hidden="true"></span>
-    <svg class="icon-wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.61 4.3 1.67 6.09L4 29l8.2-2.15a12.2 12.2 0 0 0 3.81.6h.01c6.63 0 12.01-5.35 12.01-11.94C28.03 8.35 22.65 3 16.01 3zm7.02 17.02c-.3.83-1.72 1.6-2.38 1.7-.6.09-1.36.13-2.19-.14-.5-.16-1.15-.38-1.98-.74-3.48-1.5-5.75-4.98-5.93-5.21-.17-.23-1.42-1.88-1.42-3.6 0-1.71.9-2.55 1.22-2.9.32-.34.7-.43.93-.43.23 0 .47 0 .67.01.21.01.5-.08.79.6.3.7 1 2.42 1.09 2.6.09.17.15.37.03.6-.12.23-.18.37-.36.57-.18.2-.38.44-.54.6-.18.17-.37.36-.16.7.21.35.94 1.55 2.02 2.51 1.39 1.24 2.56 1.62 2.91 1.8.35.18.55.15.76-.09.21-.24.89-1.04 1.13-1.4.24-.35.47-.29.79-.17.32.11 2.03.96 2.38 1.13.35.18.58.26.67.41.09.15.09.83-.21 1.65z"/></svg>
-    <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-</div>
-
 <script>
+/* Note 58: the whole script is wrapped in an Immediately Invoked Function
+   Expression — `(function () { ... })()`. Everything declared with `var`
+   inside stays scoped to this one function instead of leaking onto the global
+   `window` object, so nothing here can accidentally collide with variables
+   from another script on the page. `"use strict"` opts into JavaScript's
+   stricter parsing mode, which turns several silent bugs (like assigning to
+   an undeclared variable) into thrown errors instead. This whole file
+   predates `let`/`const` and arrow functions in its style — it consistently
+   uses `var` and `function` for broad browser compatibility rather than
+   because those are best practice today. */
 (function () {
   "use strict";
-
-  /* ---------------- WhatsApp widget ---------------- */
-  var WA_NUMBER = "6583489041";
-  var waWidget  = document.getElementById("waWidget");
-  var waToggle  = document.getElementById("waToggle");
-  var waClose   = document.getElementById("waClose");
-  var waPanel   = document.getElementById("waPanel");
-  var waStart   = document.getElementById("waStart");
-  var waQueries = document.getElementById("waQueries");
-
-  var waLink = function (msg) {
-    return "https://wa.me/" + WA_NUMBER + (msg ? "?text=" + encodeURIComponent(msg) : "");
-  };
-
-  var openWaWidget = function () {
-    waWidget.classList.add("is-open");
-    waToggle.setAttribute("aria-expanded", "true");
-    waPanel.setAttribute("aria-hidden", "false");
-  };
-  var closeWaWidget = function () {
-    waWidget.classList.remove("is-open");
-    waToggle.setAttribute("aria-expanded", "false");
-    waPanel.setAttribute("aria-hidden", "true");
-  };
-
-  if (waToggle) {
-    waToggle.addEventListener("click", function () {
-      if (waWidget.classList.contains("is-open")) closeWaWidget();
-      else openWaWidget();
-    });
-  }
-  if (waClose) waClose.addEventListener("click", closeWaWidget);
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && waWidget.classList.contains("is-open")) closeWaWidget();
-  });
-  document.addEventListener("click", function (e) {
-    if (waWidget.classList.contains("is-open") && !waWidget.contains(e.target)) closeWaWidget();
-  });
-
-  if (waQueries) {
-    waQueries.addEventListener("click", function (e) {
-      var btn = e.target.closest(".wa-widget__query");
-      if (!btn) return;
-      window.open(waLink(btn.getAttribute("data-msg")), "_blank", "noopener");
-    });
-  }
-  if (waStart) {
-    waStart.addEventListener("click", function () {
-      window.open(waLink("Hi, I'd like to know more about MathBridge's lesson plans."), "_blank", "noopener");
-    });
-  }
 
   /* ---------------- Year ---------------- */
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /* ---------------- Sticky nav shadow ---------------- */
+  /* ---------------- Sticky nav shadow ----------------
+     Note 59: `window.scrollY` is the number of pixels the page has scrolled
+     vertically. `classList.toggle(name, condition)` is the one-line form of
+     "add this class if the condition is true, remove it if false" — no
+     if/else needed. `onScroll()` is called once immediately (in case the page
+     loads already scrolled down, e.g. from a back-navigation) and then again
+     on every subsequent scroll event via the listener. `{ passive: true }`
+     tells the browser this listener will never call `preventDefault()`,
+     which lets it start scrolling immediately instead of waiting to see if
+     the handler blocks it — a meaningful smoothness improvement for a
+     handler that fires this often. */
   var nav = document.getElementById("nav");
   var onScroll = function () {
     nav.classList.toggle("is-stuck", window.scrollY > 8);
@@ -1649,23 +1638,49 @@ a { color: inherit; text-decoration: none; }
     toggle.setAttribute("aria-expanded", "false");
   };
 
+  /* Note 60: reads the toggle button's own current `aria-expanded` value as the
+     single source of truth for "is the menu open," flips it, and writes the
+     opposite state back to both the CSS-facing class (`is-open`, driving the
+     grid-rows animation from Note 23) and the accessibility-facing attribute
+     (`aria-expanded`, driving the hamburger-to-X animation from Note 22) in
+     the same click handler — one state, updated in one place, consumed by
+     two different rendering concerns. */
   toggle.addEventListener("click", function () {
     var open = toggle.getAttribute("aria-expanded") === "true";
     mobile.classList.toggle("is-open", !open);
     toggle.setAttribute("aria-expanded", String(!open));
   });
 
+  /* Note 61: `e.target.closest("a")` is event delegation — rather than
+     attaching a click listener to every single link inside the mobile menu,
+     one listener sits on the parent `mobile` container and inspects what was
+     actually clicked. `closest()` walks up from the exact clicked element
+     (which might be a nested <span> inside the <a>) until it finds an
+     ancestor matching the "a" selector, or returns null if there isn't one —
+     so clicking anywhere inside a link closes the menu, but clicking the
+     container's empty space doesn't. */
   mobile.addEventListener("click", function (e) {
     if (e.target.closest("a")) closeMenu();
   });
 
+  /* Note 62: a global Escape-key handler for closing the mobile menu — a
+     standard accessibility expectation for any overlay/menu, letting keyboard
+     users dismiss it without having to tab all the way to a close button. */
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeMenu();
   });
 
-  /* ---------------- Smooth scroll (with reduced-motion respect) ---------------- */
+  /* ---------------- Smooth scroll (with reduced-motion respect) ----------------
+     Note 63: `window.matchMedia(query).matches` lets JavaScript read the exact
+     same media feature the CSS checks at Note 42 — here it's used to decide
+     the scroll *behavior* argument at runtime, since `scroll-behavior: smooth`
+     in CSS only affects native anchor jumps, not scrolls triggered manually
+     via `window.scrollTo()` like this one. */
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* Note 64: `'a[href^="#"]'` is an attribute selector meaning "any <a> whose
+     href starts with #" — every in-page anchor link on the site, found in one
+     query without needing a shared class name on each of them. */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
       var id = link.getAttribute("href");
@@ -1673,26 +1688,67 @@ a { color: inherit; text-decoration: none; }
       var target = document.querySelector(id);
       if (!target) return;
 
+      /* Note 65: `e.preventDefault()` stops the browser's own instant anchor
+         jump so this handler's manual, offset-aware scroll can run instead. */
       e.preventDefault();
       closeMenu();
 
+      /* Note 66: this is the manual version of the `scroll-padding-top` offset
+         from Note 12 — `getBoundingClientRect().top` gives the target's
+         position relative to the current viewport, adding `window.scrollY`
+         converts that to a position relative to the whole document, and
+         subtracting the nav's height plus a little breathing room stops the
+         sticky nav from covering the target heading once scrolled there. */
       var top = target.getBoundingClientRect().top + window.scrollY -
                 (nav.offsetHeight + 12);
 
+      /* Note 67: `Math.max(top, 0)` guards against scrolling to a negative
+         value (which would happen for a target near the very top of the
+         page) — the browser would just clamp it anyway, but being explicit
+         avoids relying on that implicit behavior. The `behavior` option reuses
+         `prefersReduced` from Note 63 to jump instantly rather than animate
+         for users who've asked for reduced motion. `history.replaceState`
+         updates the URL's hash to match without creating a new browser-history
+         entry (as a normal navigation would), so the Back button doesn't have
+         to step through every section the user clicked. */
       window.scrollTo({ top: Math.max(top, 0), behavior: prefersReduced ? "auto" : "smooth" });
       history.replaceState(null, "", id);
     });
   });
 
-  /* ---------------- Active nav link on scroll ---------------- */
-  var sections = ["home", "topics", "pack", "faq", "contact"]
+  /* ---------------- Active nav link on scroll ----------------
+     Note 68: `.map(...).filter(Boolean)` is a common two-step pattern — map
+     each section id to its DOM element (which is `null` for any id that
+     doesn't exist on the page), then `filter(Boolean)` drops every falsy
+     entry from the resulting array, using the `Boolean` constructor itself as
+     a shorthand "is this truthy?" filter function instead of writing
+     `function (x) { return !!x; }`. */
+  var sections = ["home", "services", "process", "audit", "faq", "contact"]
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
 
+  /* Note 69: `document.querySelectorAll()` returns a NodeList, not a real
+     Array — it lacks array methods, so `Array.prototype.slice.call(nodeList)`
+     "borrows" Array's `slice` method to convert it into a genuine Array that
+     supports `.forEach`, `.map`, etc. This predates the now-common
+     `Array.from(nodeList)`, which does the same conversion more directly. */
   var navLinks = Array.prototype.slice.call(
     document.querySelectorAll('#navLinks a[href^="#"]')
   );
 
+  /* Note 70: this is a "scrollspy" — it highlights whichever nav link
+     corresponds to the section currently in view, without a single scroll
+     event listener. `IntersectionObserver` is a browser API that asynchronously
+     watches target elements and fires a callback whenever they cross a
+     visibility threshold, instead of firing dozens of times per second like a
+     scroll listener would. The feature-detection `if ("IntersectionObserver"
+     in window)` is a graceful-degradation check — on an ancient browser
+     without support, this whole block of enhancement is simply skipped rather
+     than throwing an error. `rootMargin: "-45% 0px -50% 0px"` shrinks the
+     observer's effective viewport to a thin horizontal band around the
+     vertical center of the screen, so a section only counts as "active" once
+     it's genuinely near the middle of the screen rather than merely
+     peeking into view at the very top or bottom. */
   if ("IntersectionObserver" in window && sections.length) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -1706,7 +1762,20 @@ a { color: inherit; text-decoration: none; }
     sections.forEach(function (s) { spy.observe(s); });
   }
 
-  /* ---------------- Reveal on scroll ---------------- */
+  /* ---------------- Reveal on scroll ----------------
+     Note 71: a second, independent IntersectionObserver drives the fade-in
+     effect from Note 41/51. `threshold: 0.12` means the callback only fires
+     once 12% of the element is visible (rather than the instant a single
+     pixel appears), and the negative bottom `rootMargin` shrinks the trigger
+     zone so elements reveal slightly before reaching the very bottom edge of
+     the viewport, timing the animation to feel proactive rather than
+     late. Staggering `transitionDelay` by `i * 70` milliseconds — where `i` is
+     each entry's index in this particular batch of intersecting elements —
+     makes elements that become visible together cascade in one after another
+     instead of all appearing in a single flat instant. `obs.unobserve(...)`
+     stops watching an element once it's been revealed, since it only ever
+     needs to fire once per element — leaving the observer running forever on
+     already-revealed elements would just waste work. */
   var revealables = document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window && !prefersReduced) {
@@ -1721,11 +1790,16 @@ a { color: inherit; text-decoration: none; }
 
     revealables.forEach(function (el) { revealer.observe(el); });
   } else {
+    /* Note 72: the fallback path — either the browser lacks
+       IntersectionObserver support, or the user prefers reduced motion. Either
+       way, every `.reveal` element is marked visible immediately rather than
+       waiting on an animation trigger that will never (or shouldn't)
+       meaningfully fire, so content isn't stuck invisible. */
     revealables.forEach(function (el) { el.classList.add("is-visible"); });
   }
 
   /* ================================================================
-     Lesson-plan request form → Formspree
+     Audit request form → Formspree
      Replace {YOUR_FORM_ID} in the form's action attribute above.
   ================================================================= */
   var form       = document.getElementById("requestForm");
@@ -1746,7 +1820,7 @@ a { color: inherit; text-decoration: none; }
       if (!EMAIL_RE.test(v)) return "Please enter a valid email address.";
       return "";
     },
-    school: function () { return ""; },   // optional
+    company: function () { return ""; },   // optional
     message: function (v) {
       if (!v) return "Please add a short message.";
       if (v.length < 10) return "A little more detail helps us reply properly.";
@@ -1756,7 +1830,7 @@ a { color: inherit; text-decoration: none; }
 
   var setStatus = function (text, kind) {
     statusEl.textContent = text || "";
-    statusEl.className = "status" + (kind ? " status--" + kind : "");
+    statusEl.className = "status-msg" + (kind ? " status-msg--" + kind : "");
   };
 
   var setFieldError = function (field, message) {
@@ -1776,7 +1850,7 @@ a { color: inherit; text-decoration: none; }
     return setFieldError(field, rule(field.value.trim()));
   };
 
-  var validated = ["name", "email", "school", "message"].map(function (n) {
+  var validated = ["name", "email", "company", "message"].map(function (n) {
     return form.elements[n];
   });
 
@@ -1799,7 +1873,7 @@ a { color: inherit; text-decoration: none; }
         submitBtn.appendChild(s);
       }
     } else {
-      submitLbl.textContent = "Send request";
+      submitLbl.textContent = "Get my free audit";
       var existing = submitBtn.querySelector(".spinner");
       if (existing) existing.remove();
     }
@@ -1814,7 +1888,7 @@ a { color: inherit; text-decoration: none; }
           '<path d="M20 6L9 17l-5-5"/></svg>' +
         '</div>' +
         '<h3>Thanks' + (name ? ", " + name : "") + " — request received.</h3>" +
-        '<p>We read every request ourselves and will reply within one working day.</p>' +
+        '<p>We read every request ourselves and will reply within two working days.</p>' +
       "</div>";
     form.parentElement.setAttribute("role", "status");
     form.parentElement.setAttribute("aria-live", "polite");
@@ -1840,10 +1914,10 @@ a { color: inherit; text-decoration: none; }
     var payload = {
       name:    form.elements.name.value.trim(),
       email:   form.elements.email.value.trim(),
-      school:  form.elements.school.value.trim(),
+      company: form.elements.company.value.trim(),
       message: form.elements.message.value.trim(),
       _gotcha: form.elements._gotcha.value,
-      _subject: "New lesson-plan pack request from " + form.elements.name.value.trim()
+      _subject: "New marketing audit request from " + form.elements.name.value.trim()
     };
 
     var endpoint = form.getAttribute("action");
@@ -1884,7 +1958,7 @@ a { color: inherit; text-decoration: none; }
         setLoading(false);
         setStatus(
           (err && err.message ? err.message : "We couldn't send that.") +
-          " You can also email us directly at hello@mathbridge.example.",
+          " You can also email us directly at hello@signalhouse.example.",
           "err"
         );
       });
