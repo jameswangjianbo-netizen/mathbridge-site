@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MathBridge — Free IB DP, MYP &amp; IGCSE Maths Lesson Plans That Connect the Curriculum</title>
+<meta name="description" content="Download 15 free lesson plans across 5 core topics showing exactly how Cambridge IGCSE, IB MYP, and DP Mathematics: Analysis &amp; Approaches build on each other. No cost, no mailing list." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.mathbridge.example/" />
+
+<!-- Open Graph / social preview. Replace {OG_IMAGE_URL} with a real 1200x630 image before launch. -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MathBridge" />
+<meta property="og:title" content="MathBridge — Lesson Plans That Connect IGCSE, MYP &amp; DP AA" />
+<meta property="og:description" content="15 free lesson plans across 5 core topics, showing exactly how IGCSE, MYP, and DP Mathematics: AA build on one another." />
+<meta property="og:url" content="https://www.mathbridge.example/" />
+<meta property="og:image" content="https://www.mathbridge.example/{OG_IMAGE_URL}" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MathBridge — Lesson Plans That Connect IGCSE, MYP &amp; DP AA" />
+<meta name="twitter:description" content="15 free lesson plans showing exactly how IGCSE, MYP, and DP Mathematics: AA build on one another." />
+
+<meta name="theme-color" content="#101826" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101826'/%3E%3Cline x1='6' y1='11' x2='26' y2='11' stroke='%23C1552B' stroke-width='2.4' stroke-linecap='round'/%3E%3Cline x1='6' y1='16' x2='26' y2='16' stroke='%232A5DAF' stroke-width='2.4' stroke-linecap='round'/%3E%3Cline x1='6' y1='21' x2='26' y2='21' stroke='%236E4A9E' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "MathBridge",
+      "url": "https://www.mathbridge.example/",
+      "email": "hello@mathbridge.example",
+      "description": "MathBridge publishes lesson plans that map how Cambridge IGCSE, IB MYP, and IB DP Mathematics: Analysis & Approaches build on one another."
+    },
+    {
+      "@type": "WebSite",
+      "name": "MathBridge",
+      "url": "https://www.mathbridge.example/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the lesson plan pack really free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. There's no cost and no credit card. We ask for your email only so we can send the pack and follow up if you have questions." }
+        },
+        {
+          "@type": "Question",
+          "name": "What format are the lesson plans in?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Each plan is a print-ready PDF covering objectives, command terms, worked examples, and a vertical-articulation note, one page per topic per programme." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to be an IB World School to use these?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The IGCSE and MYP plans stand on their own, and the DP AA plans are useful whether or not your school runs the Diploma Programme." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are these aligned to the current syllabus?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every plan is cross-checked against the Cambridge IGCSE and Edexcel International GCSE specifications, the IB MYP framework, and the DP Mathematics: Analysis and Approaches guide, including the 2029 syllabus draft." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will I be added to a mailing list?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. We reply to your request directly and do not add you to any mailing list." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I share the pack with my department?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Once you have the pack it's yours to use and adapt across your team. Mention colleagues in the message field and we'll loop them in directly." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* ---------------------------------------------------------------
+   Design tokens — graph paper + mathematical notation
+---------------------------------------------------------------- */
+:root {
+  --paper:      #F1F5F7;
+  --paper-deep: #E7EDF1;
+  --surface:    #ffffff;
+  --grid:       #D3DFE8;
+  --grid-soft:  #E3EAEF;
+
+  --ink:      #101826;
+  --ink-soft: #2A3446;
+  --body:     #4B5568;
+  --muted:    #7C8797;
+  --line:     #DAE2E9;
+
+  --myp:      #2A5DAF;   /* primary / MYP strand */
+  --myp-tint: #DEE9F6;
+  --igcse:      #C1552B; /* IGCSE strand */
+  --igcse-tint: #F5E3D8;
+  --dp:      #6E4A9E;    /* DP AA strand */
+  --dp-tint: #EAE2F4;
+
+  --danger:  #B3382A;
+  --success: #1F6F54;
+  --success-tint: #DEEEE7;
+
+  --radius:    8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 38, .07);
+  --shadow-md: 0 10px 24px -14px rgba(16, 24, 38, .28);
+  --shadow-lg: 0 30px 60px -24px rgba(16, 24, 38, .38);
+
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 7rem);
+
+  --nav-h: 68px;
+
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---------------------------------------------------------------
+   Base
+---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 14px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--body);
+  background:
+    linear-gradient(var(--grid-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-soft) 1px, transparent 1px),
+    var(--paper);
+  background-size: 28px 28px, 28px 28px, auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); color: var(--ink); line-height: 1.1; margin: 0; letter-spacing: -.015em; }
+p { margin: 0; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 2px solid var(--myp);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute; left: 50%; top: 0;
+  transform: translate(-50%, -140%);
+  background: var(--ink); color: #fff;
+  padding: .7rem 1.2rem; border-radius: 0 0 8px 8px;
+  z-index: 200; font-weight: 600; font-size: .9rem;
+  transition: transform .2s ease;
+}
+.skip-link:focus { transform: translate(-50%, 0); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------------------------
+   Buttons — stamped on paper, not soft SaaS pills
+---------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  font: inherit;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: .92rem;
+  letter-spacing: .01em;
+  padding: .9rem 1.5rem;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease;
+}
+.btn:hover  { background: var(--myp); border-color: var(--myp); transform: translateY(-2px) rotate(-.3deg); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0) rotate(0); }
+.btn[disabled] { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: none;
+}
+.btn--ghost:hover { background: var(--surface); border-color: var(--ink); color: var(--ink); }
+
+.btn--sm { padding: .58rem 1.1rem; font-size: .84rem; }
+
+.arrow { transition: transform .16s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ---------------------------------------------------------------
+   Nav
+---------------------------------------------------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(241, 245, 247, .86);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.nav.is-stuck { border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
+
+.nav__inner {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.logo__mark {
+  flex: 0 0 auto;
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  background: var(--ink);
+  display: grid;
+  gap: 3px;
+  align-content: center;
+  padding: 0 5px;
+}
+.logo__mark span { display: block; height: 2px; border-radius: 1px; }
+.logo__mark span:nth-child(1) { background: var(--igcse); }
+.logo__mark span:nth-child(2) { background: var(--myp); }
+.logo__mark span:nth-child(3) { background: var(--dp); }
+
+.nav__links {
+  display: none;
+  align-items: center;
+  gap: .2rem;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.nav__links a {
+  display: block;
+  padding: .5rem .85rem;
+  border-radius: var(--radius);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--body);
+  transition: color .15s ease, background-color .15s ease;
+}
+.nav__links a:hover { color: var(--ink); background: var(--surface); }
+.nav__links a.is-active { color: var(--myp); background: var(--myp-tint); }
+
+.nav__cta { display: none; }
+
+.nav__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px; height: 42px;
+  padding: 0 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+}
+.nav__toggle span {
+  display: block; height: 2px; width: 100%;
+  background: var(--ink); border-radius: 2px;
+  transition: transform .22s ease, opacity .18s ease;
+}
+.nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav__mobile {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .28s ease;
+  border-top: 1px solid transparent;
+  background: rgba(241,245,247,.98);
+}
+.nav__mobile.is-open { grid-template-rows: 1fr; border-top-color: var(--line); }
+.nav__mobile > div { overflow: hidden; }
+.nav__mobile ul { list-style: none; margin: 0; padding: .5rem 0 1.1rem; }
+.nav__mobile a {
+  display: block;
+  padding: .85rem .2rem;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.nav__mobile li:last-child a { border-bottom: 0; }
+
+@media (min-width: 860px) {
+  .nav__links, .nav__cta { display: flex; }
+  .nav__toggle, .nav__mobile { display: none; }
+}
+
+/* ---------------------------------------------------------------
+   Hero
+---------------------------------------------------------------- */
+.hero { padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 6vw, 3rem); }
+
+.hero__head { max-width: 46ch; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .4rem .85rem .4rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+.eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--igcse);
+  box-shadow: 0 0 0 4px var(--igcse-tint);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6.6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  margin-bottom: 1.4rem;
+}
+.hero h1 .u {
+  text-decoration: underline;
+  text-decoration-color: var(--myp);
+  text-decoration-thickness: .07em;
+  text-underline-offset: .1em;
+}
+
+.hero__sub {
+  font-size: clamp(1.05rem, .98rem + .5vw, 1.2rem);
+  max-width: 42ch;
+  color: var(--body);
+  margin-bottom: 2rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  margin-bottom: 3rem;
+}
+
+/* Signature element: the bridge diagram */
+.bridge {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.75rem) clamp(2.75rem, 6vw, 3.5rem);
+  margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+}
+.bridge__top {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: .75rem 1.5rem; margin-bottom: 1.5rem;
+}
+.bridge__top h2 {
+  font-size: 1rem;
+  letter-spacing: -.01em;
+}
+.bridge__legend { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+.bridge__legend span {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--font-mono);
+  font-size: .74rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.bridge__legend i { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
+.bridge__legend .l-igcse i { background: var(--igcse); }
+.bridge__legend .l-myp i { background: var(--myp); }
+.bridge__legend .l-dp i { background: var(--dp); }
+
+.bridge__plot { position: relative; }
+.bridge__plot svg { display: block; width: 100%; height: auto; }
+
+.bridge__labels {
+  position: relative;
+  height: 2.6rem;
+}
+.bridge__labels span {
+  position: absolute;
+  top: .5rem;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .bridge__labels span { font-size: 0; }
+  .bridge__labels span::before {
+    content: attr(data-short);
+    font-size: .68rem;
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.75rem, 3vw, 2rem);
+  max-width: 620px;
+}
+.stats > div { border-top: 2px solid var(--ink); padding-top: 1rem; }
+.stats dt {
+  font-family: var(--font-mono);
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.stats dd {
+  margin: .45rem 0 0;
+  font-size: .82rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------
+   Section furniture
+---------------------------------------------------------------- */
+.section { padding-block: var(--section-y); }
+.section--alt { background: var(--surface); border-block: 1px solid var(--line); }
+
+.section__head { max-width: 620px; margin-bottom: clamp(2.25rem, 5vw, 3.25rem); }
+.section__head.is-centered { margin-inline: auto; text-align: center; }
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--myp);
+  margin-bottom: 1rem;
+}
+.kicker::before { content: ""; width: 20px; height: 1.5px; background: var(--myp); display: inline-block; }
+.section__head.is-centered .kicker::before { display: none; }
+
+.section__head h2 {
+  font-size: clamp(1.9rem, 1.5rem + 1.9vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  margin-bottom: .9rem;
+}
+.section__head p { font-size: 1.05rem; color: var(--body); }
+
+/* ---------------------------------------------------------------
+   Problem / comparison
+---------------------------------------------------------------- */
+.compare {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .compare { grid-template-columns: 1fr 1fr; } }
+
+.compare__col {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+.compare__col h3 {
+  font-size: .78rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.compare__col.is-without h3 { color: var(--danger); }
+.compare__col.is-with h3 { color: var(--success); }
+.compare__col.is-with { border-color: var(--success); box-shadow: 0 0 0 1px var(--success) inset; }
+
+.compare__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }
+.compare__col li { display: flex; gap: .7rem; align-items: flex-start; font-size: .95rem; color: var(--ink-soft); }
+.compare__col li svg { flex: 0 0 auto; margin-top: .3rem; }
+.compare__col.is-without li svg { color: var(--danger); }
+.compare__col.is-with li svg { color: var(--success); }
+
+/* ---------------------------------------------------------------
+   Topic cards
+---------------------------------------------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+}
+@media (min-width: 700px)  { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1020px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.4rem, 3vw, 1.85rem);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: #c3cfda;
+}
+
+.card__head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.card__topic {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+.card__index {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  color: var(--muted);
+}
+
+.card blockquote {
+  margin: 0 0 1.4rem;
+  font-size: .97rem;
+  line-height: 1.62;
+  color: var(--ink-soft);
+}
+
+.strands { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: 1.15rem; border-top: 1px solid var(--line); }
+.strand {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .3rem .62rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .01em;
+}
+.strand i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.strand--igcse { background: var(--igcse-tint); color: var(--igcse); }
+.strand--igcse i { background: var(--igcse); }
+.strand--myp { background: var(--myp-tint); color: var(--myp); }
+.strand--myp i { background: var(--myp); }
+.strand--dp { background: var(--dp-tint); color: var(--dp); }
+.strand--dp i { background: var(--dp); }
+.strand--flag { background: #FBEAE7; color: var(--danger); }
+.strand--flag i { background: var(--danger); }
+
+.logos {
+  margin-top: clamp(2.25rem, 5vw, 3rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 5vw, 3rem);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: .88rem;
+  letter-spacing: .01em;
+}
+
+/* ---------------------------------------------------------------
+   Lead magnet spotlight
+---------------------------------------------------------------- */
+.pack {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 940px) {
+  .pack { grid-template-columns: .95fr 1.05fr; }
+  .pack--reverse .pack__preview { order: 2; }
+}
+
+.pack__list { list-style: none; margin: 1.75rem 0 2rem; padding: 0; display: grid; gap: .9rem; }
+.pack__list li { display: flex; gap: .75rem; align-items: flex-start; font-size: .97rem; color: var(--ink-soft); }
+.pack__list svg { flex: 0 0 auto; margin-top: .28rem; color: var(--myp); }
+
+.pack__note { font-size: .85rem; color: var(--muted); margin-top: 1.25rem; }
+
+.preview {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.5rem, 4vw, 2rem);
+  overflow: hidden;
+}
+.preview__bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.preview__tag {
+  font-family: var(--font-mono); font-size: .72rem; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--dp);
+  background: var(--dp-tint); padding: .3rem .6rem; border-radius: 999px;
+}
+.preview__meta { font-family: var(--font-mono); font-size: .74rem; color: var(--muted); }
+
+.preview__title { font-size: 1.3rem; margin-bottom: 1rem; }
+
+.preview__row { display: grid; grid-template-columns: 7rem 1fr; gap: .3rem 1rem; font-size: .88rem; padding: .55rem 0; border-top: 1px dashed var(--line); }
+.preview__row dt { font-family: var(--font-mono); font-weight: 600; color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .04em; }
+.preview__row dd { margin: 0; color: var(--ink-soft); }
+
+.preview__fade {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 7.5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--surface) 78%);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 1.1rem;
+}
+.preview__fade span {
+  font-family: var(--font-mono); font-size: .78rem; font-weight: 600;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+  padding: .5rem 1rem; border-radius: 999px;
+}
+
+/* ---------------------------------------------------------------
+   FAQ
+---------------------------------------------------------------- */
+.faq { display: grid; gap: .8rem; max-width: 780px; }
+.faq details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+}
+.faq details[open] { border-color: var(--myp); }
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .plus {
+  flex: 0 0 auto;
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  position: relative;
+}
+.faq summary .plus::before, .faq summary .plus::after {
+  content: ""; position: absolute; background: var(--ink);
+}
+.faq summary .plus::before { width: 9px; height: 1.5px; }
+.faq summary .plus::after { width: 1.5px; height: 9px; transition: transform .18s ease; }
+.faq details[open] summary .plus::after { transform: rotate(90deg) scaleY(0); }
+.faq p.a { margin-top: .85rem; font-size: .95rem; color: var(--body); padding-left: calc(22px + 1rem); }
+
+/* ---------------------------------------------------------------
+   Contact
+---------------------------------------------------------------- */
+.contact__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .contact__grid { grid-template-columns: .85fr 1.15fr; }
+}
+
+.contact__aside h2 {
+  font-size: clamp(1.9rem, 1.5rem + 1.9vw, 2.6rem);
+  margin-bottom: .9rem;
+}
+.contact__aside p { margin-bottom: 2rem; }
+
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.checklist li { display: flex; gap: .75rem; align-items: flex-start; font-size: .97rem; color: var(--ink-soft); }
+.checklist svg { flex: 0 0 auto; margin-top: .28rem; color: var(--myp); }
+
+.form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.field { margin-bottom: 1.15rem; }
+.field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .5rem;
+  letter-spacing: .01em;
+}
+.field label .opt { font-weight: 400; color: var(--muted); }
+
+.field input,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  padding: .82rem .95rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
+}
+.field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.field input::placeholder,
+.field textarea::placeholder { color: #9AA7B7; }
+
+.field input:hover, .field textarea:hover { border-color: #b9c5d1; }
+.field input:focus, .field textarea:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--myp);
+  box-shadow: 0 0 0 4px var(--myp-tint);
+}
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--danger);
+  background: #FCF1EF;
+}
+.field input[aria-invalid="true"]:focus,
+.field textarea[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 4px #F6DAD5;
+}
+
+.error {
+  display: block;
+  min-height: 0;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--danger);
+  margin-top: .4rem;
+}
+.error:empty { margin-top: 0; }
+
+.field--row { display: grid; gap: 1.15rem; }
+@media (min-width: 560px) { .field--row { grid-template-columns: 1fr 1fr; } }
+.field--row .field { margin-bottom: 0; }
+
+.form__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+.form__foot .btn { flex: 1 1 auto; min-width: 190px; }
+.form__note { font-size: .82rem; color: var(--muted); flex: 1 1 190px; }
+
+.spinner {
+  width: 15px; height: 15px;
+  border: 2px solid rgba(241,245,247,.5);
+  border-top-color: var(--paper);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.status {
+  margin-top: 1.15rem;
+  padding: .95rem 1.1rem;
+  border-radius: var(--radius);
+  font-size: .93rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+.status:empty { display: none; }
+.status--ok  { background: var(--success-tint); border-color: #bfe0d2; color: var(--success); }
+.status--err { background: #FCF1EF; border-color: #f0c8bf; color: var(--danger); }
+
+.form__success {
+  text-align: center;
+  padding: clamp(1.5rem, 5vw, 2.75rem) 0;
+}
+.form__success .tick {
+  width: 58px; height: 58px;
+  margin: 0 auto 1.25rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--success-tint);
+  color: var(--success);
+}
+.form__success h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+
+/* ---------------------------------------------------------------
+   Footer
+---------------------------------------------------------------- */
+.footer {
+  background: var(--ink);
+  color: #9FADC2;
+  padding-block: clamp(2.25rem, 6vw, 3rem);
+}
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer .logo { color: #fff; }
+.footer .logo__mark { background: #fff; }
+.footer nav { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: .92rem; }
+.footer nav a:hover { color: #fff; }
+.footer__legal { font-size: .8rem; color: #6C7A93; width: 100%; margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid #232E44; line-height: 1.7; }
+
+/* ---------------------------------------------------------------
+   Reveal on scroll
+---------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .55s ease, transform .55s cubic-bezier(.22,1,.36,1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================= NAV ============================= -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="logo" href="#home" aria-label="MathBridge — home">
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      MathBridge
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#pack">Free pack</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--sm nav__cta" href="#pack">Get the free pack</a>
+
+    <button class="nav__toggle" id="navToggle" type="button"
+            aria-expanded="false" aria-controls="navMobile" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav__mobile" id="navMobile">
+    <div>
+      <div class="wrap">
+        <ul>
+          <li><a href="#topics">Topics</a></li>
+          <li><a href="#pack">Free pack</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="hero__head">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Built for the 2029 DP Mathematics syllabus draft</span>
+
+        <h1>Lesson plans that <span class="u">connect the curriculum</span> — not just cover it.</h1>
+
+        <p class="hero__sub">
+          15 free lesson plans across five core topics, showing exactly how Cambridge IGCSE,
+          IB MYP, and DP Mathematics: Analysis &amp; Approaches — SL and HL — build on one another.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn" href="#pack">
+            Get the free pack
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#topics">See what's inside</a>
+        </div>
+      </div>
+
+      <figure class="bridge reveal" aria-labelledby="bridge-caption">
+        <div class="bridge__top">
+          <h2 id="bridge-caption">Five topics, three programmes, one throughline</h2>
+          <div class="bridge__legend">
+            <span class="l-igcse"><i></i>IGCSE</span>
+            <span class="l-myp"><i></i>MYP</span>
+            <span class="l-dp"><i></i>DP AA</span>
+          </div>
+        </div>
+
+        <div class="bridge__plot" aria-hidden="true">
+          <svg viewBox="0 0 640 200" preserveAspectRatio="none" role="img">
+            <line x1="24" y1="170" x2="616" y2="170" stroke="var(--grid)" stroke-width="1" stroke-dasharray="2 5"/>
+            <line x1="24" y1="40" x2="616" y2="40" stroke="#C1552B" stroke-width="3" stroke-linecap="round"/>
+            <line x1="24" y1="100" x2="616" y2="100" stroke="#2A5DAF" stroke-width="3" stroke-linecap="round"/>
+            <line x1="24" y1="160" x2="616" y2="160" stroke="#6E4A9E" stroke-width="3" stroke-linecap="round"/>
+
+            <g stroke="#B9C6D2" stroke-width="1.5">
+              <line x1="24"  y1="40" x2="24"  y2="160"/>
+              <line x1="174" y1="40" x2="174" y2="160"/>
+              <line x1="320" y1="40" x2="320" y2="160"/>
+              <line x1="466" y1="40" x2="466" y2="160"/>
+              <line x1="616" y1="40" x2="616" y2="160"/>
+            </g>
+
+            <g>
+              <circle cx="24" cy="40" r="5" fill="#C1552B"/><circle cx="174" cy="40" r="5" fill="#C1552B"/><circle cx="320" cy="40" r="5" fill="#C1552B"/><circle cx="466" cy="40" r="5" fill="#C1552B"/><circle cx="616" cy="40" r="5" fill="#C1552B"/>
+              <circle cx="24" cy="100" r="5" fill="#2A5DAF"/><circle cx="174" cy="100" r="5" fill="#2A5DAF"/><circle cx="320" cy="100" r="5" fill="#2A5DAF"/><circle cx="466" cy="100" r="5" fill="#2A5DAF"/><circle cx="616" cy="100" r="5" fill="#2A5DAF"/>
+              <circle cx="24" cy="160" r="5" fill="#6E4A9E"/><circle cx="174" cy="160" r="5" fill="#6E4A9E"/><circle cx="320" cy="160" r="5" fill="#6E4A9E"/><circle cx="466" cy="160" r="5" fill="#6E4A9E"/><circle cx="616" cy="160" r="5" fill="#6E4A9E"/>
+            </g>
+          </svg>
+          <div class="bridge__labels">
+            <span style="left:3.75%" data-short="Seq.">Sequences</span>
+            <span style="left:27.2%" data-short="Func.">Functions</span>
+            <span style="left:50%" data-short="Trig.">Trigonometry</span>
+            <span style="left:72.8%" data-short="Calc.">Calculus</span>
+            <span style="left:96.25%" data-short="Stats">Statistics</span>
+          </div>
+        </div>
+      </figure>
+
+      <dl class="stats reveal">
+        <div><dt>15</dt><dd>Full 60-minute lesson plans</dd></div>
+        <div><dt>05</dt><dd>Core topics, one anchor lesson each</dd></div>
+        <div><dt>03</dt><dd>Programmes mapped in every topic</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- =========================== PROBLEM ============================ -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="kicker">The gap</span>
+        <h2>Same subject, different language at every handoff</h2>
+        <p>
+          When a student moves from IGCSE into the MYP, or from MYP into DP Mathematics: AA,
+          the mathematics is continuous — but the vocabulary, notation, and command terms
+          often aren't. Teachers end up re-teaching material that was technically "covered"
+          the year before, because nobody wrote down how the two syllabuses actually connect.
+        </p>
+      </div>
+
+      <div class="compare reveal">
+        <div class="compare__col is-without">
+          <h3>Without a bridge</h3>
+          <ul>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              Topics get re-taught from scratch, every handoff
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              Command terms shift without warning between programmes
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              HL/SL boundaries feel arbitrary instead of deliberate
+            </li>
+          </ul>
+        </div>
+        <div class="compare__col is-with">
+          <h3>With MathBridge</h3>
+          <ul>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Each plan names the exact prior-programme skill it builds on
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Command terms are mapped side-by-side across programmes
+            </li>
+            <li>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              HL-only content is flagged clearly, never buried
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== TOPICS ============================ -->
+  <section class="section" id="topics">
+    <div class="wrap">
+      <div class="section__head is-centered reveal">
+        <span class="kicker">Topics</span>
+        <h2>What each lesson covers</h2>
+        <p>Five core strands, each planned for IGCSE, MYP, and DP AA — SL and HL — so the
+          progression across programmes is visible, not assumed.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card__head">
+            <span class="card__topic">Sequences &amp; Series</span>
+            <span class="card__index">01 / 05</span>
+          </div>
+          <blockquote>
+            From finding and justifying a general rule at MYP, to nth-term mechanics at IGCSE,
+            to full sum formulae and HL-only sigma notation at DP AA.
+          </blockquote>
+          <div class="strands">
+            <span class="strand strand--igcse"><i></i>IGCSE</span>
+            <span class="strand strand--myp"><i></i>MYP</span>
+            <span class="strand strand--dp"><i></i>DP AA · Y1</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__head">
+            <span class="card__topic">Functions</span>
+            <span class="card__index">02 / 05</span>
+          </div>
+          <blockquote>
+            Function notation and domain/range at IGCSE, parameter exploration at MYP, and
+            composite/inverse functions with HL existence conditions at DP AA.
+          </blockquote>
+          <div class="strands">
+            <span class="strand strand--igcse"><i></i>IGCSE</span>
+            <span class="strand strand--myp"><i></i>MYP</span>
+            <span class="strand strand--dp"><i></i>DP AA · Y1</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__head">
+            <span class="card__topic">Trigonometry</span>
+            <span class="card__index">03 / 05</span>
+          </div>
+          <blockquote>
+            Sine and cosine rule mechanics at IGCSE, justified real-world application at MYP,
+            and multi-step synthesis with an HL compound-angle preview at DP AA.
+          </blockquote>
+          <div class="strands">
+            <span class="strand strand--igcse"><i></i>IGCSE</span>
+            <span class="strand strand--myp"><i></i>MYP</span>
+            <span class="strand strand--dp"><i></i>DP AA · Y1</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__head">
+            <span class="card__topic">Calculus</span>
+            <span class="card__index">04 / 05</span>
+          </div>
+          <blockquote>
+            Not IGCSE content at all — gradients from graphs there, a GDC optimization bridge
+            at MYP, and the real thing: limits and differentiation at DP AA.
+          </blockquote>
+          <div class="strands">
+            <span class="strand strand--flag"><i></i>Bridging case — see note</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__head">
+            <span class="card__topic">Statistics</span>
+            <span class="card__index">05 / 05</span>
+          </div>
+          <blockquote>
+            Grouped-data mean and standard deviation at IGCSE, box plots and cumulative
+            frequency at MYP, and the explicit variance derivation at DP AA (HL).
+          </blockquote>
+          <div class="strands">
+            <span class="strand strand--igcse"><i></i>IGCSE</span>
+            <span class="strand strand--myp"><i></i>MYP</span>
+            <span class="strand strand--dp"><i></i>DP AA · Y2</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="logos reveal" aria-label="Programmes covered">
+        <span>IB Diploma Programme</span>
+        <span>IB Middle Years Programme</span>
+        <span>Cambridge IGCSE</span>
+        <span>Edexcel International GCSE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= LEAD MAGNET ========================== -->
+  <section class="section section--alt" id="pack">
+    <div class="wrap pack">
+      <div class="reveal">
+        <span class="kicker">Free download</span>
+        <h2 style="font-size:clamp(1.9rem, 1.5rem + 1.9vw, 2.6rem); font-weight:700; letter-spacing:-.025em; margin-bottom:.9rem;">Get all 15 lesson plans, free</h2>
+        <p style="font-size:1.05rem;">
+          One PDF pack, five topics, three programmes each — see exactly how IGCSE, MYP, and
+          DP AA connect before you plan a single lesson.
+        </p>
+
+        <ul class="pack__list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            A full 60-minute plan for every topic, at every programme level
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Command terms and assessment criteria mapped side-by-side
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Vertical-articulation notes connecting IGCSE → MYP → DP AA
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            HL-only extensions flagged clearly, never buried in the SL plan
+          </li>
+        </ul>
+
+        <a class="btn" href="#contact">
+          Get the free pack
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="pack__note">Delivered by email, usually within one working day. No mailing list, ever.</p>
+      </div>
+
+      <div class="preview reveal" aria-hidden="true">
+        <div class="preview__bar">
+          <span class="preview__tag">Sample lesson</span>
+          <span class="preview__meta">Topic 01 · Page 3 of 45</span>
+        </div>
+        <h3 class="preview__title">Sequences &amp; Series — DP AA (HL)</h3>
+        <dl class="preview__row"><dt>Builds on</dt><dd>MYP general-rule justification, Y10</dd></dl>
+        <dl class="preview__row"><dt>Objective</dt><dd>Derive and apply the sum of a geometric series using sigma notation</dd></dl>
+        <dl class="preview__row"><dt>Command term</dt><dd>"Derive" — HL-only, contrast with IGCSE "state"</dd></dl>
+        <dl class="preview__row"><dt>Duration</dt><dd>60 minutes</dd></dl>
+        <div class="preview__fade"><span>+ 14 more lessons inside the pack</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FAQ =============================== -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="kicker">FAQ</span>
+        <h2>Before you ask</h2>
+        <p>The questions we hear most from heads of department and classroom teachers.</p>
+      </div>
+
+      <div class="faq reveal">
+        <details>
+          <summary>Is the lesson plan pack really free?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Yes. There's no cost and no credit card. We ask for your email only so we can send the pack and follow up if you have questions.</p>
+        </details>
+        <details>
+          <summary>What format are the lesson plans in?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Each plan is a print-ready PDF covering objectives, command terms, worked examples, and a vertical-articulation note, one page per topic per programme.</p>
+        </details>
+        <details>
+          <summary>Do I need to be an IB World School to use these?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">No. The IGCSE and MYP plans stand on their own, and the DP AA plans are useful whether or not your school runs the Diploma Programme.</p>
+        </details>
+        <details>
+          <summary>Are these aligned to the current syllabus?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Yes. Every plan is cross-checked against the Cambridge IGCSE and Edexcel International GCSE specifications, the IB MYP framework, and the DP Mathematics: Analysis and Approaches guide, including the 2029 syllabus draft.</p>
+        </details>
+        <details>
+          <summary>Will I be added to a mailing list?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">No. We reply to your request directly and do not add you to any mailing list.</p>
+        </details>
+        <details>
+          <summary>Can I share the pack with my department?<span class="plus" aria-hidden="true"></span></summary>
+          <p class="a">Yes. Once you have the pack it's yours to use and adapt across your team. Mention colleagues in the message field below and we'll loop them in directly.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== CONTACT ========================== -->
+  <section class="section section--alt" id="contact">
+    <div class="wrap contact__grid">
+
+      <div class="contact__aside reveal">
+        <span class="kicker">Contact</span>
+        <h2>Request the lesson plan pack</h2>
+        <p>
+          Want the full set of 15 lesson plans, or a walkthrough of how they map across
+          programmes? Get in touch and we'll reply within one working day.
+        </p>
+
+        <ul class="checklist">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            A full 60-minute plan for every topic and programme
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            Command terms and assessment criteria mapped to each syllabus
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            Vertical-articulation notes connecting IGCSE → MYP → DP AA
+          </li>
+        </ul>
+      </div>
+
+      <div class="form reveal">
+        <form id="requestForm" novalidate
+              action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
+
+          <div class="field--row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Ellery"
+                     autocomplete="name" required aria-describedby="name-error" />
+              <span class="error" id="name-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@school.edu"
+                     autocomplete="email" required aria-describedby="email-error" />
+              <span class="error" id="email-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top: 1.15rem;">
+            <label for="school">School / Institution <span class="opt">(optional)</span></label>
+            <input type="text" id="school" name="school" placeholder="e.g. International School of..."
+                   autocomplete="organization" aria-describedby="school-error" />
+            <span class="error" id="school-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="message">What would you like to know?</label>
+            <textarea id="message" name="message" required aria-describedby="message-error"
+                      placeholder="Tell us which topics or programmes you're most interested in."></textarea>
+            <span class="error" id="message-error" role="alert"></span>
+          </div>
+
+          <!-- Honeypot: hidden from humans, catches naive bots -->
+          <div style="position:absolute; left:-9999px;" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form__foot">
+            <button class="btn" type="submit" id="submitBtn">
+              <span id="submitLabel">Send request</span>
+            </button>
+            <p class="form__note">We reply within one working day. No mailing lists, ever.</p>
+          </div>
+
+          <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- =========================== FOOTER =========================== -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="logo" href="#home">
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      MathBridge
+    </a>
+    <nav aria-label="Footer">
+      <a href="#topics">Topics</a>
+      <a href="#pack">Free pack</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:hello@mathbridge.example">hello@mathbridge.example</a>
+    </nav>
+    <p class="footer__legal">
+      &copy; <span id="year">2026</span> MathBridge Lesson Plans. All rights reserved.
+      MathBridge is an independent publisher and is not affiliated with, authorized, or
+      endorsed by the International Baccalaureate Organization, Cambridge Assessment
+      International Education, or Pearson Edexcel. IB, IGCSE, and Edexcel are trademarks
+      of their respective owners.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- Year ---------------- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---------------- Sticky nav shadow ---------------- */
+  var nav = document.getElementById("nav");
+  var onScroll = function () {
+    nav.classList.toggle("is-stuck", window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---------------- Mobile menu ---------------- */
+  var toggle = document.getElementById("navToggle");
+  var mobile = document.getElementById("navMobile");
+
+  var closeMenu = function () {
+    mobile.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", function () {
+    var open = toggle.getAttribute("aria-expanded") === "true";
+    mobile.classList.toggle("is-open", !open);
+    toggle.setAttribute("aria-expanded", String(!open));
+  });
+
+  mobile.addEventListener("click", function (e) {
+    if (e.target.closest("a")) closeMenu();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  /* ---------------- Smooth scroll (with reduced-motion respect) ---------------- */
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var id = link.getAttribute("href");
+      if (id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+
+      e.preventDefault();
+      closeMenu();
+
+      var top = target.getBoundingClientRect().top + window.scrollY -
+                (nav.offsetHeight + 12);
+
+      window.scrollTo({ top: Math.max(top, 0), behavior: prefersReduced ? "auto" : "smooth" });
+      history.replaceState(null, "", id);
+    });
+  });
+
+  /* ---------------- Active nav link on scroll ---------------- */
+  var sections = ["home", "topics", "pack", "faq", "contact"]
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+
+  var navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('#navLinks a[href^="#"]')
+  );
+
+  if ("IntersectionObserver" in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------------- Reveal on scroll ---------------- */
+  var revealables = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window && !prefersReduced) {
+    var revealer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry, i) {
+        if (!entry.isIntersecting) return;
+        entry.target.style.transitionDelay = (i * 70) + "ms";
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+
+    revealables.forEach(function (el) { revealer.observe(el); });
+  } else {
+    revealables.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
+  /* ================================================================
+     Lesson-plan request form → Formspree
+     Replace {YOUR_FORM_ID} in the form's action attribute above.
+  ================================================================= */
+  var form       = document.getElementById("requestForm");
+  var submitBtn  = document.getElementById("submitBtn");
+  var submitLbl  = document.getElementById("submitLabel");
+  var statusEl   = document.getElementById("formStatus");
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
+  var RULES = {
+    name: function (v) {
+      if (!v) return "Please tell us your name.";
+      if (v.length < 2) return "That name looks a little short.";
+      return "";
+    },
+    email: function (v) {
+      if (!v) return "We need an email to reply to.";
+      if (!EMAIL_RE.test(v)) return "Please enter a valid email address.";
+      return "";
+    },
+    school: function () { return ""; },   // optional
+    message: function (v) {
+      if (!v) return "Please add a short message.";
+      if (v.length < 10) return "A little more detail helps us reply properly.";
+      return "";
+    }
+  };
+
+  var setStatus = function (text, kind) {
+    statusEl.textContent = text || "";
+    statusEl.className = "status" + (kind ? " status--" + kind : "");
+  };
+
+  var setFieldError = function (field, message) {
+    var err = document.getElementById(field.id + "-error");
+    if (err) err.textContent = message;
+    if (message) {
+      field.setAttribute("aria-invalid", "true");
+    } else {
+      field.removeAttribute("aria-invalid");
+    }
+    return !message;
+  };
+
+  var validateField = function (field) {
+    var rule = RULES[field.name];
+    if (!rule) return true;
+    return setFieldError(field, rule(field.value.trim()));
+  };
+
+  var validated = ["name", "email", "school", "message"].map(function (n) {
+    return form.elements[n];
+  });
+
+  // Validate on blur; clear errors as the user fixes them.
+  validated.forEach(function (field) {
+    field.addEventListener("blur", function () { validateField(field); });
+    field.addEventListener("input", function () {
+      if (field.getAttribute("aria-invalid") === "true") validateField(field);
+    });
+  });
+
+  var setLoading = function (loading) {
+    submitBtn.disabled = loading;
+    if (loading) {
+      submitLbl.textContent = "Sending…";
+      if (!submitBtn.querySelector(".spinner")) {
+        var s = document.createElement("span");
+        s.className = "spinner";
+        s.setAttribute("aria-hidden", "true");
+        submitBtn.appendChild(s);
+      }
+    } else {
+      submitLbl.textContent = "Send request";
+      var existing = submitBtn.querySelector(".spinner");
+      if (existing) existing.remove();
+    }
+  };
+
+  var showSuccess = function (name) {
+    form.innerHTML =
+      '<div class="form__success">' +
+        '<div class="tick" aria-hidden="true">' +
+          '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+          'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M20 6L9 17l-5-5"/></svg>' +
+        '</div>' +
+        '<h3>Thanks' + (name ? ", " + name : "") + " — request received.</h3>" +
+        '<p>We read every request ourselves and will reply within one working day.</p>' +
+      "</div>";
+    form.parentElement.setAttribute("role", "status");
+    form.parentElement.setAttribute("aria-live", "polite");
+  };
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    setStatus("");
+
+    // ---- client-side validation ----
+    var firstInvalid = null;
+    validated.forEach(function (field) {
+      if (!validateField(field) && !firstInvalid) firstInvalid = field;
+    });
+
+    if (firstInvalid) {
+      setStatus("Please fix the highlighted fields and try again.", "err");
+      firstInvalid.focus();
+      return;
+    }
+
+    // ---- payload ----
+    var payload = {
+      name:    form.elements.name.value.trim(),
+      email:   form.elements.email.value.trim(),
+      school:  form.elements.school.value.trim(),
+      message: form.elements.message.value.trim(),
+      _gotcha: form.elements._gotcha.value,
+      _subject: "New lesson-plan pack request from " + form.elements.name.value.trim()
+    };
+
+    var endpoint = form.getAttribute("action");
+
+    if (endpoint.indexOf("{YOUR_FORM_ID}") !== -1) {
+      setStatus(
+        "This form isn't connected yet — replace {YOUR_FORM_ID} in the form action with your Formspree form ID.",
+        "err"
+      );
+      return;
+    }
+
+    setLoading(true);
+    setStatus("Sending your request…");
+
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (res.ok) {
+          showSuccess(payload.name.split(" ")[0]);
+          return;
+        }
+        // Formspree returns { errors: [{ message, field }] } on failure.
+        return res.json().catch(function () { return null; }).then(function (data) {
+          var msg = data && data.errors && data.errors.length
+            ? data.errors.map(function (x) { return x.message; }).join(" ")
+            : "Something went wrong on our end (" + res.status + "). Please try again.";
+          throw new Error(msg);
+        });
+      })
+      .catch(function (err) {
+        setLoading(false);
+        setStatus(
+          (err && err.message ? err.message : "We couldn't send that.") +
+          " You can also email us directly at hello@mathbridge.example.",
+          "err"
+        );
+      });
+  });
+})();
+</script>
+</body>
+</html>

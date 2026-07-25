@@ -1,0 +1,6 @@
+.agents/
+.claude/
+.playwright-mcp/
+*.png
+index.backup.html
+skills-lock.json
