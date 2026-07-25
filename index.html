@@ -226,6 +226,171 @@ a { color: inherit; text-decoration: none; }
 .btn:hover .arrow { transform: translateX(3px); }
 
 /* ---------------------------------------------------------------
+   WhatsApp floating widget
+---------------------------------------------------------------- */
+.wa-widget {
+  position: fixed;
+  right: clamp(1rem, 4vw, 1.75rem);
+  bottom: clamp(1rem, 4vw, 1.75rem);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .75rem;
+  font-family: var(--font-body);
+}
+
+.wa-widget__panel {
+  width: min(320px, calc(100vw - 2rem));
+  background: var(--surface);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform-origin: bottom right;
+  transform: scale(.94) translateY(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform .18s ease, opacity .18s ease, visibility .18s;
+}
+.wa-widget.is-open .wa-widget__panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.wa-widget__head {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .95rem 1.1rem;
+  background: var(--ink);
+  color: #fff;
+}
+.wa-widget__head-icon {
+  width: 34px; height: 34px; flex: none;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+}
+.wa-widget__head-icon svg { width: 19px; height: 19px; fill: #fff; }
+.wa-widget__head-text { min-width: 0; }
+.wa-widget__head-text strong { display: block; font-family: var(--font-display); font-size: .95rem; letter-spacing: -.01em; }
+.wa-widget__head-text span { display: block; font-size: .78rem; color: rgba(255,255,255,.7); margin-top: .1rem; }
+
+.wa-widget__close {
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,.75);
+  cursor: pointer;
+  padding: .3rem;
+  line-height: 0;
+  border-radius: 6px;
+}
+.wa-widget__close:hover { color: #fff; background: rgba(255,255,255,.12); }
+.wa-widget__close svg { width: 16px; height: 16px; }
+
+.wa-widget__body {
+  padding: .9rem 1.1rem 1.1rem;
+  background: var(--paper);
+}
+.wa-widget__prompt {
+  font-size: .84rem;
+  color: var(--muted);
+  margin: 0 0 .7rem;
+}
+.wa-widget__queries {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  list-style: none;
+  margin: 0 0 .85rem;
+  padding: 0;
+}
+.wa-widget__query {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: .86rem;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: .6rem .75rem;
+  cursor: pointer;
+  transition: border-color .14s ease, transform .14s ease, box-shadow .14s ease;
+}
+.wa-widget__query:hover {
+  border-color: #25D366;
+  transform: translateX(2px);
+  box-shadow: var(--shadow-sm);
+}
+.wa-widget__query svg { width: 14px; height: 14px; flex: none; color: var(--muted); }
+
+.wa-widget__start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: .85rem;
+  color: #fff;
+  background: #25D366;
+  border: 1.5px solid #1DA851;
+  border-radius: var(--radius);
+  padding: .7rem 1rem;
+  cursor: pointer;
+  transition: background-color .14s ease, transform .14s ease;
+}
+.wa-widget__start:hover { background: #1DA851; transform: translateY(-1px); }
+.wa-widget__start svg { width: 16px; height: 16px; fill: #fff; }
+
+.wa-widget__fab {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: transform .16s ease, box-shadow .16s ease;
+  position: relative;
+}
+.wa-widget__fab:hover { transform: translateY(-2px) scale(1.04); }
+.wa-widget__fab svg { width: 30px; height: 30px; fill: #fff; transition: transform .16s ease, opacity .16s ease; }
+.wa-widget__fab .icon-close {
+  position: absolute; width: 22px; height: 22px; fill: none;
+  stroke: #fff; stroke-width: 2.4; stroke-linecap: round;
+  opacity: 0; transform: scale(.6) rotate(-45deg);
+}
+.wa-widget.is-open .wa-widget__fab .icon-wa { opacity: 0; transform: scale(.6) rotate(45deg); }
+.wa-widget.is-open .wa-widget__fab .icon-close { opacity: 1; transform: scale(1) rotate(0); }
+
+.wa-widget__ping {
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  animation: wa-ping 2.4s ease-out infinite;
+}
+.wa-widget.is-open .wa-widget__ping { display: none; }
+@keyframes wa-ping {
+  0%   { transform: scale(.85); opacity: .65; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-widget__panel, .wa-widget__fab, .wa-widget__fab svg, .wa-widget__query, .wa-widget__start { transition: none; }
+  .wa-widget__ping { animation: none; }
+}
+
+/* ---------------------------------------------------------------
    Nav
 ---------------------------------------------------------------- */
 .nav {
@@ -1374,9 +1539,95 @@ a { color: inherit; text-decoration: none; }
   </div>
 </footer>
 
+<div class="wa-widget" id="waWidget">
+  <div class="wa-widget__panel" id="waPanel" role="dialog" aria-label="Chat on WhatsApp" aria-hidden="true">
+    <div class="wa-widget__head">
+      <span class="wa-widget__head-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.61 4.3 1.67 6.09L4 29l8.2-2.15a12.2 12.2 0 0 0 3.81.6h.01c6.63 0 12.01-5.35 12.01-11.94C28.03 8.35 22.65 3 16.01 3zm7.02 17.02c-.3.83-1.72 1.6-2.38 1.7-.6.09-1.36.13-2.19-.14-.5-.16-1.15-.38-1.98-.74-3.48-1.5-5.75-4.98-5.93-5.21-.17-.23-1.42-1.88-1.42-3.6 0-1.71.9-2.55 1.22-2.9.32-.34.7-.43.93-.43.23 0 .47 0 .67.01.21.01.5-.08.79.6.3.7 1 2.42 1.09 2.6.09.17.15.37.03.6-.12.23-.18.37-.36.57-.18.2-.38.44-.54.6-.18.17-.37.36-.16.7.21.35.94 1.55 2.02 2.51 1.39 1.24 2.56 1.62 2.91 1.8.35.18.55.15.76-.09.21-.24.89-1.04 1.13-1.4.24-.35.47-.29.79-.17.32.11 2.03.96 2.38 1.13.35.18.58.26.67.41.09.15.09.83-.21 1.65z"/></svg>
+      </span>
+      <span class="wa-widget__head-text">
+        <strong>MathBridge</strong>
+        <span>Typically replies within a day</span>
+      </span>
+      <button type="button" class="wa-widget__close" id="waClose" aria-label="Close chat widget">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="wa-widget__body">
+      <p class="wa-widget__prompt">Hi! Pick a question to start on WhatsApp, or write your own.</p>
+      <ul class="wa-widget__queries" id="waQueries">
+        <li><button type="button" class="wa-widget__query" data-msg="Hi, I'd like the free 15 lesson-plan pack — could you send it over?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Can I get the free lesson-plan pack?</button></li>
+        <li><button type="button" class="wa-widget__query" data-msg="Hi, are the lesson plans aligned to the current IGCSE / MYP / DP AA syllabus?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Are these aligned to my syllabus?</button></li>
+        <li><button type="button" class="wa-widget__query" data-msg="Hi, can I share the lesson plans with my whole maths department?"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>Can I share this with my department?</button></li>
+        <li><button type="button" class="wa-widget__query" data-msg="Hi, I have a question that isn't answered on the site."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 3z"/></svg>I have a different question</button></li>
+      </ul>
+      <button type="button" class="wa-widget__start" id="waStart">
+        <svg viewBox="0 0 32 32"><path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.61 4.3 1.67 6.09L4 29l8.2-2.15a12.2 12.2 0 0 0 3.81.6h.01c6.63 0 12.01-5.35 12.01-11.94C28.03 8.35 22.65 3 16.01 3z"/></svg>
+        Start chat on WhatsApp
+      </button>
+    </div>
+  </div>
+  <button type="button" class="wa-widget__fab" id="waToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="waPanel" aria-label="Chat with us on WhatsApp">
+    <span class="wa-widget__ping" aria-hidden="true"></span>
+    <svg class="icon-wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.61 4.3 1.67 6.09L4 29l8.2-2.15a12.2 12.2 0 0 0 3.81.6h.01c6.63 0 12.01-5.35 12.01-11.94C28.03 8.35 22.65 3 16.01 3zm7.02 17.02c-.3.83-1.72 1.6-2.38 1.7-.6.09-1.36.13-2.19-.14-.5-.16-1.15-.38-1.98-.74-3.48-1.5-5.75-4.98-5.93-5.21-.17-.23-1.42-1.88-1.42-3.6 0-1.71.9-2.55 1.22-2.9.32-.34.7-.43.93-.43.23 0 .47 0 .67.01.21.01.5-.08.79.6.3.7 1 2.42 1.09 2.6.09.17.15.37.03.6-.12.23-.18.37-.36.57-.18.2-.38.44-.54.6-.18.17-.37.36-.16.7.21.35.94 1.55 2.02 2.51 1.39 1.24 2.56 1.62 2.91 1.8.35.18.55.15.76-.09.21-.24.89-1.04 1.13-1.4.24-.35.47-.29.79-.17.32.11 2.03.96 2.38 1.13.35.18.58.26.67.41.09.15.09.83-.21 1.65z"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</div>
+
 <script>
 (function () {
   "use strict";
+
+  /* ---------------- WhatsApp widget ---------------- */
+  var WA_NUMBER = "6583489041";
+  var waWidget  = document.getElementById("waWidget");
+  var waToggle  = document.getElementById("waToggle");
+  var waClose   = document.getElementById("waClose");
+  var waPanel   = document.getElementById("waPanel");
+  var waStart   = document.getElementById("waStart");
+  var waQueries = document.getElementById("waQueries");
+
+  var waLink = function (msg) {
+    return "https://wa.me/" + WA_NUMBER + (msg ? "?text=" + encodeURIComponent(msg) : "");
+  };
+
+  var openWaWidget = function () {
+    waWidget.classList.add("is-open");
+    waToggle.setAttribute("aria-expanded", "true");
+    waPanel.setAttribute("aria-hidden", "false");
+  };
+  var closeWaWidget = function () {
+    waWidget.classList.remove("is-open");
+    waToggle.setAttribute("aria-expanded", "false");
+    waPanel.setAttribute("aria-hidden", "true");
+  };
+
+  if (waToggle) {
+    waToggle.addEventListener("click", function () {
+      if (waWidget.classList.contains("is-open")) closeWaWidget();
+      else openWaWidget();
+    });
+  }
+  if (waClose) waClose.addEventListener("click", closeWaWidget);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && waWidget.classList.contains("is-open")) closeWaWidget();
+  });
+  document.addEventListener("click", function (e) {
+    if (waWidget.classList.contains("is-open") && !waWidget.contains(e.target)) closeWaWidget();
+  });
+
+  if (waQueries) {
+    waQueries.addEventListener("click", function (e) {
+      var btn = e.target.closest(".wa-widget__query");
+      if (!btn) return;
+      window.open(waLink(btn.getAttribute("data-msg")), "_blank", "noopener");
+    });
+  }
+  if (waStart) {
+    waStart.addEventListener("click", function () {
+      window.open(waLink("Hi, I'd like to know more about MathBridge's lesson plans."), "_blank", "noopener");
+    });
+  }
 
   /* ---------------- Year ---------------- */
   document.getElementById("year").textContent = new Date().getFullYear();
