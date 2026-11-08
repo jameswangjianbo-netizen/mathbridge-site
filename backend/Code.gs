@@ -161,10 +161,25 @@ function quizOut_(o) {
   };
 }
 
+/** Quiz codes are matched without regard to case, so students can type "k7qm2p". */
 function findQuiz_(id) {
+  var want = String(id || '').trim().toUpperCase();
+  if (!want) return null;
   var t = rows_(SHEET_QUIZZES);
-  for (var i = 0; i < t.list.length; i++) if (String(t.list[i].obj.id) === String(id)) return t.list[i];
+  for (var i = 0; i < t.list.length; i++) if (String(t.list[i].obj.id).toUpperCase() === want) return t.list[i];
   return null;
+}
+
+/** Six characters with no look-alikes (no 0/O, 1/I/L), unique among existing quizzes. */
+function newQuizCode_(t) {
+  var abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789', taken = {};
+  t.list.forEach(function (r) { taken[String(r.obj.id).toUpperCase()] = 1; });
+  for (var tries = 0; tries < 50; tries++) {
+    var c = '';
+    for (var i = 0; i < 6; i++) c += abc.charAt(Math.floor(Math.random() * abc.length));
+    if (!taken[c]) return c;
+  }
+  fail_('server_error');
 }
 
 function subOut_(o, forTeacher) {
@@ -272,14 +287,17 @@ ACTIONS.submit = function (req) {
 
 /** A student's own record. Unknown name → {ok:true, sub:null}; wrong PIN → error. */
 ACTIONS.myStatus = function (req) {
+  var q = findQuiz_(req.quizId);
+  if (!q) fail_('no_quiz');
+  var quizId = String(q.obj.id);
   var key = studentKey_(req.name);
   var pin = String(req.pin || '');
   if (!key || !/^\d{4,8}$/.test(pin)) fail_('bad_pin');
   var t = rows_(SHEET_SUBS);
   for (var i = 0; i < t.list.length; i++) {
     var o = t.list[i].obj;
-    if (String(o.quizId) === String(req.quizId) && String(o.studentKey) === key) {
-      if (o.pinHash !== hashPin_(String(req.quizId), key, pin)) fail_('pin_mismatch');
+    if (String(o.quizId) === quizId && String(o.studentKey) === key) {
+      if (o.pinHash !== hashPin_(quizId, key, pin)) fail_('pin_mismatch');
       var out = subOut_(o, false);
       if (out.status !== 'returned') { out.feedback = null; out.score = null; }
       return { ok: true, sub: out };
@@ -312,7 +330,7 @@ ACTIONS.saveQuiz = function (req) {
     if (items.length > LIMITS.itemsPerQuiz) fail_('too_many_items');
     var t = rows_(SHEET_QUIZZES), existing = null;
     if (q.id) t.list.forEach(function (r) { if (String(r.obj.id) === String(q.id)) existing = r; });
-    var rec = existing ? existing.obj : { id: Utilities.getUuid().replace(/-/g, '').slice(0, 10), createdAt: now_() };
+    var rec = existing ? existing.obj : { id: newQuizCode_(t), createdAt: now_() };
     rec.title = str_(q.title, LIMITS.titleLen) || 'Untitled quiz';
     rec.className = str_(q.className, 60);
     rec.items = JSON.stringify(items);

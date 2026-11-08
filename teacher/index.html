@@ -6,17 +6,19 @@
 <title>Teacher Dashboard — MathBridge</title>
 <meta name="description" content="Build AA HL formative quizzes from the MathBridge question bank, see student answers live and return marks and comments.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231F4E79'/%3E%3Ctext x='20' y='27' font-family='Georgia' font-size='18' fill='white' text-anchor='middle'%3E%E2%88%AB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23131D2E'/%3E%3Cpath d='M10 21 L17 28 L31 11' fill='none' stroke='%23FF7A73' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/bank.css">
 <link rel="stylesheet" href="../assets/quiz.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=Kalam:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
-  <a class="brand" href="../">Math<span>Bridge</span></a>
+  <a class="brand" href="../">Math<span>Bridge</span><svg viewBox="0 0 20 18" aria-hidden="true"><path d="M2 10 L7 15 L18 2"/></svg></a>
   <nav>
     <a href="#quizzes" id="nav-quizzes">Quizzes</a>
     <a href="#new" id="nav-new">New quiz</a>
-    <a href="../formative-bank/">Formative bank</a>
+    <a href="../formative-bank/">Question bank</a>
     <button class="linkbtn" id="disconnect" hidden>Sign out</button>
   </nav>
   <div class="zoom"><span>Text size</span><div class="zg" role="group" aria-label="Text size"><button data-scale="1" aria-pressed="true" title="Normal">A</button><button data-scale="1.22" aria-pressed="false" title="Large">A</button><button data-scale="1.5" aria-pressed="false" title="Projector">A</button></div></div>
@@ -31,7 +33,9 @@
 <script src="../assets/common.js"></script>
 <script>
 (function () {
-  const { ITEMS, BY_ID, TOPIC, PAPER, esc, stripTags, store, message, headerHTML, msHTML, quizMax, toast, when, duration } = MB;
+  const { ITEMS, BY_ID, TOPIC, PAPER, esc, stripTags, store, message, headerHTML, msHTML, quizMax, toast, when, duration, verdict, VERDICT } = MB;
+  // Every part of a quiz, in order: [{id, k, label, max}]
+  const partsOf = ids => ids.filter(id => BY_ID[id]).flatMap((id, n) => BY_ID[id].parts.map((p, k) => ({ id, k: String(k), n: n + 1, label: p.l, max: p.m })));
   const $ = id => document.getElementById(id);
   const view = $("view"), bar = $("bar");
   MB.zoom();
@@ -146,7 +150,7 @@
           const link = studentLink(q.id);
           return `<div class="qrow">
             <div><h3>${esc(q.title)}</h3>
-              <div class="sub">${q.className ? `<span>${esc(q.className)}</span>` : ""}<span>${q.items.length} questions &middot; ${quizMax(q.items)} marks</span>${q.minutes ? `<span>${q.minutes} min</span>` : ""}<span class="pill ${q.open ? "open" : "closed"}">${q.open ? "Open" : "Closed"}</span></div></div>
+              <div class="sub"><span>Code <b class="qcode">${esc(q.id)}</b></span>${q.className ? `<span>${esc(q.className)}</span>` : ""}<span>${q.items.length} questions &middot; ${quizMax(q.items)} marks</span>${q.minutes ? `<span>${q.minutes} min</span>` : ""}<span class="pill ${q.open ? "open" : "closed"}">${q.open ? "Open" : "Closed"}</span></div></div>
             <div class="counts"><span class="w"><b>${q.counts.waiting}</b>to mark</span><span><b>${q.counts.returned}</b>returned</span></div>
             <div class="btnrow">
               <a class="btn primary" href="#subs/${q.id}" style="text-decoration:none">Answers &amp; marking</a>
@@ -288,8 +292,10 @@
     navCurrent(null);
     const link = studentLink(q.id);
     view.innerHTML = `<div class="pagehead"><p class="eyebrow">${isNew ? "Quiz created" : "Quiz saved"}</p><h1>${esc(q.title)}</h1></div>
-      <div class="card narrow"><h2>Share this link with your class</h2>
-        <p>Students open it, enter their name and a PIN, and answer. You'll see their answers under <b>Answers &amp; marking</b>.</p>
+      <div class="card narrow"><h2>Give your class this code</h2>
+        ${MB.configured() ? `<p>Students go to the MathBridge homepage, type the code, then enter their name and a PIN. You'll see their answers under <b>Answers &amp; marking</b>.</p>
+        <p class="bigcode qcode">${esc(q.id)}</p><p class="lbl" style="margin:2rem 0 .6rem">Or share the direct link</p>`
+        : `<p>Share this link. Students open it, enter their name and a PIN, and answer. (Once the web app URL is in <code>assets/config.js</code>, students can type the code <b class="qcode">${esc(q.id)}</b> on the homepage instead.)</p>`}
         <div class="linkbox"><input type="text" readonly value="${esc(link)}" id="slink" aria-label="Student link"><button class="btn primary" id="scopy">Copy</button></div>
         <div class="btnrow" style="margin-top:2rem"><a class="btn" href="#subs/${q.id}" style="text-decoration:none">Go to answers</a><a class="btn" href="${esc(link)}" target="_blank" rel="noopener" style="text-decoration:none">Preview as a student</a><a class="btn" href="#quizzes" style="text-decoration:none">All quizzes</a></div>
       </div>`;
@@ -310,7 +316,8 @@
         <div class="btnrow" style="margin-top:1.6rem"><button class="btn" id="copyl">Copy student link</button>
           <label class="hint">Sort <select id="sort" style="width:auto;font-size:1.5rem;padding:.5rem .8rem"><option value="status">To mark first</option><option value="name">Name</option><option value="time">Most recent</option><option value="score">Score</option></select></label></div></div>
       <div id="sumcards"></div>
-      <div class="tablewrap"><table class="data"><thead><tr><th>Student</th><th>Status</th><th>Attempt</th><th>Submitted</th><th>Time taken</th><th>Score</th></tr></thead><tbody id="tb"><tr><td colspan="6" class="hint">Loading…</td></tr></tbody></table></div>`;
+      <div id="partsum"></div>
+      <div class="tablewrap"><table class="data"><thead><tr><th>Student</th><th>Status</th><th>Parts</th><th>Attempt</th><th>Submitted</th><th>Time taken</th><th>Score</th></tr></thead><tbody id="tb"><tr><td colspan="7" class="hint">Loading…</td></tr></tbody></table></div>`;
     $("copyl").onclick = () => copy(studentLink(q.id));
     $("sort").onchange = e => { sortBy = e.target.value; draw(); };
 
@@ -327,14 +334,31 @@
       $("sumcards").innerHTML = `<dl class="facts" style="margin:0 0 2.4rem"><div class="fact"><dt>Submissions</dt><dd>${subs.length}</dd></div>
         <div class="fact"><dt>To mark</dt><dd>${waiting}</dd></div><div class="fact"><dt>Returned</dt><dd>${subs.length - waiting}</dd></div>
         <div class="fact"><dt>Mean score</dt><dd>${avg == null ? "–" : avg.toFixed(1)}<small>${avg == null ? "of returned work" : "/ " + max + " (" + Math.round(100 * avg / max) + "%)"}</small></dd></div></dl>`;
+      // Which parts did the class get wrong? Counts marked parts only.
+      const parts = partsOf(q.items);
+      const marked = subs.filter(s => (s.status === "returned" || s.status === "marking") && s.feedback);
+      const stats = parts.map(p => {
+        const c = { correct: 0, partial: 0, incorrect: 0 };
+        marked.forEach(s => { const f = s.feedback.parts && s.feedback.parts[p.id] && s.feedback.parts[p.id][p.k]; const v = f && verdict(f.marks, p.max); if (v) c[v]++; });
+        const n = c.correct + c.partial + c.incorrect;
+        return Object.assign({ c, n, rate: n ? c.correct / n : 1 }, p);
+      }).filter(p => p.n);
+      $("partsum").innerHTML = stats.length ? `<div class="card partsum"><h3>Where the class lost marks</h3><p class="hint">Parts with the fewest fully correct answers first. Based on ${marked.length} marked submission${marked.length === 1 ? "" : "s"}.</p>
+        <ol>${stats.slice().sort((a, b) => a.rate - b.rate || a.n - b.n).map(p => `<li><span class="pn">Q${p.n} ${p.label} <small>${p.id}</small></span>
+          <span class="pbar" role="img" aria-label="${p.c.correct} correct, ${p.c.partial} partly correct, ${p.c.incorrect} incorrect"><i class="c" style="flex:${p.c.correct}"></i><i class="p" style="flex:${p.c.partial}"></i><i class="x" style="flex:${p.c.incorrect}"></i></span>
+          <span class="pc">${MB.TICK} ${p.c.correct} &nbsp;½ ${p.c.partial} &nbsp;${MB.CROSS} ${p.c.incorrect}</span></li>`).join("")}</ol></div>` : "";
+      const strip = s => (s.status === "returned" || s.status === "marking") && s.feedback
+        ? `<span class="strip">${parts.map(p => { const f = s.feedback.parts && s.feedback.parts[p.id] && s.feedback.parts[p.id][p.k]; const v = f && verdict(f.marks, p.max);
+            return `<span class="sv ${v || "none"}" title="Q${p.n} ${p.label}: ${v ? VERDICT[v].label : "not marked"}">${v === "correct" ? MB.TICK : v === "incorrect" ? MB.CROSS : v === "partial" ? "½" : "–"}</span>`; }).join("")}</span>`
+        : `<span class="hint">not marked</span>`;
       const tb = $("tb");
       tb.innerHTML = subs.length ? subs.map(s => {
         const fresh = seen[s.studentKey] && seen[s.studentKey] !== s.submittedAt + s.status;
         return `<tr class="clickable${fresh ? " fresh" : ""}" data-k="${esc(s.studentKey)}" tabindex="0">
           <td><b>${esc(s.name)}</b></td><td><span class="pill ${esc(s.status)}">${STATUS_LABEL[s.status] || esc(s.status)}</span></td>
-          <td class="num">${s.attempt}</td><td>${esc(when(s.submittedAt))}</td><td>${esc(duration(s.elapsed))}</td>
+          <td>${strip(s)}</td><td class="num">${s.attempt}</td><td>${esc(when(s.submittedAt))}</td><td>${esc(duration(s.elapsed))}</td>
           <td class="num">${s.score == null || s.status !== "returned" && s.status !== "marking" ? "–" : s.score + " / " + max}</td></tr>`;
-      }).join("") : `<tr><td colspan="6"><div class="hint" style="padding:1.2rem 0">No answers yet. This list updates by itself as students submit.</div></td></tr>`;
+      }).join("") : `<tr><td colspan="7"><div class="hint" style="padding:1.2rem 0">No answers yet. This list updates by itself as students submit.</div></td></tr>`;
       subs.forEach(s => { seen[s.studentKey] = s.submittedAt + s.status; });
       tb.querySelectorAll("tr.clickable").forEach(tr => {
         const go = () => { location.hash = "mark/" + quizId + "/" + encodeURIComponent(tr.dataset.k); };
@@ -397,7 +421,13 @@
                   <textarea class="comment" id="c-${id}-${k}" data-id="${id}" data-k="${k}" placeholder="Comment for the student (optional). Click here for quick comments." maxlength="2000" style="margin-top:1rem">${esc(f.comment || "")}</textarea>
                   <div class="chips" data-for="c-${id}-${k}">${COMMENTS.map(c => `<button type="button" class="chip">${esc(c)}</button>`).join("")}</div>
                 </div>
-                <div class="mk"><span class="lbl">Marks</span>
+                <div class="mk"><span class="lbl">Verdict</span>
+                  <div class="verdict" data-id="${id}" data-k="${k}" data-max="${p.m}" role="group" aria-label="Verdict for ${id} ${p.l}">
+                    <button type="button" data-v="correct" aria-pressed="${MB.verdict(f.marks, p.m) === "correct"}">${MB.TICK}<span>Correct</span></button>
+                    ${p.m > 1 ? `<button type="button" data-v="partial" aria-pressed="${MB.verdict(f.marks, p.m) === "partial"}"><b>½</b><span>Partly</span></button>` : ""}
+                    <button type="button" data-v="incorrect" aria-pressed="${MB.verdict(f.marks, p.m) === "incorrect"}">${MB.CROSS}<span>Incorrect</span></button>
+                  </div>
+                  <span class="lbl">Marks</span>
                   <div class="mkrow"><input type="number" min="0" max="${p.m}" step="1" class="marks" data-id="${id}" data-k="${k}" data-max="${p.m}" value="${f.marks == null ? "" : f.marks}" aria-label="Marks for ${id} ${p.l}"> / ${p.m}</div>
                   ${p.m <= 10 ? `<div class="quick" data-id="${id}" data-k="${k}">${Array.from({ length: p.m + 1 }, (_, v) => `<button type="button" data-v="${v}" aria-pressed="${f.marks === v}">${v}</button>`).join("")}</div>` : ""}
                 </div>
@@ -421,7 +451,7 @@
       setBar(`<div class="markbar"><div class="wrap">
         <span class="total" id="mtotal">${total()} / ${max}</span><span class="hint" id="munmarked">${unmarked() ? unmarked() + " part" + (unmarked() === 1 ? "" : "s") + " unmarked" : "All parts marked"}</span>
         <span style="flex:1"></span>
-        <button class="btn" id="fullmarks" type="button">Fill blanks with 0</button>
+        <button class="btn" id="fullmarks" type="button">Mark blanks incorrect</button>
         <button class="btn" id="draft" type="button">Save draft</button>
         <button class="btn primary big" id="ret" type="button">Return to student</button>
         ${nx ? `<a class="btn" href="#mark/${quizId}/${encodeURIComponent(nx.studentKey)}" style="text-decoration:none">Next: ${esc(nx.name)} →</a>` : ""}
@@ -432,6 +462,8 @@
     };
     const updTotal = () => { const t = $("mtotal"); if (t) { t.textContent = `${total()} / ${max}`; const u = unmarked(); $("munmarked").textContent = u ? `${u} part${u === 1 ? "" : "s"} unmarked` : "All parts marked"; } };
     const syncQuick = inp => {
+      const vd = view.querySelector(`.verdict[data-id="${inp.dataset.id}"][data-k="${inp.dataset.k}"]`);
+      if (vd) { const v = verdict(inp.value, +inp.dataset.max); vd.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === v ? "true" : "false")); }
       const qk = view.querySelector(`.quick[data-id="${inp.dataset.id}"][data-k="${inp.dataset.k}"]`);
       if (qk) qk.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", inp.value !== "" && +b.dataset.v === +inp.value ? "true" : "false"));
     };
@@ -444,8 +476,16 @@
       if (e.target.matches("input, textarea")) dirty = true;
     };
     // keep focus in the comment box so its chips stay visible while clicking one
-    root.addEventListener("mousedown", e => { if (e.target.closest(".chip, .quick button")) e.preventDefault(); });
+    root.addEventListener("mousedown", e => { if (e.target.closest(".chip, .quick button, .verdict button")) e.preventDefault(); });
     root.addEventListener("click", e => {
+      const vb = e.target.closest(".verdict button");
+      if (vb) {
+        const w = vb.parentElement, m = +w.dataset.max, inp = view.querySelector(`input.marks[data-id="${w.dataset.id}"][data-k="${w.dataset.k}"]`);
+        if (vb.dataset.v === "correct") inp.value = m;
+        else if (vb.dataset.v === "incorrect") inp.value = 0;
+        else { const cur = inp.value === "" ? -1 : +inp.value; if (!(cur > 0 && cur < m)) inp.value = Math.max(1, Math.round(m / 2)); inp.focus(); inp.select(); }
+        syncQuick(inp); updTotal(); dirty = true; return;
+      }
       const qb = e.target.closest(".quick button");
       if (qb) {
         const w = qb.parentElement, inp = view.querySelector(`input.marks[data-id="${w.dataset.id}"][data-k="${w.dataset.k}"]`);

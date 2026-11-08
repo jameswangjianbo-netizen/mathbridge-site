@@ -153,6 +153,21 @@ window.MB = (function () {
     g.querySelectorAll("button").forEach(b => b.onclick = () => { set(b.dataset.scale); store.set("aahl-scale", b.dataset.scale); });
   }
 
+  /* Examiner's pen marks. A part is correct at full marks, incorrect at zero, partly correct between. */
+  const TICK = `<svg class="tick" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 11.5 L7.5 16.5 L17.5 3.5"/></svg>`;
+  const CROSS = `<svg class="cross" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4 L16 16 M16 4 L4 16"/></svg>`;
+  function verdict(marks, max) {
+    if (marks == null || marks === "") return null;
+    marks = +marks;
+    return marks >= max ? "correct" : marks <= 0 ? "incorrect" : "partial";
+  }
+  const VERDICT = {
+    correct: { label: "Correct", glyph: TICK },
+    partial: { label: "Partly correct", glyph: `<span class="penmark" aria-hidden="true">½</span>` },
+    incorrect: { label: "Incorrect", glyph: CROSS }
+  };
+  const normCode = s => String(s || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+
   return { ITEMS, BY_ID, TOPIC, PAPER, esc, stripTags, store, api, apiUrl, okUrl, configured, message,
-           headerHTML, msHTML, quizMax, toast, when, duration, symbolBar, zoom };
+           headerHTML, msHTML, quizMax, toast, when, duration, symbolBar, zoom, TICK, CROSS, verdict, VERDICT, normCode };
 })();

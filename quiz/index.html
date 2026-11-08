@@ -6,13 +6,15 @@
 <title>Quiz — MathBridge</title>
 <meta name="description" content="Answer a MathBridge AA HL formative quiz and get marks and comments back from your teacher.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231F4E79'/%3E%3Ctext x='20' y='27' font-family='Georgia' font-size='18' fill='white' text-anchor='middle'%3E%E2%88%AB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23131D2E'/%3E%3Cpath d='M10 21 L17 28 L31 11' fill='none' stroke='%23FF7A73' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/bank.css">
 <link rel="stylesheet" href="../assets/quiz.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=Kalam:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
-  <a class="brand" href="../">Math<span>Bridge</span></a>
+  <a class="brand" href="../">Math<span>Bridge</span><svg viewBox="0 0 20 18" aria-hidden="true"><path d="M2 10 L7 15 L18 2"/></svg></a>
   <nav><span id="who" class="hint"></span><button id="signout" class="linkbtn" hidden>Sign out</button></nav>
   <div class="zoom"><span>Text size</span><div class="zg" role="group" aria-label="Text size"><button data-scale="1" aria-pressed="true" title="Normal">A</button><button data-scale="1.22" aria-pressed="false" title="Large">A</button><button data-scale="1.5" aria-pressed="false" title="Projector">A</button></div></div>
 </div></header>
@@ -65,7 +67,7 @@
   const { BY_ID, esc, store, api, message, headerHTML, msHTML, quizMax, toast, when, duration } = MB;
   const $ = id => document.getElementById(id);
   const params = new URLSearchParams(location.search);
-  const quizId = (params.get("q") || "").replace(/[^\w-]/g, "");
+  const quizId = MB.normCode(params.get("q"));
   const credKey = "mb-cred-" + quizId;
   let quiz = null, cred = null, sub = null, pollTimer = null, timerTick = null, editing = false, startedAt = 0;
   const baseTitle = document.title;
@@ -79,8 +81,16 @@
 
   /* ---------- boot ---------- */
   async function boot() {
-    if (!quizId) { $("qtitle").textContent = "No quiz selected"; notice("<p>Open the quiz link your teacher gave you. It ends in <code>?q=</code> followed by a code.</p>"); return; }
-    if (!MB.apiUrl()) { $("qtitle").textContent = "Quiz unavailable"; notice("<p>This quiz link is missing its server address. Ask your teacher for a fresh link.</p>"); return; }
+    if (!quizId) {
+      $("qtitle").textContent = "Enter your quiz code";
+      notice(`<form id="codeform" novalidate><div class="field"><label for="qc">Quiz code</label><input id="qc" type="text" class="qcode" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="K7QM2P" style="font-size:2.6rem;text-transform:uppercase"><small>Your teacher gives you a 6-character code.</small></div><p class="err" id="qcerr" role="alert"></p><button class="btn primary big" type="submit">Start quiz</button></form>`);
+      $("codeform").onsubmit = e => { e.preventDefault(); const c = MB.normCode($("qc").value);
+        if (c.length < 4) { $("qcerr").textContent = "Enter the quiz code your teacher gave you."; return; }
+        location.href = "?q=" + encodeURIComponent(c) + (params.get("api") ? "&api=" + encodeURIComponent(params.get("api")) : ""); };
+      setTimeout(() => $("qc").focus(), 0);
+      return;
+    }
+    if (!MB.apiUrl()) { $("qtitle").textContent = "Quiz unavailable"; notice("<p>This site isn't connected to the quiz server yet. Ask your teacher for the full quiz link.</p>"); return; }
     try { quiz = (await api("getQuiz", { id: quizId })).quiz; }
     catch (e) { $("qtitle").textContent = "Quiz unavailable"; notice(`<p>${esc(message(e))}</p>`); return; }
     quiz.items = quiz.items.filter(id => BY_ID[id]);
@@ -266,8 +276,8 @@
   function partFeedbackHTML(fb, id, k, max) {
     const p = fb && fb.parts && fb.parts[id] && fb.parts[id][k];
     if (!p || (p.marks == null && !p.comment)) return "";
-    const cls = p.marks == null ? "" : p.marks >= max ? "full" : p.marks === 0 ? "zero" : "";
-    return `<div class="fb ${cls}">${p.marks == null ? "" : `<div class="fbm">${p.marks} / ${max} mark${max === 1 ? "" : "s"}</div>`}${p.comment ? `<div class="fbc">${esc(p.comment)}</div>` : ""}</div>`;
+    const v = MB.verdict(p.marks, max);
+    return `<div class="fb">${v ? `<div class="fbm">${MB.VERDICT[v].glyph}<span>${MB.VERDICT[v].label}</span><span class="mm">${p.marks}/${max}</span></div>` : ""}${p.comment ? `<div class="fbc">${esc(p.comment)}</div>` : ""}</div>`;
   }
 
   function renderStatus() {

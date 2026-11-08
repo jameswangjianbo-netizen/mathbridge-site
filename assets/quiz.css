@@ -6,14 +6,7 @@
 [hidden]{display:none !important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* ---------- page header for quiz/teacher ---------- */
-.topbar{background:var(--surface);border-bottom:1px solid var(--rule)}
-.topbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem 2rem;padding:1.6rem 2.4rem}
-.brand{font-weight:700;font-size:1.7rem;color:var(--ink);text-decoration:none;letter-spacing:.01em}
-.brand span{color:var(--accent)}
-.topbar nav{display:flex;gap:1.6rem;margin-left:auto;font-size:1.55rem;flex-wrap:wrap}
-.topbar nav a{color:var(--muted);text-decoration:none;font-weight:600}
-.topbar nav a:hover,.topbar nav a[aria-current="page"]{color:var(--accent)}
+/* ---------- page header for quiz/teacher (top bar lives in site.css) ---------- */
 .pagehead{padding:3.6rem 0 2.4rem}
 .pagehead h1{font-size:clamp(3rem,4.4vw,4.4rem);letter-spacing:-.012em}
 .pagehead p{color:var(--ink-2);max-width:64ch;margin:1.2rem 0 0;font-size:1.9rem}
@@ -100,6 +93,7 @@ textarea.answer{min-height:9rem;font-family:var(--ui);font-size:1.85rem}
 .sym{appearance:none;cursor:pointer;background:var(--surface-2);border:1px solid var(--rule-soft);color:var(--ink);font:inherit;font-size:1.6rem;min-width:3.4rem;padding:.3rem .6rem}
 .sym:hover{border-color:var(--accent);color:var(--accent)}
 .topbar .zoom{position:static;box-shadow:none;border:0;padding:0;background:none}
+.topbar .zoom span{font-size:12px}.topbar .zoom button{padding:5px 10px}.topbar .zoom button:nth-child(1){font-size:13px}.topbar .zoom button:nth-child(2){font-size:16px}.topbar .zoom button:nth-child(3){font-size:19px}
 
 /* ---------- teacher: tables & lists ---------- */
 .tablewrap table.data tr.clickable{cursor:pointer}
@@ -141,7 +135,7 @@ textarea.answer{min-height:9rem;font-family:var(--ui);font-size:1.85rem}
 /* marking */
 .markhead{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between}
 .markpart{display:grid;grid-template-columns:5.6rem 1fr;gap:.6rem 1.2rem;padding:1.4rem 2rem;border-top:1px solid var(--rule-soft)}
-.markpart .slot{grid-column:2;display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:1.2rem}
+.markpart .slot{grid-column:2;display:grid;grid-template-columns:minmax(0,1fr) 30rem;gap:1.2rem 2rem}
 .markpart .mk{display:flex;flex-direction:column;gap:.6rem}
 .markpart .mk .mkrow{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.7rem}
 .markpart .mk input[type=number]{width:7.4rem;font-size:2rem;font-weight:700;text-align:center;padding:.6rem}
@@ -182,7 +176,7 @@ textarea.comment{min-height:6.4rem;font-size:1.7rem}
 .tabbar .tab.link{color:var(--accent);text-decoration:none;margin-left:auto}
 
 @media (max-width:900px){
-  .topbar .wrap,.actionbar .wrap,.markbar .wrap{padding-left:1.6rem;padding-right:1.6rem}
+  .actionbar .wrap,.markbar .wrap{padding-left:1.6rem;padding-right:1.6rem}
   .qpart,.markpart{grid-template-columns:1fr;padding:1.2rem 1.6rem}
   .qpart .slot,.markpart .slot{grid-column:1}
   .markpart .slot{grid-template-columns:1fr}
@@ -196,3 +190,39 @@ textarea.comment{min-height:6.4rem;font-size:1.7rem}
   .itemfb{margin:0 1.6rem 1.4rem}
 }
 @media print{ .actionbar,.markbar,.tray,.addq,.toast,.topbar nav{display:none !important} }
+
+/* ---------- verdicts: the examiner's pen ---------- */
+.verdict{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+.verdict button{appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--rule);color:var(--ink-2);font:inherit;font-size:1.45rem;font-weight:700;padding:.5rem .9rem}
+.verdict button svg{width:1.7rem;height:1.7rem}
+.verdict button b{font-family:var(--hand);color:var(--pen);font-size:1.9rem;line-height:1}
+.verdict button:hover{border-color:var(--pen)}
+.verdict button[aria-pressed="true"]{border-color:var(--pen);background:var(--pen-soft);color:var(--ink)}
+.strip{display:inline-flex;flex-wrap:wrap;gap:.2rem;font-family:var(--hand);font-weight:700;color:var(--pen);font-size:1.8rem;line-height:1}
+.strip .sv{display:inline-flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border:1px solid var(--rule-soft);background:var(--surface)}
+.strip .sv svg{width:1.5rem;height:1.5rem}
+.strip .sv.none{color:var(--faint);font-family:Arial,sans-serif;font-size:1.4rem;font-weight:400}
+.partsum h3{font-family:var(--display);font-size:2.3rem}
+.partsum ol{list-style:none;margin:1.4rem 0 0;padding:0}
+.partsum li{display:grid;grid-template-columns:minmax(12rem,16rem) 1fr auto;gap:1.4rem;align-items:center;padding:.7rem 0;border-top:1px solid var(--rule-soft);font-size:1.6rem}
+.partsum .pn{font-weight:700}
+.partsum .pn small{font-family:var(--mono);color:var(--faint);font-weight:500;margin-left:.4rem}
+.partsum .pbar{display:flex;height:1.2rem;background:var(--surface-2);overflow:hidden}
+.partsum .pbar i{display:block}
+.partsum .pbar .c{background:var(--ok)} .partsum .pbar .p{background:var(--gold)} .partsum .pbar .x{background:var(--pen)}
+.partsum .pc{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:.3rem}
+.partsum .pc svg{width:1.4rem;height:1.4rem}
+.bigcode{font-size:5.6rem;line-height:1;margin:1.6rem 0 0;color:var(--ink);letter-spacing:.2em}
+
+/* student feedback on a part */
+.fb{margin-top:.9rem;border-left:3px solid var(--pen);background:var(--surface);border-top:1px solid var(--rule-soft);border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);padding:1rem 1.3rem}
+.fb .fbm{display:flex;align-items:center;gap:.8rem;font-weight:700;font-size:1.65rem;color:var(--ink)}
+.fb .fbm svg{width:2.4rem;height:2.4rem}
+.fb .fbm .penmark{font-size:2.6rem;min-width:2.4rem}
+.fb .fbm .mm{margin-left:auto;font-family:var(--display);font-weight:600;color:var(--pen);font-size:2rem;font-variant-numeric:tabular-nums}
+.fb .fbc{white-space:pre-wrap;color:var(--ink);margin-top:.4rem;font-family:var(--hand);font-size:2rem;line-height:1.35;color:var(--pen)}
+.fb.full,.fb.zero{background:var(--surface)}
+.score{font-family:var(--display);font-weight:600;color:var(--pen)}
+.score small{font-family:var(--display)}
+.overall{font-family:var(--hand);font-size:2.2rem;line-height:1.4;color:var(--pen);border-left-color:var(--pen)}
+@media (max-width:900px){ .partsum li{grid-template-columns:1fr auto}.partsum .pbar{grid-column:1 / -1;grid-row:2} .bigcode{font-size:4.2rem} }

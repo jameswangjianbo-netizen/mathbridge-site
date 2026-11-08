@@ -7,7 +7,9 @@ Live site: https://jameswangjianbo-netizen.github.io/mathbridge-site/
 
 ## Pages
 
-- **[AA HL Two-Year Course Map](https://jameswangjianbo-netizen.github.io/mathbridge-site/)** (`index.html`) —
+- **[Home](https://jameswangjianbo-netizen.github.io/mathbridge-site/)** (`index.html`) — the way in.
+  Students type the 6-character quiz code their teacher gives them; teachers go to the dashboard.
+- **[AA HL Two-Year Course Map](https://jameswangjianbo-netizen.github.io/mathbridge-site/course-map/)** (`course-map/index.html`) —
   a 60-week, 240-block scheme of work covering every SL and AHL sub-topic of the current guide
   (first assessment 2021, updated November 2024). Tabs cover the scheme of work, course architecture,
   the formative assessment map, IA and Paper 3 milestones, notes on the 2029 guide transition, and a
@@ -18,16 +20,18 @@ Live site: https://jameswangjianbo-netizen.github.io/mathbridge-site/
 - **[Teacher dashboard](https://jameswangjianbo-netizen.github.io/mathbridge-site/teacher/)** (`teacher/index.html`) —
   build a quiz from any of the bank's questions (or tick "+ Quiz" on questions in the bank), set a time
   limit and options, and share one link with the class. Answers arrive live; mark each part against the
-  markscheme with quick comments, then return the work. Students can revise and resubmit, and you can see
+  markscheme with one click per part (correct, partly correct or incorrect) plus quick comments, then return
+  the work. A "where the class lost marks" summary ranks the parts by how many students got them fully right. Students can revise and resubmit, and you can see
   what changed between attempts.
-- **Student quiz** (`quiz/index.html?q=…`) — students sign in with a name and PIN, answer each part
+- **Student quiz** (`quiz/index.html?q=CODE`) — students sign in with a name and PIN, answer each part
   (with a maths-symbol palette and drafts saved on their device), and see your marks and comments
   appear on the page as soon as you return them.
 
 Live quizzes store answers and feedback in a Google Sheet you own, through a small Apps Script
 (`backend/Code.gs`). Setup takes about five minutes: see **[backend/SETUP.md](backend/SETUP.md)**.
 Shared code lives in `assets/` (`items.js` holds the question bank, `common.js` the API client and
-renderers, `config.js` the web app URL).
+renderers, `config.js` the web app URL, `site.css` the shared look: squared paper, STIX Two for
+headings and maths, and red-pen ticks for marking).
 
 Other files: `robots.txt` and `sitemap.xml` for search engines, and `.github/workflows/pages.yml`, which
 deploys the site to GitHub Pages on every push to `main`.

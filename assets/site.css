@@ -1,0 +1,81 @@
+/*
+ * MathBridge site identity: squared exercise paper, typeset maths, and the examiner's red pen.
+ * Loaded after each page's own styles so the tokens here win. Shared chrome uses px (not rem)
+ * because the course map and the bank use different root font sizes.
+ */
+:root{
+  --paper:#F7F9FC; --grid:#DCE5F0; --surface:#FFFFFF; --surface-2:#EEF2F8; --surface-3:#E2E8F1;
+  --ink:#131D2E; --ink-2:#34425A; --muted:#56647B; --faint:#7F8BA0;
+  --rule:#CAD4E2; --rule-soft:#E0E6EF;
+  --accent:#1D3B6E; --accent-soft:#E3EAF6; --accent-ink:#152C54;
+  --pen:#C62A2F; --pen-soft:#FBE7E6;
+  --ok:#1F7A4D; --ok-soft:#E1F2E8;
+  --shadow:0 1px 2px rgba(19,29,46,.06), 0 10px 24px -14px rgba(19,29,46,.28);
+  --display:"STIX Two Text", "STIX Two", "Cambria Math", Georgia, serif;
+  --serif:var(--display);
+  --hand:"Kalam", "Segoe Print", "Bradley Hand", cursive;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1522; --grid:#18233A; --surface:#141D2C; --surface-2:#1B2638; --surface-3:#223047;
+  --ink:#E9EEF6; --ink-2:#C5CFDE; --muted:#97A3B8; --faint:#707D93;
+  --rule:#2A3750; --rule-soft:#1F2A3D;
+  --accent:#9DB8EA; --accent-soft:#1A2A47; --accent-ink:#C3D4F4;
+  --pen:#FF7A73; --pen-soft:#3A1C1E;
+  --ok:#7FD1A4; --ok-soft:#14321F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 24px -12px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --paper:#0E1522; --grid:#18233A; --surface:#141D2C; --surface-2:#1B2638; --surface-3:#223047;
+  --ink:#E9EEF6; --ink-2:#C5CFDE; --muted:#97A3B8; --faint:#707D93;
+  --rule:#2A3750; --rule-soft:#1F2A3D;
+  --accent:#9DB8EA; --accent-soft:#1A2A47; --accent-ink:#C3D4F4;
+  --pen:#FF7A73; --pen-soft:#3A1C1E;
+  --ok:#7FD1A4; --ok-soft:#14321F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 24px -12px rgba(0,0,0,.7);
+}
+
+body{background-color:var(--paper)}
+.squared{
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;background-position:-1px -1px;
+}
+
+/* Page titles are typeset like a maths paper. */
+.masthead h1,.pagehead h1,.display{font-family:var(--display);font-weight:600;letter-spacing:-.01em}
+.masthead{background:var(--surface)}
+.masthead h1{max-width:24ch}
+
+/* ---------- shared top bar ---------- */
+.topbar{background:var(--surface);border-bottom:1px solid var(--rule);font-family:Arial,Helvetica,sans-serif}
+.topbar .wrap,.topbar .bar-in{max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px}
+.brand{display:inline-flex;align-items:baseline;gap:0;font-family:var(--display);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.01em;line-height:1}
+.brand span{color:var(--accent)}
+.brand svg{width:18px;height:16px;margin-left:6px;align-self:center;overflow:visible}
+.brand svg path{fill:none;stroke:var(--pen);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.topbar nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;margin-left:auto;font-size:15px}
+.topbar nav a{color:var(--ink-2);text-decoration:none;font-weight:600;padding:4px 0;border-bottom:2px solid transparent}
+.topbar nav a:hover{color:var(--accent)}
+.topbar nav a[aria-current="page"]{color:var(--accent);border-bottom-color:var(--pen)}
+.topbar .hint{font-size:14px}
+.topbar .linkbtn{font-size:15px}
+
+/* ---------- examiner's pen ---------- */
+.pen{font-family:var(--hand);color:var(--pen);font-weight:700;line-height:1}
+.penmark{display:inline-flex;align-items:center;justify-content:center;font-family:var(--hand);color:var(--pen);font-weight:700;font-size:1.25em;line-height:1;min-width:1.4em}
+.tick,.cross{display:inline-block;width:1em;height:1em;vertical-align:-.12em;overflow:visible}
+.tick path,.cross path{fill:none;stroke:var(--pen);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* Inline code like quiz codes and item ids */
+.qcode{font-family:var(--mono);font-weight:600;letter-spacing:.12em}
+
+.sitefoot{border-top:1px solid var(--rule);background:var(--surface);color:var(--muted);font:14px/1.6 Arial,Helvetica,sans-serif}
+.sitefoot .bar-in{max-width:1280px;margin:0 auto;padding:28px 24px 40px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+.sitefoot a{color:var(--ink-2)}
+
+@media (max-width:700px){
+  .topbar .wrap,.topbar .bar-in{padding:10px 16px;gap:8px 18px}
+  .topbar nav{margin-left:0;gap:4px 16px;font-size:14px}
+  .sitefoot .bar-in{padding:24px 16px 32px}
+}
