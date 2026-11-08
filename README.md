@@ -1,17 +1,34 @@
-# MathBridge
+# MathBridge — IB DP Mathematics AA HL
 
-MathBridge is a free collection of adaptable mathematics lesson plans and assessment ideas
-connecting Cambridge IGCSE, IB MYP, and IB Diploma Mathematics: Analysis & Approaches.
-It includes 15 lesson outlines across five concept pathways, with formative checks and
-assessment evidence in each plan. No cost, sign-up, or mailing list is required.
+Free planning and assessment resources for teachers of IB Diploma Programme
+Mathematics: Analysis and Approaches, Higher Level.
 
 Live site: https://jameswangjianbo-netizen.github.io/mathbridge-site/
 
-## Contents
+## Pages
 
-- `index.html` — lesson-plan library, assessment guidance, curriculum pathway, and FAQ
-- `robots.txt`, `sitemap.xml` — search engine discovery
-- `.github/workflows/pages.yml` — deploys the site to GitHub Pages on every push to `main`
+- **[AA HL Two-Year Course Map](https://jameswangjianbo-netizen.github.io/mathbridge-site/)** (`index.html`) —
+  a 60-week, 240-block scheme of work covering every SL and AHL sub-topic of the current guide
+  (first assessment 2021, updated November 2024). Tabs cover the scheme of work, course architecture,
+  the formative assessment map, IA and Paper 3 milestones, notes on the 2029 guide transition, and a
+  coverage audit computed from the scheme itself. Filter by year or topic, or search by syllabus code.
+- **[AA HL Formative Bank](https://jameswangjianbo-netizen.github.io/mathbridge-site/formative-bank/)** (`formative-bank/index.html`) —
+  127 original Paper 1, 2 and 3 style questions with full IB-style markschemes (M, A, R and AG marks),
+  plus the eighteen unit formatives, the retrieval programme and marking protocols referenced by the course map.
+
+Other files: `robots.txt` and `sitemap.xml` for search engines, and `.github/workflows/pages.yml`, which
+deploys the site to GitHub Pages on every push to `main`.
+
+## Using it
+
+Week numbers assume four 80–90 minute blocks per week over 33 weeks in DP1 and 27 weeks in DP2; adjust
+them to your own school calendar. References to "existing" worksheets and formatives describe one
+department's resources and are meant to be swapped for your own. Both pages print cleanly from the browser.
+
+## Caveats
+
+The 2029 notes are based on a pre-publication draft of the new guide (28 November 2025) and should be
+checked against the published guide. The questions are original and are not IB past-paper material.
 
 ## Development
 
