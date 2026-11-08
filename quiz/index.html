@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz — MathBridge</title>
+<meta name="description" content="Answer a MathBridge AA HL formative quiz and get marks and comments back from your teacher.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231F4E79'/%3E%3Ctext x='20' y='27' font-family='Georgia' font-size='18' fill='white' text-anchor='middle'%3E%E2%88%AB%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/bank.css">
+<link rel="stylesheet" href="../assets/quiz.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="../">Math<span>Bridge</span></a>
+  <nav><span id="who" class="hint"></span><button id="signout" class="linkbtn" hidden>Sign out</button></nav>
+  <div class="zoom"><span>Text size</span><div class="zg" role="group" aria-label="Text size"><button data-scale="1" aria-pressed="true" title="Normal">A</button><button data-scale="1.22" aria-pressed="false" title="Large">A</button><button data-scale="1.5" aria-pressed="false" title="Projector">A</button></div></div>
+</div></header>
+
+<main class="wrap" id="main">
+  <div class="pagehead" id="head">
+    <p class="eyebrow">AA HL formative quiz</p>
+    <h1 id="qtitle">Loading quiz&hellip;</h1>
+    <p id="qinstr" hidden></p>
+    <div class="meta" id="qmeta"></div>
+  </div>
+
+  <div id="notice" class="card narrow" hidden></div>
+
+  <!-- sign in -->
+  <form id="signin" class="card narrow" hidden novalidate>
+    <h2>Start</h2>
+    <p>Use the same name and PIN every time you open this quiz. That's how you get back to your answers and your teacher's feedback.</p>
+    <div class="field"><label for="sname">Your name</label><input id="sname" type="text" autocomplete="name" maxlength="60" required>
+      <small>First name and surname, spelled the way your teacher knows it.</small></div>
+    <div class="field"><label for="spin">PIN</label><input id="spin" type="password" inputmode="numeric" pattern="\d{4,8}" maxlength="8" autocomplete="off" required>
+      <small>Choose 4 to 8 digits the first time. Don't reuse a bank or phone PIN.</small></div>
+    <p class="err" id="signerr" role="alert"></p>
+    <button class="btn primary big" type="submit" id="signbtn">Continue</button>
+  </form>
+
+  <!-- status / feedback -->
+  <section id="status" hidden></section>
+
+  <!-- questions -->
+  <section id="questions" class="items" hidden></section>
+</main>
+
+<div class="actionbar" id="actionbar" hidden><div class="wrap">
+  <span class="timer" id="timer" hidden></span>
+  <span class="prog" id="prog"></span>
+  <span class="saved" id="saved"></span>
+  <span class="spacer"></span>
+  <button class="btn" type="button" id="cancelEdit" hidden>Cancel</button>
+  <button class="btn primary big" type="button" id="submitBtn">Submit answers</button>
+  <div class="symbar" id="symbar" aria-label="Insert a maths symbol"></div>
+</div></div>
+
+
+<script src="../assets/config.js"></script>
+<script src="../assets/items.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+(function () {
+  const { BY_ID, esc, store, api, message, headerHTML, msHTML, quizMax, toast, when, duration } = MB;
+  const $ = id => document.getElementById(id);
+  const params = new URLSearchParams(location.search);
+  const quizId = (params.get("q") || "").replace(/[^\w-]/g, "");
+  const credKey = "mb-cred-" + quizId;
+  let quiz = null, cred = null, sub = null, pollTimer = null, timerTick = null, editing = false, startedAt = 0;
+  const baseTitle = document.title;
+
+  MB.zoom();
+  MB.symbolBar($("symbar"));
+
+  function notice(html) { const n = $("notice"); n.innerHTML = html; n.hidden = false; }
+  const sKey = name => String(name || "").trim().toLowerCase().replace(/\s+/g, " ");
+  const draftKey = () => "mb-draft-" + quizId + "-" + sKey(cred.name);
+
+  /* ---------- boot ---------- */
+  async function boot() {
+    if (!quizId) { $("qtitle").textContent = "No quiz selected"; notice("<p>Open the quiz link your teacher gave you. It ends in <code>?q=</code> followed by a code.</p>"); return; }
+    if (!MB.apiUrl()) { $("qtitle").textContent = "Quiz unavailable"; notice("<p>This quiz link is missing its server address. Ask your teacher for a fresh link.</p>"); return; }
+    try { quiz = (await api("getQuiz", { id: quizId })).quiz; }
+    catch (e) { $("qtitle").textContent = "Quiz unavailable"; notice(`<p>${esc(message(e))}</p>`); return; }
+    quiz.items = quiz.items.filter(id => BY_ID[id]);
+    document.title = quiz.title + " — MathBridge";
+    $("qtitle").textContent = quiz.title;
+    if (quiz.instructions) { $("qinstr").textContent = quiz.instructions; $("qinstr").hidden = false; }
+    const max = quizMax(quiz.items);
+    const calc = quiz.items.some(id => BY_ID[id].paper >= 2) ? (quiz.items.every(id => BY_ID[id].paper >= 2) ? "GDC required" : "Some questions need a GDC") : "No calculator";
+    $("qmeta").innerHTML = [quiz.className && `<span>Class <b>${esc(quiz.className)}</b></span>`,
+      `<span><b>${quiz.items.length}</b> question${quiz.items.length === 1 ? "" : "s"}</span>`,
+      `<span><b>${max}</b> marks</span>`,
+      quiz.minutes ? `<span>Time limit <b>${quiz.minutes} min</b></span>` : "",
+      `<span>${calc}</span>`,
+      quiz.open ? "" : `<span class="pill closed">Closed</span>`].filter(Boolean).join("");
+
+    cred = store.json(credKey, sessionStorage);
+    if (cred && cred.name && cred.pin) { await signIn(cred.name, cred.pin, true); }
+    else showSignin();
+  }
+
+  function showSignin() {
+    $("signin").hidden = false; $("status").hidden = true; $("questions").hidden = true; $("actionbar").hidden = true;
+    document.body.classList.remove("has-actionbar");
+    if (!quiz.open) { $("signin").querySelector("p").textContent = "This quiz is closed for new answers. You can still sign in to read your feedback."; }
+    setTimeout(() => $("sname").focus(), 0);
+  }
+
+  $("signin").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = $("sname").value.trim(), pin = $("spin").value.trim();
+    $("signerr").textContent = "";
+    if (!name) { $("signerr").textContent = message({ code: "no_name" }); return; }
+    if (!/^\d{4,8}$/.test(pin)) { $("signerr").textContent = message({ code: "bad_pin" }); return; }
+    $("signbtn").disabled = true;
+    await signIn(name, pin, false);
+    $("signbtn").disabled = false;
+  });
+
+  async function signIn(name, pin, silent) {
+    try {
+      const r = await api("myStatus", { quizId, name, pin });
+      cred = { name, pin };
+      store.set(credKey, JSON.stringify(cred), sessionStorage);
+      $("who").textContent = "Signed in as " + name;
+      $("signout").hidden = false;
+      $("signin").hidden = true;
+      sub = r.sub;
+      route();
+    } catch (e) {
+      if (silent) { store.del(credKey, sessionStorage); showSignin(); return; }
+      $("signerr").textContent = message(e);
+    }
+  }
+
+  $("signout").onclick = () => {
+    store.del(credKey, sessionStorage); cred = null; sub = null; stopPoll(); stopTimer();
+    $("who").textContent = ""; $("signout").hidden = true; $("spin").value = ""; document.title = baseTitle;
+    showSignin();
+  };
+
+  /* ---------- routing ---------- */
+  function route() {
+    editing = false;
+    stopTimer();
+    if (!sub) {
+      if (!quiz.open) { renderStatusClosed(); return; }
+      startAnswering({});
+      return;
+    }
+    renderStatus();
+    startPoll();
+  }
+
+  function renderStatusClosed() {
+    $("status").hidden = false; $("questions").hidden = true; $("actionbar").hidden = true;
+    $("status").innerHTML = `<div class="card narrow"><h2>Quiz closed</h2><p>There's no submission under this name and PIN, and the quiz is now closed. Check the spelling of your name with your teacher.</p></div>`;
+  }
+
+  /* ---------- answering ---------- */
+  function startAnswering(prefill, isRevision) {
+    editing = true;
+    stopPoll();
+    $("status").hidden = !isRevision;
+    if (isRevision) {
+      $("status").innerHTML = `<div class="note"><strong>Revising attempt ${sub.attempt}.</strong> Your previous answers are filled in below, with your teacher's feedback under each part. Change what you need, then submit again.</div>`;
+    }
+    const draft = store.json(draftKey());
+    const answers = Object.assign({}, prefill, draft && draft.answers || {});
+    const fb = isRevision && sub.feedback;
+    const qs = $("questions");
+    qs.innerHTML = quiz.items.map((id, n) => {
+      const it = BY_ID[id];
+      return `<article class="item" data-id="${id}">${headerHTML(it, n + 1)}
+        <div class="qbody qwrap">${it.context || ""}</div>
+        <div class="parts-wrap">${it.parts.map((p, k) => `
+          <div class="qpart"><span class="pl">${p.l}</span>
+            <div class="pq"><span>${p.q}</span><span class="pm">[${p.m}]</span></div>
+            <div class="slot">
+              <label class="sr" for="a-${id}-${k}">Answer to ${id} ${p.l}</label>
+              <textarea class="answer" id="a-${id}-${k}" data-id="${id}" data-k="${k}" rows="4" placeholder="Working and answer" maxlength="6000">${esc((answers[id] || {})[k] || "")}</textarea>
+              ${fb ? partFeedbackHTML(fb, id, k, p.m) : ""}
+            </div>
+          </div>`).join("")}</div>
+        ${fb && fb.items && fb.items[id] ? `<div class="itemfb"><b>Teacher comment</b>${esc(fb.items[id])}</div>` : ""}
+      </article>`;
+    }).join("");
+    qs.hidden = false;
+    $("actionbar").hidden = false;
+    document.body.classList.add("has-actionbar");
+    $("cancelEdit").hidden = !sub;
+    $("submitBtn").disabled = false;
+    $("submitBtn").textContent = sub ? "Resubmit answers" : "Submit answers";
+    qs.oninput = onInput;
+    updateProgress();
+    $("saved").textContent = draft ? "Draft restored" : "";
+
+    // Timer: first attempt only, measured from when the student first opened the questions.
+    const startKey = "mb-start-" + quizId + "-" + sKey(cred.name) + "-" + (sub ? sub.attempt + 1 : 1);
+    startedAt = Number(store.get(startKey)) || Date.now();
+    store.set(startKey, String(startedAt));
+    if (quiz.minutes && !sub) startTimer(); else $("timer").hidden = true;
+    window.scrollTo({ top: 0 });
+  }
+
+  let saveT = null;
+  function onInput() {
+    updateProgress();
+    clearTimeout(saveT);
+    saveT = setTimeout(() => { store.set(draftKey(), JSON.stringify({ answers: collect(), at: Date.now() })); $("saved").textContent = "Draft saved on this device"; }, 600);
+  }
+  function collect() {
+    const out = {};
+    document.querySelectorAll("textarea.answer").forEach(t => {
+      (out[t.dataset.id] = out[t.dataset.id] || {})[t.dataset.k] = t.value;
+    });
+    return out;
+  }
+  function updateProgress() {
+    const all = [...document.querySelectorAll("textarea.answer")];
+    const done = all.filter(t => t.value.trim()).length;
+    $("prog").textContent = `${done} of ${all.length} parts answered`;
+  }
+
+  function startTimer() {
+    const end = startedAt + quiz.minutes * 60000;
+    const el = $("timer"); el.hidden = false;
+    const tick = () => {
+      const left = Math.max(0, end - Date.now());
+      const m = Math.floor(left / 60000), s = Math.floor(left / 1000) % 60;
+      el.textContent = `${m}:${String(s).padStart(2, "0")} left`;
+      el.classList.toggle("low", left < 120000);
+      if (left <= 0) { stopTimer(); el.textContent = "Time's up"; toast("Time's up. Submitting your answers…"); submit(true); }
+    };
+    tick();
+    timerTick = setInterval(tick, 1000);
+  }
+  function stopTimer() { clearInterval(timerTick); timerTick = null; }
+
+  $("cancelEdit").onclick = () => { store.del(draftKey()); route(); };
+  $("submitBtn").onclick = () => submit(false);
+
+  async function submit(auto) {
+    const answers = collect();
+    if (!auto) {
+      const blank = [...document.querySelectorAll("textarea.answer")].filter(t => !t.value.trim()).length;
+      const msg = blank ? `${blank} part${blank === 1 ? " is" : "s are"} still blank. Submit anyway?` : "Submit your answers to your teacher?";
+      if (!confirm(msg)) return;
+    }
+    $("submitBtn").disabled = true; $("submitBtn").textContent = "Submitting…";
+    try {
+      const r = await api("submit", { quizId, name: cred.name, pin: cred.pin, answers, elapsed: Math.round((Date.now() - startedAt) / 1000) });
+      store.del(draftKey());
+      sub = r.sub;
+      toast("Submitted. Your teacher can see your answers now.");
+      route();
+    } catch (e) {
+      toast(message(e), "err");
+      $("submitBtn").disabled = false; $("submitBtn").textContent = sub ? "Resubmit answers" : "Submit answers";
+    }
+  }
+
+  /* ---------- status & feedback ---------- */
+  function partFeedbackHTML(fb, id, k, max) {
+    const p = fb && fb.parts && fb.parts[id] && fb.parts[id][k];
+    if (!p || (p.marks == null && !p.comment)) return "";
+    const cls = p.marks == null ? "" : p.marks >= max ? "full" : p.marks === 0 ? "zero" : "";
+    return `<div class="fb ${cls}">${p.marks == null ? "" : `<div class="fbm">${p.marks} / ${max} mark${max === 1 ? "" : "s"}</div>`}${p.comment ? `<div class="fbc">${esc(p.comment)}</div>` : ""}</div>`;
+  }
+
+  function renderStatus() {
+    $("actionbar").hidden = true;
+    document.body.classList.remove("has-actionbar");
+    const st = $("status"); st.hidden = false;
+    const returned = sub.status === "returned";
+    const canRevise = quiz.open && (returned ? quiz.allowResubmit : (sub.status !== "marking" || quiz.allowResubmit));
+    const max = quizMax(quiz.items);
+    let top;
+    if (returned) {
+      const fb = sub.feedback || {};
+      top = `<div class="card">
+        <div class="statusline"><span class="pill returned">Feedback returned</span><span>Attempt ${sub.attempt} &middot; returned ${esc(when(sub.returnedAt))}</span></div>
+        <div class="scorebox" style="margin-top:1.8rem">
+          <div class="score">${sub.score == null ? "–" : sub.score}<small> / ${max}</small></div>
+          ${fb.overall ? `<div class="overall">${esc(fb.overall)}</div>` : ""}
+        </div>
+        ${canRevise ? `<div class="btnrow" style="margin-top:2rem"><button class="btn primary big" id="revise">Revise and resubmit</button><span class="hint">Your teacher will see your new answers alongside this feedback.</span></div>` : ""}
+      </div>`;
+    } else {
+      const label = sub.status === "marking" ? "Your teacher is marking this now." : "Waiting for your teacher's feedback.";
+      top = `<div class="card">
+        <div class="statusline"><span class="pulse" aria-hidden="true"></span><span class="pill ${esc(sub.status)}">${sub.status === "resubmitted" ? "Resubmitted" : sub.status === "marking" ? "Being marked" : "Submitted"}</span>
+          <span>${label} This page updates by itself when feedback arrives.</span></div>
+        <p class="hint" style="margin:1.2rem 0 0">Attempt ${sub.attempt} &middot; sent ${esc(when(sub.submittedAt))}${sub.elapsed ? " &middot; took " + esc(duration(sub.elapsed)) : ""}</p>
+        ${canRevise ? `<div class="btnrow" style="margin-top:1.6rem"><button class="btn" id="revise">Edit my answers</button></div>` : ""}
+      </div>`;
+    }
+    st.innerHTML = top + historyHTML();
+    const rv = $("revise");
+    if (rv) rv.onclick = () => startAnswering(sub.answers || {}, returned);
+
+    // read-only answers (+ feedback when returned)
+    const fb = returned ? sub.feedback : null;
+    const qs = $("questions");
+    qs.oninput = null;
+    qs.innerHTML = quiz.items.map((id, n) => {
+      const it = BY_ID[id];
+      return `<article class="item">${headerHTML(it, n + 1)}
+        <div class="qbody qwrap">${it.context || ""}</div>
+        <div class="parts-wrap">${it.parts.map((p, k) => {
+          const a = ((sub.answers || {})[id] || {})[k] || "";
+          return `<div class="qpart"><span class="pl">${p.l}</span>
+            <div class="pq"><span>${p.q}</span><span class="pm">[${p.m}]</span></div>
+            <div class="slot"><div class="answer-ro ${a.trim() ? "" : "empty"}">${a.trim() ? esc(a) : "No answer"}</div>${fb ? partFeedbackHTML(fb, id, k, p.m) : ""}</div></div>`;
+        }).join("")}</div>
+        ${fb && fb.items && fb.items[id] ? `<div class="itemfb"><b>Teacher comment</b>${esc(fb.items[id])}</div>` : ""}
+        ${returned && quiz.showMs ? `<details class="ms"><summary>Markscheme</summary><div class="msbody">${msHTML(it)}</div></details>` : ""}
+      </article>`;
+    }).join("");
+    qs.hidden = false;
+  }
+
+  function historyHTML() {
+    const h = (sub.history || []).slice().reverse();
+    if (!h.length) return "";
+    return `<div class="history"><p class="lbl" style="margin:0 0 .8rem">Earlier attempts</p>${h.map(a => `
+      <details><summary>Attempt ${a.attempt} &middot; ${a.score === "" || a.score == null ? "not scored" : esc(a.score) + " / " + quizMax(quiz.items)}</summary>
+      <div class="hbody">${a.feedback && a.feedback.overall ? `<p style="white-space:pre-wrap">${esc(a.feedback.overall)}</p>` : ""}
+      ${quiz.items.map(id => BY_ID[id].parts.map((p, k) => {
+        const ans = ((a.answers || {})[id] || {})[k] || "";
+        const f = a.feedback && a.feedback.parts && a.feedback.parts[id] && a.feedback.parts[id][k];
+        return `<div class="hpart"><b>${id} ${p.l}</b><div><div style="white-space:pre-wrap">${ans.trim() ? esc(ans) : "<i>No answer</i>"}</div>${f ? `<div class="hint">${f.marks == null ? "" : f.marks + "/" + p.m + " "}${esc(f.comment || "")}</div>` : ""}</div></div>`;
+      }).join("")).join("")}</div></details>`).join("")}</div>`;
+  }
+
+  /* ---------- live updates ---------- */
+  function startPoll() {
+    stopPoll();
+    const every = sub && sub.status === "returned" ? 45000 : 15000;
+    pollTimer = setInterval(poll, every);
+  }
+  function stopPoll() { clearInterval(pollTimer); pollTimer = null; }
+  async function poll() {
+    if (document.hidden || editing || !cred) return;
+    try {
+      const r = await api("myStatus", { quizId, name: cred.name, pin: cred.pin });
+      const prev = sub;
+      if (!r.sub) return;
+      const changed = !prev || r.sub.status !== prev.status || r.sub.returnedAt !== prev.returnedAt || r.sub.attempt !== prev.attempt;
+      sub = r.sub;
+      if (changed && !editing) {
+        renderStatus();
+        startPoll();
+        if (sub.status === "returned") { toast("Your teacher has returned feedback."); document.title = "● Feedback ready — " + quiz.title; }
+      }
+    } catch (e) { /* stay quiet; next tick retries */ }
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) { document.title = quiz ? quiz.title + " — MathBridge" : baseTitle; if (pollTimer) poll(); }
+  });
+
+  boot();
+})();
+</script>
+</body>
+</html>
