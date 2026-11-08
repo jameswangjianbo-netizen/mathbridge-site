@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mathbridge.example/sitemap.xml
+Sitemap: https://jameswangjianbo-netizen.github.io/mathbridge-site/sitemap.xml
